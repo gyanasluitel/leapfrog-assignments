@@ -376,7 +376,7 @@ a:hover {
 
 footer {
     padding: 18px 0px;
-    height: 30px;
+    height: 20px;
     margin-top: 30px;
     background: #727272;
     color: #fff;
@@ -393,4 +393,5 @@ footer {
 
 footer-logo {
     color: white;
+    font-size: 9px;
 }
