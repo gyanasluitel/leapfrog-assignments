@@ -1,0 +1,393 @@
+body {
+    font-family: 'Mulish', sans-serif;
+    width: 100%;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+.btn-search {
+    margin-left: 5px;
+    background: url("../images/button-search.png") no-repeat;
+    height: 23px;
+    width: 55px;
+    font-size: 10px;
+    border: none;
+    color: #fff;
+    padding-left: 7px; 
+}
+
+.friend-request {
+    margin-left: 33px;
+}
+
+.friend-request a{
+    color: #9D9D9D;
+}
+
+.header-top {
+    /* width: 100%; */
+    background-color: #7DD9E8;
+    /* height: 86px; */
+}
+
+.header-bottom {
+    background-color: #F5F5F5;
+    /* height: 39px; */
+}
+
+.heading-container {
+    background-color: #2FC1DA;
+    padding: 14px 51px 14px 12px; 
+}
+
+.heading-container h2 {
+    color: #fff;
+}
+
+.icon-search {
+    position: absolute;
+    bottom: 2px;
+    right: 65px;
+}
+
+.icon-cross {
+    position: absolute;
+    bottom: 3px;
+    right: 90px;
+}
+
+.icon-box {
+    position: absolute;
+    top: 8.5px;
+    left: -14px;
+}
+
+.list-search-one {
+    list-style: none;
+}
+
+.list-search-one a {
+    display: block;
+    padding: 13px 12px;
+    text-decoration: none;
+    color: #000;
+    line-height: 1.4;
+    font-size: 12px;
+}
+
+.list-first-item a{
+    background: url("../images/icon-download-main.png") no-repeat 160px 28px;
+
+}
+
+.list-first-item a:hover {
+    background: url("../images/icon-download-main.png") no-repeat 160px 28px;
+    background-color: #FFFFFF;
+}
+
+.list-second-item a{
+    background: url("../images/icon-download-main.png") no-repeat 160px 15px;
+}
+
+
+.list-second-item a:hover{
+    background: url("../images/icon-download-main.png") no-repeat 160px 15px;
+    background-color: #FFFFFF;
+
+}
+
+.list-search-two {
+    list-style: none;
+}
+
+.list-search-two a {
+    display: block;
+    padding: 13px 12px;
+    text-decoration: none;
+    color: #000;
+    line-height: 1.4;
+    font-size: 12px;
+}
+
+.list-search-three {
+    list-style: none;
+}
+
+.list-search-three a {
+    display: block;
+    padding: 13px 12px;
+    text-decoration: none;
+    color: #000;
+    line-height: 1.4;
+    font-size: 12px;
+}
+
+.list-search-three a:hover {
+    background-color: #fff;
+}
+
+
+
+.list-search-two a{
+    background: url("../images/icon-list.png") no-repeat 165px 17px;
+}
+
+.list-search-two a:hover{
+    background: url("../images/icon-list.png") no-repeat 165px 17px;
+    background-color: #FFFFFF;
+}
+
+.list-two-item a {
+    background: url("../images/icon-list.png") no-repeat 165px 28px;
+
+}
+
+.list-two-item a:hover {
+    background: url("../images/icon-list.png") no-repeat 165px 28px;
+    background-color: #FFFFFF;
+
+}
+
+.icon-user {
+    position: absolute;
+    top: 8.5px;
+    left: -19px;
+}
+
+.main-section-heading h2{
+    font-size: 23px;
+}
+
+.nav-user-menu li {
+    float: left;
+}
+
+.nav-user-menu a {
+    display: block;
+    font-size: 12px;
+    margin-left: 2px;
+    text-decoration: none;
+    color: #000;
+}
+
+.nav-user-menu a:hover {
+    text-decoration: underline;
+}
+
+.nav-header-bottom li{
+    float: left;
+}
+
+.nav-header-bottom a{
+    display: block;
+    text-decoration: none;
+    color: #000;
+    padding: 10px 10px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.nav-header-bottom a:hover {
+    background-color: white;
+}
+
+.nav-right a{
+    margin-right: 0px;
+    font-size: 12px;
+}
+
+.nav-right li {
+    position: relative;
+}
+
+.search-container input {
+    width: 260px;
+    background: url("../images/search-bar.png") no-repeat;
+    border: none;
+    height: 22px;
+    font-size: 10px;
+    padding-left: 10px;
+}
+
+.section-tab-headers {
+    width: 100%;
+    margin-top: 10px;
+    border-bottom: 2px solid #2FC1DA;
+}
+
+.section-headings {
+    margin-top: 14px;
+    display: block;
+    text-align: center;
+    font-size: 12px;
+}
+
+.left-main-section {
+    width: 257px;
+    background: url("../images/left-section-header.png") no-repeat;
+    /* background-color: #F5F5F5; */
+    float: left;
+    height: 65px;
+    position: relative;
+}
+
+.right-main-section {
+    width: 257px;
+    background: url("../images/right-section-header.png") no-repeat;
+    background-color: #F5F5F5;
+    float: right;
+    height: 65px;
+    position: relative;
+}
+
+.heading-nav-containers {
+    width: 238px;
+    height: 28px;
+    position: absolute;
+    bottom: 0;
+    left: 9px;
+    margin-top: 5px;
+}
+
+.active-nav-heading {
+    background: url("../images/btn-blue.png") no-repeat;
+    width: 115px;
+    height: 28px;
+    position: relative;
+}
+
+.nav-heading {
+    background: url("../images/gray-btn.png") no-repeat;
+    width: 115px;
+    height: 28px;
+    position: relative;
+}
+
+.nav-heading:hover {
+    background: url("../images/btn-blue.png") no-repeat;
+}
+
+.user-post {
+    width: 100%;
+    padding: 14px 0px;
+    height: 72px;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.post-info {
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.post-info h4 {
+    font-size: 14.3px;
+    margin-bottom: 8px;
+}
+
+.post-info p {
+    padding-top: 6px;
+}
+
+.post-info ul li{
+    float: left;
+    margin-right: 2px;
+}
+
+.post-info a{
+    text-decoration: none;
+    color: #000;
+}
+
+.post-info a:hover{
+    text-decoration: underline;
+    color: #000;
+}
+
+.post-info p {
+    clear: both;
+}
+
+.active-nav-heading span {
+    display: block;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 9px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.nav-heading span {
+    display: block;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 9px;
+    font-weight: bold;
+}
+
+.user-name{
+    font-size: 16px;
+}
+
+.blue-text {
+    color: #2f9eb1;
+}
+
+.green-text {
+    color: #709720;
+}
+
+.alert {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.red-text {
+    color: #D63F1A;
+}
+
+
+.nav-footer li {
+    float: left;
+}
+
+.nav-footer a {
+    display: block;
+    font-size: 12px;
+    margin-left: 2px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.nav-footer a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    padding: 18px 0px;
+    height: 30px;
+    margin-top: 30px;
+    background: #727272;
+    color: #fff;
+}
+
+
+.footer-left {
+    float: left;
+}
+
+.dots {
+    margin: 0px 7px;
+}
+
+footer-logo {
+    color: white;
+}
