@@ -339,10 +339,12 @@ a:hover {
 
 .blue-text {
     color: #2f9eb1;
+    font-weight: bold;
 }
 
 .green-text {
     color: #709720;
+    font-weight: bold;
 }
 
 .alert {
@@ -352,6 +354,7 @@ a:hover {
 
 .red-text {
     color: #D63F1A;
+    font-weight: bold;
 }
 
 
