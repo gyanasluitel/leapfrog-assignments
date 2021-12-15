@@ -435,6 +435,15 @@ footer {
         margin-right: 3%;
     }
 
+
+.nav-footer a {
+    display: block;
+    font-size: 9px;
+    margin-left: 12px;
+    text-decoration: none;
+    color: #fff;
+}
+
     
 }
 
