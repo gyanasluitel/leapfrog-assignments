@@ -1,0 +1,144 @@
+.container {
+    max-width: 939px;
+    margin: 0 auto;
+    padding: 0 2px;
+}
+
+.clearfix:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.header-top-left {
+    float: left;
+    width: 48%;
+}
+
+.header-top-right {
+    float: right;
+    margin-top: 20px;
+    text-align: right;
+}
+
+.header-bottom-left {
+    float: left;
+}
+
+.header-bottom-right {
+    float: right;
+}
+
+.logo-container {
+    width: 80%;
+    margin-top: 21px;
+}
+
+.icon-search {
+    position: absolute;
+    bottom: 2px;
+    right: 65px;
+}
+
+.icon-cross {
+    position: absolute;
+    bottom: 3px;
+    right: 90px;
+}
+
+.icon-box {
+    position: absolute;
+    top: 8.5px;
+    left: -15px;
+}
+
+.icon-user {
+    position: absolute;
+    top: 8.5px;
+    left: -20px;
+}
+
+.main-container {
+    margin-top:30px;
+}
+
+.main-section {
+    max-width: 518px;
+    width: 100%;
+    /* width: 518px; */
+    float: left;
+}
+
+.search-container {
+    width: 320px;
+    margin-top: 20px;
+    position: relative;
+}
+
+.sidebar-left {
+    display: none;
+    width: 194px;
+    background-color: #F5F5F5;
+    height: 605px;
+    float: left;
+    margin-right: 26px;
+}
+
+.sidebar-right {
+    display: none;
+    width: 175px;
+    background-color: #F5F5F5;
+    height: 605px;
+    float:right;
+}
+
+.user-menu {
+    margin-top: 8px;
+}
+
+
+/* .whole-wrapper {
+    min-width: 1002px;
+} */
+
+@media screen and (min-width: 768px) {
+    .sidebar-right {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .sidebar-right {
+        display: block;
+    }
+
+    .header-top-left {
+        float: left;
+        width: 60%;
+    }
+
+    .logo-container {
+        width: 35%;
+        float: left;
+        margin-top: 21px;
+        margin-bottom: 16px;
+    }
+
+    .search-container {
+        /* width: 78%; */
+        float: left;
+        margin-left: 23px;
+        margin-top: 38px;
+    }
+}
+
+
+@media screen and (min-width: 1024px) {
+    .sidebar-left {
+        display: block;
+    }
+
+    .container {
+        padding: 0%;
+    }
+}
