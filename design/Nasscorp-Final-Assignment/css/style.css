@@ -331,7 +331,7 @@ img {
 }
 
 .about-container {
-    border: 2px solid white;
+    /* border: 2px solid white; */
     padding: 6.25rem 0;
 }
 
@@ -439,7 +439,7 @@ img {
     /* margin: 1.875rem 1.906rem 6.188rem 1.906rem; */
     /* background-color: #16697A; */
     padding: 2.813rem; 
-    border: 1px solid white;
+    /* border: 1px solid white; */
 }
 
 .testimonial-main-content {
@@ -541,7 +541,7 @@ img {
 
 .team-container {
     padding: 1.875rem 0;
-    border: 1px solid white;
+    /* border: 1px solid white; */
 }
 
 .team-row-1 {
@@ -785,6 +785,7 @@ img {
     .header {
         background: url("../images/bg-cover.png") no-repeat;
         background-size: 100%;
+        background-color: #252B42;
     }
 
     .navbar {
@@ -793,29 +794,103 @@ img {
         margin-top: 0;
     }
 
-    .navbar label {
-        width: 10%;
+    .navbar-brand {
+        width: fit-content;
         /* border: 1px solid black; */
-        margin-left: 150px;
+        margin-left: 15%;
+        font-size: 32px;
     }
 
     .navbar-nav {
         /* border: 1px solid black; */
-        width: 60%;
+        width: fit-content;
         float: right;
-        margin-top: 0;
+        margin: 0;
+        margin-top: -10px;
+        margin-right: 100px;
     }
 
     .nav-item {
         display: inline-block;
+        margin-bottom: 0;
+        margin-right: 10px;
+    }
+
+    .nav-item a {
+        font-size: 0.875rem;
     }
 
     .header-container-two {
         width: 60%;
         margin: 0 auto;
     }
+
+    .card-items {
+        /* border: 1px solid black; */
+        background-color: #FFFFFF;
+    }
     
     .header-card-item {
+        float: left;
+    }
+
+    .navbar-icons {
+        /* border: 1px solid black; */
+        width: 20%;
+    }
+
+    /* .menu-logo {
+        margin-left: 100px;
+    } */
+
+    .cart-logo {
+        margin-right: 160px;
+        margin-left: 0;
+    }
+
+    .search-logo {
+        margin-right: 20px;
+    }
+
+    .features {
+        padding-bottom: 0;
+    }
+
+    .features-row {
+        /* border: 2px solid white; */
+        width: fit-content;
+        margin: auto;
+    } 
+
+    .features-card-item {
+        float: left;
+        margin-right: 30px;
+    }
+
+    .about-main-content h2{
+        width: 40%;
+        margin: 0 auto;
+        margin-bottom: 0.625rem;
+    }
+
+    .about-main-content p{
+        width: 31%;
+        margin: 0 auto;
+    }
+
+    .about-row-2 {
+        padding: 0 195px;
+        border: 1px solid white;
+    }
+
+    .about-img-container {
+        width: 50%;
+        border: 1px solid white;
+        object-fit: cover;
+    }
+
+    .about-more-info {
+        border: 1px solid white;
         float: left;
     }
 }
