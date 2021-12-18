@@ -361,7 +361,7 @@ img {
 }
 
 .about-img-container {
-    width: 20.263rem;
+    max-width: 600px;
     margin-bottom: 3.25rem;
     /* border: 1px solid red; */
 }
@@ -621,7 +621,7 @@ img {
 .contact {
     background-color: #252B42;
     padding: 30px 0;
-    border: 1px solid white;
+    /* border: 1px solid white; */
 }
 
 .contact-container {
@@ -788,6 +788,15 @@ img {
         background-color: #252B42;
     }
 
+    .header-container-one {
+        width: 60%;
+        margin: auto;
+    }
+
+    .header-container-one h1 {
+        font-size: 3.625rem;
+    }
+
     .navbar {
         background-color: transparent;
         /* border: 1px solid black; */
@@ -858,8 +867,8 @@ img {
 
     .features-row {
         /* border: 2px solid white; */
-        width: fit-content;
-        margin: auto;
+        width: 80%;
+        margin: 0 auto;
     } 
 
     .features-card-item {
@@ -879,18 +888,86 @@ img {
     }
 
     .about-row-2 {
-        padding: 0 195px;
-        border: 1px solid white;
+        /* border: 5px solid yellow; */
+        /* padding: 0 195px; */
+        margin-left: 195px;
+        margin-right: 195px;
+        /* border: 1px solid white; */
+        width: fit-content;
     }
 
     .about-img-container {
-        width: 50%;
+        float: left;
         border: 1px solid white;
         object-fit: cover;
     }
 
     .about-more-info {
-        border: 1px solid white;
+        /* border: 1px solid white; */
+        float: right;
+        width: 30%;
+        padding-top: 20px; 
+        margin-right: 50px;
+    }
+
+    .testimonial-card-item {
         float: left;
+        width: 30.33%;
+        margin-left: 2%;
+    }
+
+    .team-card-items {
+        width: 80%;
+        /* border: 1px solid white; */
+        margin: 0 auto;
+    }
+
+    .team-card-item {
+        float: left;
+        width: 20%;
+        margin-left: 4%;
+    }
+
+    .contact-container {
+        /* border: 1px solid yellow; */
+        padding-left: 35px;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .container-info-1 {
+        width: 45%;
+        float: left;
+    }
+
+    .container-info-2 {
+        float: right;
+        margin-right: 50px;
+    }
+
+    .container-cover {
+        float: left;
+        /* border: 1px solid white; */
+        width: 30%;
+    }
+
+    .container-cover img {
+        height: 568px;
+    }
+
+    .contact-form {
+        float: left;
+        width: 60%;
+    }
+
+    .footer-section1 {
+        width: 80%;
+        border: 1px solid white;
+        margin: 0 auto;
+    }
+
+    .footer-content {
+        float: left;
+        margin-left: 8%;
     }
 }
