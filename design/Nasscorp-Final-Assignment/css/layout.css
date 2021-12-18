@@ -1,0 +1,7 @@
+/* MOBILE FIRST DESIGN*/
+.clearfix:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+

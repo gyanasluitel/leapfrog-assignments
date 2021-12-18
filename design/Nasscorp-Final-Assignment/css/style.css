@@ -1,0 +1,781 @@
+/* MOBILE FIRST DESIGN*/
+
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Mulish', sans-serif;
+}
+
+/* .body-wrapper {
+    background-color: #252B42;
+} */
+
+img {
+    max-width: 100%;
+}
+
+/*  --------------------HEADER------------------ */
+
+/* #check {
+    display: none;
+} */
+
+.header {
+    background: url("../images/background.png") no-repeat;
+}
+
+.navbar {
+    background-color: #252B42;
+    width: 100%;
+    padding: 2.375rem 2.25rem 6.063rem 2.25rem; 
+    /* border: 1px solid yellow; */
+}
+
+.navbar-brand {
+    display: inline-block;
+    width: 45.388%;
+    color:#FFFFFF;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 2rem;
+    letter-spacing: 0.1px;
+}
+
+.navbar-right {
+    float: right;
+    width: 37.3786%;
+}
+
+.navbar-icon {
+    float: left;
+    width: 1.5rem;
+    /* height: 23px; */
+}
+
+.navbar-nav {
+    width: 100%;
+    margin-top: 5.188rem;
+    /* border: 2px solid #FFFFFF; */
+    /* margin: 19.9248% 0; */
+    /* visibility: hidden; */
+    /* position: absolute;
+    top: 45px;
+    left: -100%;
+    transition: all .5s; */
+}
+
+.nav-item {
+    display: block;
+    text-align: center;
+    margin-bottom: 1.98rem;
+    /* margin: 30px 0; */
+    /* border: 1px solid black; */
+}
+
+.nav-item:last-child {
+    margin: 0%;
+}
+
+.nav-item a{
+    color: #FFFFFF;
+    font-size: 1.875rem;
+    line-height: 2.813rem;
+    letter-spacing: 0.2px;
+    font-weight: 400;
+    /* text-align: center; */
+}
+
+.search-logo {
+    margin-right: 18.8853%;
+}
+
+.cart-logo{
+    margin-right: 23%;
+}
+
+.menu-logo {
+    position: relative;
+    top: 2px;
+}
+
+
+/* #check:checked ~ .navbar-nav {
+    left: 0;
+    background-color: #252B42;
+} */
+
+/* #check:checked ~ .navbar {
+    background: yellow;
+} */
+
+
+.header-container {
+    /* border: 5px solid yellow; */
+    padding-top: 5.25rem;
+    padding-bottom: 0rem;
+}
+
+.header-container-one h1 {
+    font-size: 2.5rem;
+    line-height: 3.563rem;
+    color: #FFFFFF;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.2px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.header-container-one h4 {
+    margin-top: 2.5rem;
+    font-size: 1.25rem;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 1.875rem;
+}
+
+
+.btn-get-quote {
+    margin: 0 auto;
+    background: #FFA62B;
+    width: 11.688rem;
+    display: block;
+    color: #FFFFFF;
+    border-radius: 2.313rem;
+    font-size: 0.875rem;
+    padding: 0.625rem 2.25rem; 
+    margin-top: 2.5rem;
+    line-height: 1.75rem;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    transition-duration: 0.4s;
+}
+
+.btn-get-quote:hover {
+    background: #794a08;
+}
+
+.btn-learn-more {
+    margin: 0 auto;
+    display: block;
+    margin-top: 1.563rem;
+    background: transparent;
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    width: 9.813rem;
+    border-radius: 2.313rem;
+    font-size: 0.875rem;
+    padding: 0.625rem 2.25rem;
+    line-height: 1.75rem;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    transition-duration: 0.4s;
+}
+
+.btn-learn-more:hover {
+    background: #FFFFFF;
+    color: #000;
+}
+
+.header-container-two {
+    /* border: 2px solid red; */
+    margin-top: 4.875rem;
+    padding-bottom: 2rem;
+}
+
+/* .card-items {
+    background-color: #FFFFFF;
+} */
+
+.header-card-item {
+    background-color: #FFFFFF;
+    width: 230px;
+    margin: 0 auto;
+    padding: 1.25rem;
+    border-radius: 2px;
+    margin-bottom: 1.875rem;
+}
+
+/* .card-content {
+    border: 1px solid yellow;
+} */
+
+
+.card-logo-container {
+    float: left;
+    width: 48px;
+    position: relative;
+    top: 4px;
+}
+
+.card-info {
+    margin-left: 0.77rem;
+    float: left;
+}
+
+.card-info h3 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    letter-spacing: 0.1px;
+    font-weight: 700;
+}
+
+.card-info h6 {
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    text-transform: uppercase;
+    color: #737373;
+    letter-spacing: 0.2px;
+    font-weight: 600;
+}
+
+/*  ------------------HEADER ENDS-------------------- */
+
+
+/*------------------FEATURES---------------------------*/
+.features {
+    border: 1px solid green;
+    background-color: #252B42;
+    padding: 0 5.406rem 6rem 5.406rem;
+}
+
+.features-container {
+    border: 1px solid white;
+    padding: 6.25rem 0;
+}
+
+.features-card-item {
+    /* border: 1px solid red; */
+    background-color: #FFFFFF;
+    width: 230px;
+    margin: 0 auto;
+    padding: 2.188rem 2.5rem;
+    /* border-radius: 2px; */
+    margin-bottom: 1.875rem;
+}
+
+/* .feature-card-content {
+    border: 1px solid yellow;
+    /* padding: 2.188rem 2.5rem; */
+} */
+
+.feature-card-logo-container {
+    width: 48px;
+    margin-bottom: 20px;
+}
+
+.feature-card-content h5 {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: normal;
+    letter-spacing: 0.1px;
+    color: #252B42;
+    margin-bottom: 20px;
+}
+
+.feature-card-content p {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    letter-spacing: 0.2px;
+    font-weight: 700;
+    color: #737373;
+    margin-bottom: 20px;
+}
+
+.click-more {
+    border: 1px solid #00A0C1;
+    border-radius: 2.313rem;
+    padding: 0.625rem 1.875rem;
+    color: #00A0C1;
+    font-size: 0.875rem;
+    line-height: 1.75rem;
+    letter-spacing: 0.2px;
+    background-color: #FFFFFF;
+    text-align: center;
+    transition-duration: 0.4s;
+}
+
+.click-more:hover {
+    background-color: #00A0C1;
+    color: #FFFFFF;
+}
+
+.card-active {
+    background: #00A0C1;
+}
+
+.card-active h5, .card-active p, .card-active a {
+    color: #FFFFFF;
+}
+
+.card-active .click-more {
+    background: #FFFFFF;
+    color: #00A0C1;
+    border: 1px solid #FFFFFF;
+}
+
+
+/*------------------FEATURES ENDS---------------------------*/
+
+
+/*------------------ABOUT---------------------------*/
+.about {
+    /* border: 5px solid yellow; */
+    background-color: #252B42;
+    padding: 0 2.406rem 0 2.656rem;
+}
+
+.about-container {
+    border: 2px solid white;
+    padding: 6.25rem 0;
+}
+
+.about-main-content {
+    color: #FFFFFF;
+}
+
+.about-main-content h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    line-height: 3.563rem;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    margin-bottom: 0.625rem;
+}
+
+.about-main-content p {
+    font-size: 0.875rem;
+    text-align: center;
+    line-height: 1.25rem;
+    letter-spacing: 0.2px;
+    font-weight: 500;
+}
+
+.about-row-2 {
+    margin-top: 6.25rem;
+}
+
+.about-img-container {
+    width: 20.263rem;
+    margin-bottom: 3.25rem;
+    /* border: 1px solid red; */
+}
+
+.about-more-info {
+    color: #FFFFFF;
+}
+
+.about-info-item-1 h2 {
+    font-size: 2.5rem;
+    line-height: 3.53rem;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    margin-bottom: 0.625rem;
+}
+
+
+.about-info-item-1 p {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+}
+
+.about-info-item-1 {
+    margin-bottom: 1.875rem;
+}
+
+.about-info-item-2 {
+    margin-bottom: 1.875rem;
+}
+
+.about-info-item-2:last-child {
+    margin-bottom: 0;
+}
+
+.about-info-logo-container {
+    float: left;
+    width: 32px;
+}
+
+.about-info-content {
+    float: left;
+    margin-left: 0.77rem;
+}
+
+.about-info-content h5 {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.1px;
+}
+
+.about-info-content h6 {
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+/*------------------ABOUT ENDS---------------------------*/
+
+
+
+
+
+/*--------------------- TESTIMONIALS STARTS----------------- */
+.testimonials {
+    /* border: 1px solid black; */
+    padding: 1.875rem 1.906rem 6.188rem 1.906rem;
+    background-color: #16697A;
+}
+
+.testimonial-container {
+    /* margin: 1.875rem 1.906rem 6.188rem 1.906rem; */
+    /* background-color: #16697A; */
+    padding: 2.813rem; 
+    border: 1px solid white;
+}
+
+.testimonial-main-content {
+    color: #FFFFFF;
+}
+
+.testimonial-main-content h2{
+    text-align: center;
+    font-size: 2.5rem;
+    line-height: 3.563rem;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    margin-bottom: 0.625rem;
+}
+
+.testimonial-main-content p{
+    text-align: center;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+}
+
+.testimonial-row-2 {
+    margin-top: 3.75rem;
+    /* border: 5px solid black; */
+}
+
+.testimonial-card-item {
+    background: #FFFFFF;
+    padding-top: 1.75rem;
+    position: relative;
+    margin: 0 0 30px 0;
+}
+
+.testimonial-profile-logo {
+    width: 84px;
+    /* float: left; */
+    position: absolute;
+    top: 25px;
+    left: -15px;
+}
+
+/* .testimonial-profile-info {
+    float: left;
+} */
+
+.testimonial-profile-content {
+    float: left;
+    /* background: #FFFFFF;     */
+    /* border: 1px solid red; */
+    margin-left: 4.77rem;
+}
+
+.profile-info {
+    margin-right: 5px;
+}
+
+.profile-info h3 {
+    color: #252B42;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.1px;
+}
+
+.profile-info h6 {
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    color: #737373;
+}
+
+.rating {
+    margin-top: 0.938rem;
+    margin-bottom: 15px;
+}
+
+.testimonial-profile-content p{
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    color: #737373;
+    margin-bottom: 30px;
+    margin-right: 10px;
+}
+
+/*--------------------- TESTIMONIALS ENDS----------------- */
+
+
+
+/*--------------------- TEAM STARTS----------------- */
+.team {
+    background: #252B42;
+    padding: 1.625rem;
+}
+
+.team-container {
+    padding: 1.875rem 0;
+    border: 1px solid white;
+}
+
+.team-row-1 {
+    padding: 2.813rem 0;
+}
+
+.row-content {
+    padding: 0 1.594rem;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.row-content h2 {
+    font-size: 2.5rem;
+    line-height: 3.563rem;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    margin-bottom: 10px;
+}
+
+.row-content p {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+}
+
+.team-card-item {
+    padding: 1.875rem 2.5rem;
+    background: #FFFFFF;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    width: 93%;
+}
+
+.team-card-item:last-child{
+    margin-bottom: 0;
+}
+
+
+.team-card-item h6 {
+    margin-top: 5px;
+    color: #FFA62B;
+    font-size: 0.875rem;
+    line-height: 24px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.team-card-item h5 {
+    color: #252B42;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    letter-spacing: 0.1px;
+    margin: 5px 0;
+}
+
+
+.team-card-item p {
+    color: #737373;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    letter-spacing: 0.1px;
+}
+
+
+
+/*--------------------- TEAM ENDS----------------- */
+
+
+
+
+/*--------------------- CONTACT STARTS----------------- */
+.contact {
+    background-color: #252B42;
+    padding: 30px 0;
+    border: 1px solid white;
+}
+
+.contact-container {
+    padding: 45px 0 0 0;
+}
+
+.container-row-1 {
+    padding: 50px 42px;
+}
+
+.container-info-1 {
+    color: #FFFFFF;
+}
+
+.container-info-1 h2{
+    font-size: 40px;
+    line-height: 57px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    margin-bottom: 15px;
+}
+
+.container-info-1 p{
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+}
+
+.container-info-2 {
+    margin-top: 30px;
+    padding: 50px 0;
+}
+
+.container-row-2 {
+    margin-top: 60px;
+}
+
+.container-cover {
+    width: 100%;
+}
+
+.contact-form {
+    background: #FFFFFF;
+}
+
+.contact-form h2 {
+    padding: 40px 121px 40px 50px;
+    font-size: 40px;
+    line-height: 57px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    color: #252B42;
+}
+
+.contact-card {
+    margin: 0 40px 50px 40px;
+    /* border: 1px solid black; */
+}
+
+.contact-card label {
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    color: #252B42;
+    margin-bottom: 10px;
+}
+
+.contact-card input, .contact-card select {
+    color: #737373;
+    border: 1px solid #BDBDBD;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 28px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    background: #F9F9F9;
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+.contact-button {
+    width: 100%;
+    color: #FFFFFF;
+    background: #FFA62B;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 38px;
+    margin-bottom: 40px;
+}
+
+::placeholder {
+    margin-left: 10px;
+}
+/*--------------------- CONTACT ENDS----------------- */
+
+
+/* ------------------- FOOTER STARTS------------- */
+.footer {
+    background: #252B42;
+    
+}
+
+.footer-section1{
+    border: 1px solid white;
+    padding: 0 86.5px 80px 86.5px;
+}
+
+.footer-content {
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.footer-content h3 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    letter-spacing: 0.1px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.footer-content p {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    margin-bottom: 25px;
+}
+
+.footer-nav {
+    text-decoration: none;
+}
+
+.footer-nav li {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    margin-bottom: 10px;
+}
+
+.footer-nav a {
+    color: #fff;
+}
+
+.footer-section2 {
+    padding: 25px 0.5px;
+    background: #384163;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
