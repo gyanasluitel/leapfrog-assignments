@@ -46,7 +46,7 @@ img {
 
 .navbar-right {
     float: right;
-    width: 37.3786%;
+    width: 150px;
 }
 
 .navbar-icon {
@@ -164,7 +164,7 @@ img {
     display: block;
     margin-top: 1.563rem;
     background: transparent;
-    border: 1px solid #FFFFFF;
+    /* border: 1px solid #FFFFFF; */
     color: #FFFFFF;
     width: 9.813rem;
     border-radius: 2.313rem;
@@ -239,13 +239,13 @@ img {
 
 /*------------------FEATURES---------------------------*/
 .features {
-    border: 1px solid green;
+    /* border: 1px solid green; */
     background-color: #252B42;
     padding: 0 5.406rem 6rem 5.406rem;
 }
 
 .features-container {
-    border: 1px solid white;
+    /* border: 1px solid white; */
     padding: 6.25rem 0;
 }
 
@@ -288,7 +288,7 @@ img {
 }
 
 .click-more {
-    border: 1px solid #00A0C1;
+    /* border: 1px solid #00A0C1; */
     border-radius: 2.313rem;
     padding: 0.625rem 1.875rem;
     color: #00A0C1;
@@ -316,7 +316,7 @@ img {
 .card-active .click-more {
     background: #FFFFFF;
     color: #00A0C1;
-    border: 1px solid #FFFFFF;
+    /* border: 1px solid #FFFFFF; */
 }
 
 
@@ -728,7 +728,7 @@ img {
 }
 
 .footer-section1{
-    border: 1px solid white;
+    /* border: 1px solid white; */
     padding: 0 86.5px 80px 86.5px;
 }
 
@@ -778,4 +778,44 @@ img {
     line-height: 1.25rem;
     font-weight: 600;
     letter-spacing: 0.2px;
+}
+
+
+@media screen and (min-width: 938px) {
+    .header {
+        background: url("../images/bg-cover.png") no-repeat;
+        background-size: 100%;
+    }
+
+    .navbar {
+        background-color: transparent;
+        /* border: 1px solid black; */
+        margin-top: 0;
+    }
+
+    .navbar label {
+        width: 10%;
+        /* border: 1px solid black; */
+        margin-left: 150px;
+    }
+
+    .navbar-nav {
+        /* border: 1px solid black; */
+        width: 60%;
+        float: right;
+        margin-top: 0;
+    }
+
+    .nav-item {
+        display: inline-block;
+    }
+
+    .header-container-two {
+        width: 60%;
+        margin: 0 auto;
+    }
+    
+    .header-card-item {
+        float: left;
+    }
 }
