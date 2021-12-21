@@ -4,6 +4,10 @@ body{
     background-color: rgba(201, 177, 177, 0.15);
 }
 
+a{
+    text-decoration: none;
+}
+
 table {
     margin: 2% auto;
     width: 75%;
