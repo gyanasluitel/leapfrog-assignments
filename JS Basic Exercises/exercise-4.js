@@ -43,7 +43,7 @@ console.log(searchByName(fruits, 'Apple'));
 console.log(searchByName(fruits, 'Orange'));
 
 
-console.log(searchByKey(fruits, 'name', 'Apple'));
+console.log(searchByKey(fruits, 'color', 'Red'));
 console.log(searchByKey(fruits, 'name', 'Banana'));
 console.log(searchByName(fruits, 'Orange'));
 
