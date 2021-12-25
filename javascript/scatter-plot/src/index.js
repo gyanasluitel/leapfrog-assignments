@@ -38,17 +38,14 @@ const createPoint = (x, y) => {
     point.style.left = x + "px";
     
     point.addEventListener("click", (event) => {
-        console.log(event.target);
         event.target.style.backgroundColor = randomColor();
     });
     
     point.addEventListener("dblclick", (event) => {
-        console.log(event.target);
         canvas.removeChild(event.target);
     });
 
     point.addEventListener("mouseover", (event) => {
-        console.log(event.target);
         event.target.style.cursor = "pointer";
     })
 
