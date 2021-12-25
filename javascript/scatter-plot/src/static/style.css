@@ -1,0 +1,9 @@
+body {
+    background-color: antiquewhite;
+}
+
+.instructions {
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 2%;
+}
