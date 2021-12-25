@@ -4,6 +4,8 @@ canvas.setAttribute("id", "canvas");
 canvas.style.width = "500px";
 canvas.style.height = "500px";
 canvas.style.border = "2px solid black";
+canvas.style.position = "relative";
+canvas.style.margin = "0 auto";
 
 document.body.appendChild(canvas);
 
