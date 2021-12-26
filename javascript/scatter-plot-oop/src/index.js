@@ -61,4 +61,5 @@ class Points {
 
 for (let i = 0; i < points.length; i++) {
     const newPoint = new Points(points[i].x, points[i].y);
+    console.log(points[i]);
 }
