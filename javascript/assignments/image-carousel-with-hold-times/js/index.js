@@ -10,7 +10,6 @@ class Carousel {
         this.holdTime = holdTime;
         // this.transitionSpeed= transitionTime;
         this.transitionSpeed = (parseInt(this.width) / transitionTime);
-        this.autoPlayInterval = null;
  
         // CAROUSEL
         this.carouselContainer = document.querySelector(container);
@@ -26,7 +25,8 @@ class Carousel {
         this.carouselImageWrapper.style.position = "absolute";
         this.carouselImageWrapper.style.left = "-0px";
 
-        this.images = this.carouselContainer.querySelectorAll(".carousel-image-wrapper img");
+
+        this.images = this.carouselImageWrapper.querySelectorAll(".carousel-image-wrapper img");
         this.imagesLength = this.images.length;
         this.carouselImageWrapper.style.width = (parseInt(this.width) * this.imagesLength) + "px"; 
 
@@ -169,7 +169,6 @@ class Carousel {
 
     // IMAGE TRANSITION ANIMATION
     imageAnimate = () => {
-        clearInterval(this.autoPlayInterval);
         let startAnimation = window.requestAnimationFrame(this.imageAnimate);
         if (this.position === - (this.currentIndex * parseInt(this.width))) {
             window.cancelAnimationFrame(startAnimation);
@@ -184,7 +183,7 @@ class Carousel {
 
         clearInterval(this.autoPlayInterval);
         this.autoPlay();
-    }
+    };
 
     autoPlay = () => {
         this.autoPlayInterval = setInterval(() => {
@@ -199,10 +198,11 @@ class Carousel {
             this.imageAnimate();
         }, this.holdTime);
     };
+
 }
 
 
-const carousel = new Carousel(".carousel-container", {transitionTime: "20", holdTime: "2000"});
+const carousel = new Carousel(".carousel-container", {transitionTime: "30", holdTime: "2000"});
 
 const carousel2 = new Carousel(".carousel-container-2", {transitionTime: "20", holdTime: "4000"});
 
