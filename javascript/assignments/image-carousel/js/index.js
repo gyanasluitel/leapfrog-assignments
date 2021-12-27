@@ -20,11 +20,11 @@ class Carousel {
 
 
         // // CAROUSEL WRAPPER AND IMAGES
-        this.carouselImageWrapper = document.querySelector(".carousel-image-wrapper");
+        this.carouselImageWrapper = this.carouselContainer.querySelector(".carousel-image-wrapper");
         this.carouselImageWrapper.style.position = "absolute";
         this.carouselImageWrapper.style.left = "-0px";
 
-        this.images = document.querySelectorAll(".carousel-image-wrapper img");
+        this.images = this.carouselContainer.querySelectorAll(".carousel-image-wrapper img");
         this.imagesLength = this.images.length;
         this.carouselImageWrapper.style.width = (parseInt(this.width) * this.imagesLength) + "px"; 
 
