@@ -1,5 +1,5 @@
 class Carousel {
-    constructor(container) {
+    constructor(container, {transitionTime, holdTime}) {
         // Current Index of Image
         this.currentIndex = 0;
         
@@ -7,24 +7,26 @@ class Carousel {
         this.height = "420px";
         this.position = 0;
         this.indicatorList = [];
-
-        this.transitionSpeed = 30;
+        this.holdTime = holdTime;
+        // this.transitionSpeed= transitionTime;
+        this.transitionSpeed = (parseInt(this.width) / transitionTime);
+        this.autoPlayInterval = null;
  
         // CAROUSEL
         this.carouselContainer = document.querySelector(container);
         this.carouselContainer.style.width = this.width;
         this.carouselContainer.style.height = this.height;
-        this.carouselContainer.style.margin = "0 auto";
+        this.carouselContainer.style.margin = "2% auto";
         this.carouselContainer.style.position = "relative";
         this.carouselContainer.style.overflow = "hidden";
 
 
         // // CAROUSEL WRAPPER AND IMAGES
-        this.carouselImageWrapper = document.querySelector(".carousel-image-wrapper");
+        this.carouselImageWrapper = this.carouselContainer.querySelector(".carousel-image-wrapper");
         this.carouselImageWrapper.style.position = "absolute";
         this.carouselImageWrapper.style.left = "-0px";
 
-        this.images = document.querySelectorAll(".carousel-image-wrapper img");
+        this.images = this.carouselContainer.querySelectorAll(".carousel-image-wrapper img");
         this.imagesLength = this.images.length;
         this.carouselImageWrapper.style.width = (parseInt(this.width) * this.imagesLength) + "px"; 
 
@@ -99,6 +101,8 @@ class Carousel {
         this.carouselContainer.appendChild(this.rightButton);
 
         this.indicatorButtons();
+
+        this.autoPlay();
     }   
         
 
@@ -165,6 +169,7 @@ class Carousel {
 
     // IMAGE TRANSITION ANIMATION
     imageAnimate = () => {
+        clearInterval(this.autoPlayInterval);
         let startAnimation = window.requestAnimationFrame(this.imageAnimate);
         if (this.position === - (this.currentIndex * parseInt(this.width))) {
             window.cancelAnimationFrame(startAnimation);
@@ -176,8 +181,28 @@ class Carousel {
 
         this.carouselImageWrapper.style.left = this.position + "px";
         this.indicatorList[this.currentIndex].checked = true;
+
+        clearInterval(this.autoPlayInterval);
+        this.autoPlay();
     }
+
+    autoPlay = () => {
+        this.autoPlayInterval = setInterval(() => {
+            if (this.currentIndex < this.imagesLength - 1) {
+                this.currentIndex++;
+            } else {
+                this.currentIndex = 0;
+            }
+
+            // this.currentIndex = (this.currentIndex + 1) % this.imagesLength 
+            // this.indicatorList[this.currentIndex].checked = true;
+            this.imageAnimate();
+        }, this.holdTime);
+    };
 }
 
 
-const carousel = new Carousel(".carousel-container");
+const carousel = new Carousel(".carousel-container", {transitionTime: "20", holdTime: "2000"});
+
+const carousel2 = new Carousel(".carousel-container-2", {transitionTime: "20", holdTime: "4000"});
+
