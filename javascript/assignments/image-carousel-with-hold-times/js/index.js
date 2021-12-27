@@ -2,6 +2,7 @@ class Carousel {
     constructor(container, {transitionTime, holdTime}) {
         // Current Index of Image
         this.currentIndex = 0;
+        this.containerName = container;
         
         this.width = "600px";
         this.height = "420px";
@@ -119,7 +120,7 @@ class Carousel {
         for (let i = 0; i < this.imagesLength; i++) {
             const newIndicator = document.createElement("input");
             newIndicator.type = "radio";
-            newIndicator.name = "indicator" + "-" + "i";
+            newIndicator.name = "indicator" + "-" + "i" + this.containerName;
             newIndicator.value = i;
             newIndicator.style.margin = "0 3px";
 
