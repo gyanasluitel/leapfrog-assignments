@@ -13,7 +13,6 @@ const domScore = document.getElementById('score');
 const antGenerator = (numOfAnts) => {
     const img = new Image();
     img.src = '../images/ant.png';
-    img.onload = () => {
         for (let i = 0; i < numOfAnts; i++) {
             let radius = 18;
             let x = getRandomInt(radius, canvas.width - radius);
@@ -39,7 +38,6 @@ const antGenerator = (numOfAnts) => {
             let newAnt = new Ant(radius, x, y, dx, dy,img);
             ants.push(newAnt);
         };
-    };
 };
 
 canvas.addEventListener('mouseover', (event) => {
