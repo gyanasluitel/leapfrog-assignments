@@ -12,7 +12,8 @@ const domScore = document.getElementById('score');
 
 const antGenerator = (numOfAnts) => {
     let img = new Image();
-    img.src = '../images/ant.png';
+    img.src = './images/ant.png';
+    img.alt = "Ant";
         for (let i = 0; i < numOfAnts; i++) {
             let radius = 18;
             let x = getRandomInt(radius, canvas.width - radius);
