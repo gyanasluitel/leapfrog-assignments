@@ -51,5 +51,5 @@ const animate = () => {
     }
 };
 
-ballGenerator(100);
+ballGenerator(1000);
 animate();
