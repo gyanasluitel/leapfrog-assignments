@@ -11,7 +11,7 @@ let score = 0;
 const domScore = document.getElementById('score');
 
 const antGenerator = (numOfAnts) => {
-    const img = new Image();
+    let img = new Image();
     img.src = '../images/ant.png';
         for (let i = 0; i < numOfAnts; i++) {
             let radius = 18;
@@ -54,7 +54,7 @@ const animate = () => {
     }
 };
 
-antGenerator(50);
+antGenerator(35);
 animate();
 
 const destruct = (ant) => {
