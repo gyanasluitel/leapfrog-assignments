@@ -94,9 +94,9 @@ class CarGame {
         this.ctx.font = 'italic 24px Arial';
         this.ctx.fillText(`Your High Score is: ${highScore}`, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 3 + 200);
         this.ctx.font = 'italic 14px Arial';
-        // this.ctx.font = 'italic 24px Arial';
-        // this.ctx.fillText(`Press "r" to restart the game`, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 3 + 250);
-        // this.ctx.font = 'italic 14px Arial';
+        this.ctx.font = 'italic 24px Arial';
+        this.ctx.fillText(`Reload the browser to restart the game`, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 3 + 250);
+        this.ctx.font = 'italic 14px Arial';
     };
 
     render = () => {
