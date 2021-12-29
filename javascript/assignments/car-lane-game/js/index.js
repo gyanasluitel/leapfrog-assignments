@@ -3,7 +3,7 @@ const CANVAS_HEIGHT = 600;
 const LANE_SEPARATOR_WIDTH = 12;
 
 var gameEnd = false;
-
+var highScore = +localStorage.getItem('highScore') || 0;
 
 class CarGame {
     constructor(canvasName) {
@@ -90,6 +90,10 @@ class CarGame {
         this.ctx.fillText(`Your score is: ${score}`, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 3 + 100);
         this.ctx.font = 'italic 14px Arial';
 
+
+        this.ctx.font = 'italic 24px Arial';
+        this.ctx.fillText(`Your High Score is: ${highScore}`, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 3 + 200);
+        this.ctx.font = 'italic 14px Arial';
         // this.ctx.font = 'italic 24px Arial';
         // this.ctx.fillText(`Press "r" to restart the game`, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 3 + 250);
         // this.ctx.font = 'italic 14px Arial';
@@ -119,6 +123,10 @@ class CarGame {
                 this.obstacleCar.createObstacle();
                 this.obstacleCar2.createObstacle();
             } else if (gameEnd === true) {
+                if (score > highScore) {
+                    highScore = score;
+                    localStorage.setItem('highScore', score);
+                };
                 this.drawGameEnd();
             }
 
