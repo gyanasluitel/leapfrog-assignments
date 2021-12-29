@@ -12,7 +12,7 @@ class PlayerCar {
         this.playerCarY = CANVAS_HEIGHT - 140;
         this.ctx = ctx;
         this.playerCar = new Image();
-        this.playerCar.src = "../images/playerCar4.png";
+        this.playerCar.src = "images/playerCar4.png";
     };
 
     createPlayer = () => {
@@ -40,7 +40,7 @@ class ObstacleCar {
         this.speed = speed;
 
         this.obstacleCar = new Image();
-        this.obstacleCar.src = "../images/obstacleCar.png";
+        this.obstacleCar.src = "images/obstacleCar.png";
     };
 
     createObstacle = () => {

@@ -131,7 +131,7 @@ class CarGame {
             }
 
         }
-    };
+        }
 }
 
 const game = new CarGame('canvas');
