@@ -76,6 +76,23 @@ class CarGame {
         );
     };
 
+    // drawScoreBoard = () => {
+    //     this.ctx.fillStyle = '#9E2A2B';
+    //     this.ctx.textAlign = 'center';
+    //     this.ctx.textBaseline = 'middle';
+    //     this.ctx.font = 'bold 16px Arial';
+    //     this.ctx.fillText(
+    //         'Score: ' + this.score, 40, 12
+    //     )
+
+    //     // Update HighScore
+    //     let highScore = Math.max(parseInt(localStorage.getItem('highScore')), this.score);
+    //     localStorage.setItem('highScore', highScore);
+    //     this.ctx.fillText(
+    //         'High Score: ' + localStorage.getItem('highScore'), CANVAS_WIDTH - 60, 12
+    //     )
+    // }
+
     drawGameEnd = () => {
         this.ctx.fillStyle = '#e3b944';
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
@@ -93,10 +110,8 @@ class CarGame {
 
         this.ctx.font = 'italic 24px Arial';
         this.ctx.fillText(`Your High Score is: ${highScore}`, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 3 + 200);
-        this.ctx.font = 'italic 14px Arial';
-        this.ctx.font = 'italic 24px Arial';
-        this.ctx.fillText(`Reload the browser to restart the game`, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 3 + 250);
-        this.ctx.font = 'italic 14px Arial';
+        this.ctx.font = 'italic 20px Arial';
+        this.ctx.fillText(`Reload the browser to restart the game`, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 3 + 300);
     };
 
     render = () => {
@@ -118,6 +133,7 @@ class CarGame {
         else if (this.gameStart === true) {
             if (gameEnd === false) {
                 this.drawLane();
+                // this.drawScoreBoard();
                 this.playerCar.createPlayer();
 
                 this.obstacleCar.createObstacle();
