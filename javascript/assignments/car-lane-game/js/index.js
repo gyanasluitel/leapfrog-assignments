@@ -76,22 +76,15 @@ class CarGame {
         );
     };
 
-    // drawScoreBoard = () => {
-    //     this.ctx.fillStyle = '#9E2A2B';
-    //     this.ctx.textAlign = 'center';
-    //     this.ctx.textBaseline = 'middle';
-    //     this.ctx.font = 'bold 16px Arial';
-    //     this.ctx.fillText(
-    //         'Score: ' + this.score, 40, 12
-    //     )
-
-    //     // Update HighScore
-    //     let highScore = Math.max(parseInt(localStorage.getItem('highScore')), this.score);
-    //     localStorage.setItem('highScore', highScore);
-    //     this.ctx.fillText(
-    //         'High Score: ' + localStorage.getItem('highScore'), CANVAS_WIDTH - 60, 12
-    //     )
-    // }
+    drawScoreBoard = () => {
+        this.ctx.fillStyle = 'white';
+        this.ctx.textAlign = 'center';
+        this.ctx.textBaseline = 'middle';
+        this.ctx.font = 'bold 16px Arial';
+        this.ctx.fillText(
+            'Score: ' + score, 40, 12
+        )
+    };
 
     drawGameEnd = () => {
         this.ctx.fillStyle = '#e3b944';
@@ -133,7 +126,7 @@ class CarGame {
         else if (this.gameStart === true) {
             if (gameEnd === false) {
                 this.drawLane();
-                // this.drawScoreBoard();
+                this.drawScoreBoard();
                 this.playerCar.createPlayer();
 
                 this.obstacleCar.createObstacle();
