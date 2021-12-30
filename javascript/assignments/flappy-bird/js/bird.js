@@ -9,7 +9,7 @@ class Bird {
         ];
         this.spriteWidth = 34;
         this.spriteHeight = 24;
-        this.x = CANVAS_WIDTH / 2 - 30;
+        this.x = 40;
         this.y = CANVAS_HEIGHT / 3 + 25;
         this.frame = 0;
         this.speed = 0;
