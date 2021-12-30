@@ -38,7 +38,7 @@ class FlappyGame {
                     this.bird.flap();
                     break;
                 case gameStates.gameOver:
-                    let rect = canvas.getBoundingClientRect();
+                    let rect = this.canvas.getBoundingClientRect();
                     let clickX = event.clientX - rect.left;
                     let clickY = event.clientY - rect.top;
 
@@ -65,11 +65,11 @@ class FlappyGame {
         this.foreground.draw();
         this.bird.draw();
         this.getReady.draw();
-        this.gameOver.draw();
         this.getReadyTap.draw();
+        this.gameOver.draw();
         this.scoreBoard.draw();
-        this.score.draw();
         this.start.draw();
+        this.score.draw();
     };
 
     update = () => {
