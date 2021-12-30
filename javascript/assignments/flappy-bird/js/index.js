@@ -49,7 +49,7 @@ class FlappyGame {
                         gameStates.current = gameStates.getReady;
                         // console.log(clickX, clickY)
                     }
-                    gameStates.current = gameStates.getReady;
+                    // gameStates.current = gameStates.getReady;
                     break;
 
             }
