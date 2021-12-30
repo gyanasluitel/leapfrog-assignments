@@ -84,6 +84,34 @@ class GameOver {
     };
 };
 
+class Start {
+    constructor(ctx) {
+            this.ctx = ctx;
+            this.spriteX = 790;
+            this.spriteY = 118;
+            this.spriteWidth = 192;
+            this.spriteHeight = 47;
+            this.x = CANVAS_WIDTH / 2 - 100;
+            this.y = CANVAS_HEIGHT / 4;
+        };
+    
+        draw = () => {
+            if (gameStates.current === gameStates.gameOver) {
+                this.ctx.drawImage(
+                    spriteImage, 
+                    this.spriteX, 
+                    this.spriteY, 
+                    this.spriteWidth, 
+                    this.spriteHeight, 
+                    this.x, 
+                    this.y,
+                    this.spriteWidth,
+                    this.spriteHeight);
+            }
+        };
+};
+
+
 
 class ScoreBoard {
     constructor(ctx) {
@@ -110,5 +138,34 @@ class ScoreBoard {
                 this.spriteHeight);
         }
     };
+};
+
+class Score {
+    constructor(ctx) {
+        this.ctx = ctx;
+        this.highScore = localStorage.getItem('flappyHighScore') || 0;
+        this.score = 0;
+    };
+
+    draw = () => {
+        this.ctx.fillStyle = "#FFF";
+        this.ctx.strokeStyle = "#000";
+        
+        if(gameStates.current == gameStates.gameRunning){
+            // this.ctx.lineWidth = 2;
+            this.ctx.font = "35px bold Arial";
+            this.ctx.fillText(this.score, CANVAS_WIDTH/2 - 25, 50);
+            this.ctx.strokeText(this.score, CANVAS_WIDTH/2 -25, 50);
+            
+        }
+        else if(gameStates.current == gameStates.gameOver){
+
+            this.ctx.font = "25px Arial";
+            this.ctx.fillText(this.score, 360, 248);
+            this.ctx.strokeText(this.score, 360, 248);
+            this.ctx.fillText(this.highScore, 360, 290);
+            this.ctx.strokeText(this.highScore, 360, 290);
+        }
+    }
 }
 

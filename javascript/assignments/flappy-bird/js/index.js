@@ -21,7 +21,8 @@ class FlappyGame {
         this.gameOver = new GameOver(this.ctx);
         this.getReadyTap = new GetReadyTap(this.ctx);
         this.scoreBoard = new ScoreBoard(this.ctx);
-        this.pipe = new Pipe(this.ctx, this.bird);
+        this.score = new Score(this.ctx);
+        this.pipe = new Pipe(this.ctx, this.bird, this.score);
 
         this.eventListener();
     };
@@ -47,27 +48,16 @@ class FlappyGame {
     draw = () => {
         this.ctx.fillStyle = "lightblue";
         this.ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-        // Drawing Background
         this.background.draw();
         this.pipe.draw();
-        // Drawing Foreground
         this.foreground.draw();
-
-        // Drawing Bird
         this.bird.draw();
-
-        // Drawing GetReady
         this.getReady.draw();
-
-        // Drawing GameOver
         this.gameOver.draw();
-
         this.getReadyTap.draw();
-
         this.scoreBoard.draw();
-
-        
-    }
+        this.score.draw();
+    };
 
     update = () => {
         this.bird.update();

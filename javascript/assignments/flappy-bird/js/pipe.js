@@ -1,8 +1,9 @@
 class Pipe {
-    constructor(ctx, bird) {
+    constructor(ctx, bird, score) {
         this.ctx = ctx;
         this.xPositonPipes = [];
         this.bird = bird;
+        this.score = score;
         this.topPipe = {
             spriteX: 112,
             spriteY: 646 
@@ -90,6 +91,10 @@ class Pipe {
             // if pipe crosses the canvas
             if (p.x + this.spriteWidth <= 0) {
                 this.xPositonPipes.shift(); //delete from the pipe position array
+                this.score.score += 1;
+                this.score.highScore = Math.max(this.score.score, this.score.highScore);
+                console.log(this.score.score);
+                localStorage.setItem('flappyHighScore', this.score.highScore);
             }
         }
 
