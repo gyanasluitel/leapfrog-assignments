@@ -7,10 +7,12 @@ class ForeGround {
         this.spriteHeight = 112;
         this.x = 0;
         this.y = CANVAS_HEIGHT - this.spriteHeight;
+
+        this.dx = 2; // shitfing foreground position
     };
 
     draw = () => {
-        for (let count = 0; count < 2; count++) {
+        for (let count = 0; count < 3; count++) {
             this.ctx.drawImage(
                 spriteImage, 
                 this.spriteX, 
@@ -23,4 +25,10 @@ class ForeGround {
                 this.spriteHeight);
         }
     };
+
+    update = () => {
+        if (gameStates.current == gameStates.gameRunning) {
+            this.x = (this.x - this.dx) % (this.spriteWidth/2)
+        }
+    }
 }
