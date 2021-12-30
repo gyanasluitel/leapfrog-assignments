@@ -19,6 +19,7 @@ class FlappyGame {
         this.bird = new Bird(this.ctx);
         this.getReady = new GetReady(this.ctx);
         this.gameOver = new GameOver(this.ctx);
+        this.start = new Start(this.ctx);
         this.getReadyTap = new GetReadyTap(this.ctx);
         this.scoreBoard = new ScoreBoard(this.ctx);
         this.score = new Score(this.ctx);
@@ -37,6 +38,17 @@ class FlappyGame {
                     this.bird.flap();
                     break;
                 case gameStates.gameOver:
+                    let rect = canvas.getBoundingClientRect();
+                    let clickX = event.clientX - rect.left;
+                    let clickY = event.clientY - rect.top;
+
+                    if(clickX >= this.start.x && clickX <= this.start.x + this.start.spriteWidth && clickY >= this.start.y && clickY <= this.start.y + this.start.spriteHeight){
+                        this.pipe.reset();
+                        this.bird.reset();
+                        this.score.reset();
+                        gameStates.current = gameStates.getReady;
+                        // console.log(clickX, clickY)
+                    }
                     gameStates.current = gameStates.getReady;
                     break;
 
@@ -57,6 +69,7 @@ class FlappyGame {
         this.getReadyTap.draw();
         this.scoreBoard.draw();
         this.score.draw();
+        this.start.draw();
     };
 
     update = () => {

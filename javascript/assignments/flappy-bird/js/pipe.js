@@ -101,4 +101,8 @@ class Pipe {
 
         // xPositonPipes = this.xPositonPipes;
     };
+
+    reset = () => {
+        this.xPositonPipes = [];
+    }
 }

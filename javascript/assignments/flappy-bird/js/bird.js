@@ -76,5 +76,9 @@ class Bird {
 
     flap = () => {
         this.speed = - this.jump;
+    };
+
+    reset = () => {
+        this.speed = 0;
     }
 }

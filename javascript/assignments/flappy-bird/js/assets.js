@@ -87,12 +87,12 @@ class GameOver {
 class Start {
     constructor(ctx) {
             this.ctx = ctx;
-            this.spriteX = 790;
-            this.spriteY = 118;
-            this.spriteWidth = 192;
-            this.spriteHeight = 47;
-            this.x = CANVAS_WIDTH / 2 - 100;
-            this.y = CANVAS_HEIGHT / 4;
+            this.spriteX = 708;
+            this.spriteY = 236;
+            this.spriteWidth = 104;
+            this.spriteHeight = 58;
+            this.x = CANVAS_WIDTH / 2 - 60;
+            this.y = CANVAS_HEIGHT / 3 + 150;
         };
     
         draw = () => {
@@ -166,6 +166,10 @@ class Score {
             this.ctx.fillText(this.highScore, 360, 290);
             this.ctx.strokeText(this.highScore, 360, 290);
         }
+    };
+
+    reset = () => {
+        this.score = 0;
     }
 }
 
