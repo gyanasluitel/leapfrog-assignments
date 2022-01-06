@@ -23,24 +23,24 @@ class Monster {
     }
   };
 
-  move = () => {
+  move = (hero) => {
     this.x += this.dx;
     this.y += this.dy;
     this.detectBoxCollision();
 
     if (timer % 60 === 0) {
       // console.log('monster weapon');
-      if (hero.health > 0 && monster.health > 0) {
+      if (hero.health > 0 && this.health > 0) {
         monsterBullets.push(
           new MonsterBullet(this.ctx, this.x, this.y, hero.x, hero.y)
         );
       }
     }
 
-    this.detectBulletCollision();
+    this.detectBulletCollision(hero);
   };
 
-  detectBulletCollision = () => {
+  detectBulletCollision = (hero) => {
     bullets.forEach((bullet) => {
       if (
         //Rectangle Collision Detection
@@ -55,7 +55,7 @@ class Monster {
         if (this.health === 0) {
           console.log('monster killed');
 
-          coins.push(new Coin(this.ctx, this.x, this.y));
+          coins.push(new Coin(this.ctx, this, hero));
           console.log(coins);
         }
       }
@@ -69,5 +69,3 @@ class Monster {
     );
   }
 }
-
-monster = new Monster(ctx);

@@ -64,7 +64,7 @@ class Hero {
     );
   }
 
-  move = () => {
+  move = (monster) => {
     this.detectBoxCollision();
     this.detectMonsterBulletCollision();
 
@@ -118,18 +118,3 @@ class Hero {
     // bullets.forEach((bullet) => bullet.move());
   };
 }
-
-document.addEventListener('keydown', (event) => {
-  //   console.log(event.key);
-  event.preventDefault();
-  keyPressed[event.key] = true;
-});
-
-document.addEventListener('keyup', (event) => {
-  //   console.log(event.key);
-  event.preventDefault();
-  keyPressed[event.key] = false;
-  //   console.log(keyPressed);
-});
-
-hero = new Hero(ctx);
