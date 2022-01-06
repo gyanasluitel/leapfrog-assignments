@@ -9,8 +9,8 @@ class Bullet {
     this.nearestEnemyX = monsterX;
     this.nearestEnemyY = monsterY;
 
-    this.shotSpeed = 6;
-    this.shotPower = 10;
+    this.shotSpeed = 10;
+    this.damagePower = 10;
 
     this.dx = this.nearestEnemyX - this.x;
     this.dy = this.nearestEnemyY - this.y;
@@ -29,10 +29,10 @@ class Bullet {
     this.y += this.vy;
 
     // Clear Bullet when collides with wall
-    this.clearBullet();
+    this.clearBulletWallCollision();
   };
 
-  clearBullet = () => {
+  clearBulletWallCollision = () => {
     bullets = bullets.filter((bullet) => {
       return (
         bullet.x > 0 &&

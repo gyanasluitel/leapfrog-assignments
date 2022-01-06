@@ -7,7 +7,7 @@ class Hero {
     this.y = CANVAS_HEIGHT - 50;
     this.dx = 5;
     this.dy = 5;
-    this.speed = 3;
+    // this.speed = 3;
     this.health = 100;
 
     // this.bullets = [];
