@@ -5,8 +5,8 @@ class Monster {
     this.height = 50;
     this.x = CANVAS_WIDTH / 2;
     this.y = 50;
-    this.dx = 0.2;
-    this.dy = 0.2;
+    this.dx = 0.5;
+    this.dy = 0.5;
     this.health = 100;
   }
 
@@ -15,7 +15,7 @@ class Monster {
   };
 
   detectBoxCollision = () => {
-    if (this.x - this.width <= 0 || this.x + this.width >= canvas.width) {
+    if (this.x < 0 || this.x + this.width >= canvas.width) {
       this.dx = -this.dx;
     }
     if (this.y - this.width <= 0 || this.y + this.width >= canvas.height) {
@@ -24,12 +24,12 @@ class Monster {
   };
 
   move = () => {
-    this.detectBoxCollision();
     this.x += this.dx;
     this.y += this.dy;
+    this.detectBoxCollision();
 
     if (timer % 60 === 0) {
-      console.log('monster weapon');
+      // console.log('monster weapon');
       if (hero.health > 0) {
         monsterBullets.push(
           new MonsterBullet(this.ctx, this.x, this.y, hero.x, hero.y)
@@ -50,10 +50,13 @@ class Monster {
         this.height + this.y > bullet.y
       ) {
         this.health -= bullet.damagePower;
-        // console.log(this.health);
+        console.log('Monster health: ', this.health);
         this.clearBullet(bullet);
         if (this.health === 0) {
           console.log('monster killed');
+
+          coins.push(new Coin(this.ctx, this.x, this.y));
+          console.log(coins);
         }
       }
     });

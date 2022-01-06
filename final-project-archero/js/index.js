@@ -21,6 +21,7 @@ class ArcheroGame {
     // this.monster.draw();
     bullets.forEach((bullet) => bullet.draw());
     monsterBullets.forEach((bullet) => bullet.draw());
+    coins.forEach((coin) => coin.draw());
   };
 
   update = () => {

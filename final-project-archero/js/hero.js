@@ -48,7 +48,7 @@ class Hero {
         this.height + this.y > bullet.y
       ) {
         this.health -= bullet.damagePower;
-        console.log(this.health);
+        console.log('Hero health: ', this.health);
         this.clearBullet(bullet);
         if (this.health === 0) {
           console.log('hero killed');
