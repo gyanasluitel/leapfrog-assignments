@@ -1,19 +1,19 @@
 class MonsterBullet {
-  constructor(ctx, heroPositionX, heroPositionY) {
+  constructor(ctx, monsterX, monsterY, heroX, heroY) {
     this.ctx = ctx;
-    this.x = heroPositionX;
-    this.y = heroPositionY;
-    this.width = 40;
-    this.height = 40;
+    this.x = monsterX;
+    this.y = monsterY;
+    this.width = 20;
+    this.height = 20;
 
-    this.nearestEnemyX = monsterX;
-    this.nearestEnemyY = monsterY;
+    this.heroX = heroX;
+    this.heroY = heroY;
 
-    this.shotSpeed = 6;
-    this.shotPower = 10;
+    this.shotSpeed = 8;
+    this.damagePower = 10;
 
-    this.dx = this.nearestEnemyX - this.x;
-    this.dy = this.nearestEnemyY - this.y;
+    this.dx = this.heroX - this.x;
+    this.dy = this.heroY - this.y;
     this.angle = Math.atan2(this.dx, this.dy);
     this.speed = this.shotSpeed;
     this.vx = Math.sin(this.angle) * this.speed;
@@ -21,7 +21,13 @@ class MonsterBullet {
   }
 
   draw = () => {
-    this.ctx.drawImage(weaponImage, this.x, this.y, this.width, this.height);
+    this.ctx.drawImage(
+      monsterWeaponImage,
+      this.x,
+      this.y,
+      this.width,
+      this.height
+    );
   };
 
   move = () => {
@@ -33,7 +39,7 @@ class MonsterBullet {
   };
 
   clearBullet = () => {
-    bullets = bullets.filter((bullet) => {
+    monsterBullets = monsterBullets.filter((bullet) => {
       return (
         bullet.x > 0 &&
         bullet.x + bullet.width <= CANVAS_WIDTH &&

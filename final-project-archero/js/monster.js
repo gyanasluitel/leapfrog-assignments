@@ -5,6 +5,8 @@ class Monster {
     this.height = 50;
     this.x = CANVAS_WIDTH / 2;
     this.y = 50;
+    this.dx = 0.2;
+    this.dy = 0.2;
     this.health = 100;
   }
 
@@ -12,12 +14,29 @@ class Monster {
     this.ctx.drawImage(monsterImage, this.x, this.y, this.width, this.height);
   };
 
+  detectBoxCollision = () => {
+    if (this.x - this.width <= 0 || this.x + this.width >= canvas.width) {
+      this.dx = -this.dx;
+    }
+    if (this.y - this.width <= 0 || this.y + this.width >= canvas.height) {
+      this.dy = -this.dy;
+    }
+  };
+
   move = () => {
-    this.x -= 0.5;
-    this.y += 0.2;
-    // if (frames % 60 === 0) {
-    //   monsterBullets.push(new monsterBullet(this.ctx));
-    // }
+    this.detectBoxCollision();
+    this.x += this.dx;
+    this.y += this.dy;
+
+    if (timer % 60 === 0) {
+      console.log('monster weapon');
+      if (hero.health > 0) {
+        monsterBullets.push(
+          new MonsterBullet(this.ctx, this.x, this.y, hero.x, hero.y)
+        );
+      }
+    }
+
     this.detectBulletCollision();
   };
 
@@ -31,7 +50,7 @@ class Monster {
         this.height + this.y > bullet.y
       ) {
         this.health -= bullet.damagePower;
-        console.log(this.health);
+        // console.log(this.health);
         this.clearBullet(bullet);
         if (this.health === 0) {
           console.log('monster killed');
@@ -47,3 +66,5 @@ class Monster {
     );
   }
 }
+
+monster = new Monster(ctx);

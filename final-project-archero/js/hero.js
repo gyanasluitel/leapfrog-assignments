@@ -1,5 +1,5 @@
 class Hero {
-  constructor(ctx, monster) {
+  constructor(ctx) {
     this.ctx = ctx;
     this.width = 50;
     this.height = 50;
@@ -9,19 +9,11 @@ class Hero {
     this.dy = 5;
     // this.speed = 3;
     this.health = 100;
-
-    // this.bullets = [];
-
-    this.monster = monster;
   }
 
   // Draw Hero Sprite
   draw = () => {
     this.ctx.drawImage(heroImage, this.x, this.y, this.width, this.height);
-    // console.log('hero');
-    // if (this.bullets.length !== 0) {
-    //   this.bullets.forEach((bullet) => bullet.draw());
-    // }
   };
 
   detectBoxCollision = () => {
@@ -46,8 +38,35 @@ class Hero {
     }
   };
 
+  detectMonsterBulletCollision = () => {
+    monsterBullets.forEach((bullet) => {
+      if (
+        //Rectangle Collision Detection
+        this.x < bullet.x + bullet.width &&
+        this.x + this.width > bullet.x &&
+        this.y < bullet.y + bullet.height &&
+        this.height + this.y > bullet.y
+      ) {
+        this.health -= bullet.damagePower;
+        console.log(this.health);
+        this.clearBullet(bullet);
+        if (this.health === 0) {
+          console.log('hero killed');
+        }
+      }
+    });
+  };
+
+  clearBullet(bulletToClear) {
+    monsterBullets = monsterBullets.filter(
+      (bullet) =>
+        !(bulletToClear.x === bullet.x && bulletToClear.y === bullet.y)
+    );
+  }
+
   move = () => {
     this.detectBoxCollision();
+    this.detectMonsterBulletCollision();
 
     if (
       (keyPressed.ArrowUp || keyPressed.Up) &&
@@ -84,7 +103,7 @@ class Hero {
     } else {
       if (timer % 50 === 0) {
         bullets.push(
-          new Bullet(this.ctx, this.x, this.y, this.monster.x, this.monster.y)
+          new Bullet(this.ctx, this.x, this.y, monster.x, monster.y)
         );
       }
       // console.log(bullets);
@@ -111,4 +130,4 @@ document.addEventListener('keyup', (event) => {
   //   console.log(keyPressed);
 });
 
-hero = new Hero();
+hero = new Hero(ctx);
