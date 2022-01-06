@@ -30,7 +30,7 @@ class Monster {
 
     if (timer % 60 === 0) {
       // console.log('monster weapon');
-      if (hero.health > 0) {
+      if (hero.health > 0 && monster.health > 0) {
         monsterBullets.push(
           new MonsterBullet(this.ctx, this.x, this.y, hero.x, hero.y)
         );

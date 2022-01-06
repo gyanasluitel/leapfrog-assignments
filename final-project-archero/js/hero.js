@@ -102,9 +102,11 @@ class Hero {
       this.x += this.dx;
     } else {
       if (timer % 50 === 0) {
-        bullets.push(
-          new Bullet(this.ctx, this.x, this.y, monster.x, monster.y)
-        );
+        if (monster.health > 0) {
+          bullets.push(
+            new Bullet(this.ctx, this.x, this.y, monster.x, monster.y)
+          );
+        }
       }
       // console.log(bullets);
     }
