@@ -30,28 +30,30 @@ class Hero {
     return (this.health * this.width) / 100;
   };
 
+  // Wall-Box Collision
   detectBoxCollision = () => {
-    // LEFT WALL
+    // Left Wall
     if (this.x < 0) {
       this.x = 0;
     }
 
-    // RIGHT WALL
+    // Right Wall
     if (this.x + this.width >= CANVAS_WIDTH) {
       this.x = CANVAS_WIDTH - this.width;
     }
 
-    // TOP WALL
+    // Top Wall
     if (this.y < 0) {
       this.y = 0;
     }
 
-    // BOTTOM WALL
+    // Bottom Wall
     if (this.y + this.height >= CANVAS_HEIGHT) {
       this.y = CANVAS_HEIGHT - this.height;
     }
   };
 
+  // Detect Collision with Monster Bullet
   detectMonsterBulletCollision = () => {
     monsterBullets.forEach((bullet) => {
       if (
@@ -63,6 +65,7 @@ class Hero {
       ) {
         this.health -= bullet.damagePower;
         console.log('Hero health: ', this.health);
+        // Remove Bullet on Collision
         this.clearBullet(bullet);
         if (this.health === 0) {
           console.log('hero killed');
@@ -71,6 +74,7 @@ class Hero {
     });
   };
 
+  // Remove Monster Bullet on Collision
   clearBullet(bulletToClear) {
     monsterBullets = monsterBullets.filter(
       (bullet) =>
@@ -122,13 +126,6 @@ class Hero {
           );
         }
       }
-      // console.log(bullets);
     }
-
-    // if (this.bullets.length !== 0) {
-    //   this.bullets.forEach((bullet) => bullet.move());
-    // }
-
-    // bullets.forEach((bullet) => bullet.move());
   };
 }
