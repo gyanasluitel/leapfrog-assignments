@@ -14,6 +14,20 @@ class Hero {
   // Draw Hero Sprite
   draw = () => {
     this.ctx.drawImage(heroImage, this.x, this.y, this.width, this.height);
+
+    // Draw Hero Health Bar
+    this.drawHeroHealthBar();
+  };
+
+  drawHeroHealthBar = () => {
+    this.ctx.strokeStyle = 'black';
+    this.ctx.strokeRect(this.x, this.y - 20, this.width, 10);
+    this.ctx.fillStyle = 'green';
+    this.ctx.fillRect(this.x, this.y - 20, this.generateHealthPercentage(), 10);
+  };
+
+  generateHealthPercentage = () => {
+    return (this.health * this.width) / 100;
   };
 
   detectBoxCollision = () => {
