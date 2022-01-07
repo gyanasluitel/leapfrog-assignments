@@ -11,9 +11,10 @@ class Monster {
   }
 
   draw = () => {
-    this.ctx.drawImage(monsterImage, this.x, this.y, this.width, this.height);
-
-    this.drawMonsterHealthBar();
+    if (gameStates.current === gameStates.gameRunning) {
+      this.ctx.drawImage(monsterImage, this.x, this.y, this.width, this.height);
+      this.drawMonsterHealthBar();
+    }
   };
 
   drawMonsterHealthBar = () => {
@@ -37,20 +38,22 @@ class Monster {
   };
 
   move = (hero) => {
-    this.x += this.dx;
-    this.y += this.dy;
-    this.detectBoxCollision();
+    if (gameStates.current === gameStates.gameRunning) {
+      this.x += this.dx;
+      this.y += this.dy;
+      this.detectBoxCollision();
 
-    if (timer % 60 === 0) {
-      // console.log('monster weapon');
-      if (hero.health > 0 && this.health > 0) {
-        monsterBullets.push(
-          new MonsterBullet(this.ctx, this.x, this.y, hero.x, hero.y)
-        );
+      if (timer % 60 === 0) {
+        // console.log('monster weapon');
+        if (hero.health > 0 && this.health > 0) {
+          monsterBullets.push(
+            new MonsterBullet(this.ctx, this.x, this.y, hero.x, hero.y)
+          );
+        }
       }
-    }
 
-    this.detectBulletCollision(hero);
+      this.detectBulletCollision(hero);
+    }
   };
 
   detectBulletCollision = (hero) => {

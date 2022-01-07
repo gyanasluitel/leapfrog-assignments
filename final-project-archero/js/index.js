@@ -7,7 +7,7 @@ class ArcheroGame {
     this.canvas.style.margin = '0 5% 0 25%';
     this.ctx = canvas.getContext('2d');
 
-    this.canvasEventListener();
+    this.handleCanvasEventListener();
 
     // this.monsters = [];
 
@@ -52,8 +52,26 @@ class ArcheroGame {
     window.requestAnimationFrame(this.animate);
   };
 
-  canvasEventListener = () => {
-    this.canvas.addEventListener('click', () => handleCanvasListener());
+  handleCanvasEventListener = () => {
+    this.canvas.addEventListener('click', (event) => {
+      let rect = this.canvas.getBoundingClientRect();
+      let clickX = event.clientX - rect.left;
+      let clickY = event.clientY - rect.top;
+
+      switch (gameStates.current) {
+        case gameStates.getReady:
+          if (
+            clickX >= this.getReady.playButtonX &&
+            clickX <=
+              this.getReady.playButtonX + this.getReady.playButtonWidth &&
+            clickY >= this.getReady.playButtonY &&
+            clickY <= this.getReady.playButtonY + this.getReady.playButtonHeight
+          ) {
+            gameStates.current = gameStates.gameRunning;
+            break;
+          }
+      }
+    });
   };
 }
 

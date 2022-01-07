@@ -8,7 +8,7 @@ ctx = canvas.getContext('2d');
 const gameStates = {
   current: 0,
   getReady: 0,
-  gameOn: 1,
+  gameRunning: 1,
   gameOver: 2,
 };
 
@@ -55,3 +55,8 @@ gameStartBgImage.src = GAME_START_BG_PATH;
 const GAME_START_HERO_PATH = 'assets/game-start-hero.png';
 const gameStartHeroImage = new Image();
 gameStartHeroImage.src = GAME_START_HERO_PATH;
+
+// PLAY BUTTON
+const PLAY_BUTTON_PATH = 'assets/btn-play.png';
+const playButtonImage = new Image();
+playButtonImage.src = PLAY_BUTTON_PATH;

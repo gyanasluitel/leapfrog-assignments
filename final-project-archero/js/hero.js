@@ -13,10 +13,10 @@ class Hero {
 
   // Draw Hero Sprite
   draw = () => {
-    this.ctx.drawImage(heroImage, this.x, this.y, this.width, this.height);
-
-    // Draw Hero Health Bar
-    this.drawHeroHealthBar();
+    if (gameStates.current === gameStates.gameRunning) {
+      this.ctx.drawImage(heroImage, this.x, this.y, this.width, this.height);
+      this.drawHeroHealthBar();
+    }
   };
 
   drawHeroHealthBar = () => {
@@ -28,6 +28,55 @@ class Hero {
 
   generateHealthPercentage = () => {
     return (this.health * this.width) / 100;
+  };
+
+  move = (monster) => {
+    if (gameStates.current === gameStates.gameRunning) {
+      this.detectBoxCollision();
+      this.detectMonsterBulletCollision();
+
+      if (
+        (keyPressed.ArrowUp || keyPressed.Up) &&
+        (keyPressed.ArrowLeft || keyPressed.Left)
+      ) {
+        this.y -= this.dy;
+        this.x -= this.dx;
+      } else if (
+        (keyPressed.ArrowUp || keyPressed.Up) &&
+        (keyPressed.ArrowRight || keyPressed.Right)
+      ) {
+        this.y -= this.dy;
+        this.x += this.dx;
+      } else if (
+        (keyPressed.ArrowDown || keyPressed.Down) &&
+        (keyPressed.ArrowLeft || keyPressed.Left)
+      ) {
+        this.y += this.dy;
+        this.x -= this.dx;
+      } else if (
+        (keyPressed.ArrowDown || keyPressed.Down) &&
+        (keyPressed.ArrowRight || keyPressed.Right)
+      ) {
+        this.y += this.dy;
+        this.x += this.dx;
+      } else if (keyPressed.ArrowUp || keyPressed.Up) {
+        this.y -= this.dy;
+      } else if (keyPressed.ArrowDown || keyPressed.Down) {
+        this.y += this.dy;
+      } else if (keyPressed.ArrowLeft || keyPressed.Left) {
+        this.x -= this.dx;
+      } else if (keyPressed.ArrowRight || keyPressed.Right) {
+        this.x += this.dx;
+      } else {
+        if (timer % 50 === 0) {
+          if (monster.health > 0) {
+            bullets.push(
+              new Bullet(this.ctx, this.x, this.y, monster.x, monster.y)
+            );
+          }
+        }
+      }
+    }
   };
 
   // Wall-Box Collision
@@ -81,51 +130,4 @@ class Hero {
         !(bulletToClear.x === bullet.x && bulletToClear.y === bullet.y)
     );
   }
-
-  move = (monster) => {
-    this.detectBoxCollision();
-    this.detectMonsterBulletCollision();
-
-    if (
-      (keyPressed.ArrowUp || keyPressed.Up) &&
-      (keyPressed.ArrowLeft || keyPressed.Left)
-    ) {
-      this.y -= this.dy;
-      this.x -= this.dx;
-    } else if (
-      (keyPressed.ArrowUp || keyPressed.Up) &&
-      (keyPressed.ArrowRight || keyPressed.Right)
-    ) {
-      this.y -= this.dy;
-      this.x += this.dx;
-    } else if (
-      (keyPressed.ArrowDown || keyPressed.Down) &&
-      (keyPressed.ArrowLeft || keyPressed.Left)
-    ) {
-      this.y += this.dy;
-      this.x -= this.dx;
-    } else if (
-      (keyPressed.ArrowDown || keyPressed.Down) &&
-      (keyPressed.ArrowRight || keyPressed.Right)
-    ) {
-      this.y += this.dy;
-      this.x += this.dx;
-    } else if (keyPressed.ArrowUp || keyPressed.Up) {
-      this.y -= this.dy;
-    } else if (keyPressed.ArrowDown || keyPressed.Down) {
-      this.y += this.dy;
-    } else if (keyPressed.ArrowLeft || keyPressed.Left) {
-      this.x -= this.dx;
-    } else if (keyPressed.ArrowRight || keyPressed.Right) {
-      this.x += this.dx;
-    } else {
-      if (timer % 50 === 0) {
-        if (monster.health > 0) {
-          bullets.push(
-            new Bullet(this.ctx, this.x, this.y, monster.x, monster.y)
-          );
-        }
-      }
-    }
-  };
 }
