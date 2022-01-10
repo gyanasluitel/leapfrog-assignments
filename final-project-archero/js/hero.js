@@ -76,13 +76,6 @@ class Hero {
   };
 
   shoot = () => {
-    // monsters.forEach((monster) => {
-    //   if (monster.health > 0) {
-    //     bullets.push(
-    //       new Bullet(this.ctx, this.x, this.y, monster.x, monster.y)
-    //     );
-    //   }
-    // });
     let nearestMonster = this.getNearestMonster();
     bullets.push(
       new Bullet(this.ctx, this.x, this.y, nearestMonster.x, nearestMonster.y)
@@ -107,18 +100,18 @@ class Hero {
   // Wall-Box Collision
   detectBoxCollision = () => {
     // Left Wall
-    if (this.x < 0) {
-      this.x = 0;
+    if (this.x < RING_LEFT_BOUNDARY) {
+      this.x = RING_LEFT_BOUNDARY;
     }
 
     // Right Wall
-    if (this.x + this.width >= CANVAS_WIDTH) {
-      this.x = CANVAS_WIDTH - this.width;
+    if (this.x + this.width >= RING_RIGHT_BOUNDARY) {
+      this.x = RING_RIGHT_BOUNDARY - this.width;
     }
 
     // Top Wall
-    if (this.y < 0) {
-      this.y = 0;
+    if (this.y < RING_TOP_BOUNDARY) {
+      this.y = RING_TOP_BOUNDARY;
     }
 
     // Bottom Wall

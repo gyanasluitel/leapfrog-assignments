@@ -37,7 +37,7 @@ class Score {
       // Draw Score
       this.ctx.fillStyle = 'white';
       this.ctx.font = 'bold 20px Arial';
-      this.ctx.fillText(this.totalCoinsCollected, this.x + 30, this.y + 17);
+      this.ctx.fillText(this.totalCoinsCollected, this.x + 25, this.y + 17);
     }
   };
 }
