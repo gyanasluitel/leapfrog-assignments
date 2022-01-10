@@ -9,7 +9,7 @@ class MonsterBullet {
     this.heroX = heroX;
     this.heroY = heroY;
 
-    this.shotSpeed = 8;
+    this.shotSpeed = 2;
     this.damagePower = 10;
 
     this.dx = this.heroX - this.x;
