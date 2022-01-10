@@ -35,10 +35,10 @@ class MonsterBullet {
     this.y += this.vy;
 
     // Clear Bullet when collides with wall
-    this.clearBullet();
+    this.clearBulletWallCollision();
   };
 
-  clearBullet = () => {
+  clearBulletWallCollision = () => {
     monsterBullets = monsterBullets.filter((bullet) => {
       return (
         bullet.x > 0 &&
