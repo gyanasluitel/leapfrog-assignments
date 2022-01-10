@@ -7,25 +7,50 @@ class Coin {
     this.width = 30;
     this.height = 30;
     this.hero = hero;
-
-    this.dx = this.hero.x - this.x;
-    this.dy = this.hero.y - this.y;
-    this.angle = Math.atan2(this.dx, this.dy);
     this.speed = 10;
-    this.vx = Math.sin(this.angle) * this.speed;
-    this.vy = Math.cos(this.angle) * this.speed;
   }
 
   draw = () => {
     this.ctx.drawImage(coinImage, this.x, this.y, this.width, this.height);
   };
 
-  move = () => {
-    setInterval(() => {
-      if (this.monster.health === 0) {
-        this.x += this.vx;
-        this.y += this.vy;
+  move = (score) => {
+    if (monsters.length === 0) {
+      if (this.x < this.hero.x) {
+        this.x += this.speed;
+      } else if (this.x > this.hero.x) {
+        this.x -= this.speed;
       }
-    }, 2000);
+      if (this.y < this.hero.y) {
+        this.y += this.speed;
+      } else if (this.y > this.hero.y) {
+        this.y -= this.speed;
+      }
+
+      this.detectCoinCollision(score);
+    }
+  };
+
+  detectCoinCollision = (score) => {
+    if (
+      //Rectangle Collision Detection
+      this.x < this.hero.x + this.hero.width &&
+      this.x + this.width > this.hero.x &&
+      this.y < this.hero.y + this.hero.height &&
+      this.height + this.y > this.hero.y
+    ) {
+      this.clearCoin(this, score);
+    }
+  };
+
+  clearCoin = (coinToClear, score) => {
+    coins = coins.filter(
+      (coin) => !(coinToClear.x === coin.x && coinToClear.y === coin.y)
+    );
+    console.log(coins);
+    score.coinsCollectedPerGame++;
+    score.totalCoinsCollected++;
+    localStorage.setItem('arcHeroScore', score.totalCoinsCollected);
+    // console.log(score.coinsCollected);
   };
 }
