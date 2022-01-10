@@ -20,6 +20,7 @@ let timer = 0;
 let bullets = [];
 let monsterBullets = [];
 let coins = [];
+let monsters = [];
 
 // HERO
 const HERO_PATH = 'assets/hero.png';

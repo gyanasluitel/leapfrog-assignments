@@ -8,19 +8,17 @@ class ArcheroGame {
     this.ctx = canvas.getContext('2d');
 
     this.handleCanvasEventListener();
-
-    // this.monsters = [];
-
-    // for (let i = 0; i < 3; i++) {
-    //   this.monsters.push(new Monster(this.ctx));
-    // }
-
-    // console.log(this.monsters);
-
-    this.monster = new Monster(this.ctx);
+    // this.monster = new Monster(this.ctx);
     this.hero = new Hero(this.ctx);
     this.getReady = new GetReady(this.ctx);
+    this.gameOver = new GameOver(this.ctx);
   }
+
+  generateMonsters = () => {
+    for (let i = 0; i < 3; i++) {
+      monsters.push(new Monster(this.ctx));
+    }
+  };
 
   draw = () => {
     this.ctx.fillStyle = 'lightblue';
@@ -28,17 +26,18 @@ class ArcheroGame {
 
     this.getReady.draw();
     this.hero.draw();
-    this.monster.draw();
-    // this.monsters.forEach((monster) => monster.draw());
+    // this.monster.draw();
+    monsters.forEach((monster) => monster.draw());
     bullets.forEach((bullet) => bullet.draw());
     monsterBullets.forEach((bullet) => bullet.draw());
     coins.forEach((coin) => coin.draw());
+    this.gameOver.draw();
   };
 
   update = () => {
-    this.hero.move(this.monster);
-    this.monster.move(this.hero);
-    // this.monsters.forEach((monster) => monster.move(this.hero));
+    this.hero.move();
+    // this.monster.move(this.hero);
+    monsters.forEach((monster) => monster.move(this.hero));
     bullets.forEach((bullet) => bullet.move());
     monsterBullets.forEach((bullet) => bullet.move());
     coins.forEach((coin) => coin.move());
@@ -68,7 +67,20 @@ class ArcheroGame {
             clickY <= this.getReady.playButtonY + this.getReady.playButtonHeight
           ) {
             gameStates.current = gameStates.gameRunning;
+            this.generateMonsters();
             break;
+          }
+        case gameStates.gameOver:
+          if (
+            clickX >= this.gameOver.playButtonX &&
+            clickX <=
+              this.gameOver.playButtonX + this.gameOver.playButtonWidth &&
+            clickY >= this.gameOver.playButtonY &&
+            clickY <= this.gameOver.playButtonY + this.gameOver.playButtonHeight
+          ) {
+            gameStates.current = gameStates.getReady;
+            this.hero.reset();
+            monsters = [];
           }
       }
     });
