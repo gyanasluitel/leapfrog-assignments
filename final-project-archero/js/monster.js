@@ -28,15 +28,7 @@ class Monster {
     return (this.health * this.width) / 100;
   };
 
-  detectBoxCollision = () => {
-    if (this.x < 0 || this.x + this.width >= canvas.width) {
-      this.dx = -this.dx;
-    }
-    if (this.y - this.width <= 0 || this.y + this.width >= canvas.height) {
-      this.dy = -this.dy;
-    }
-  };
-
+  // Monster Movement and Update
   move = (hero) => {
     if (gameStates.current === gameStates.gameRunning) {
       if (this.health <= 0) {
@@ -58,6 +50,15 @@ class Monster {
     }
   };
 
+  detectBoxCollision = () => {
+    if (this.x < 0 || this.x + this.width >= canvas.width) {
+      this.dx = -this.dx;
+    }
+    if (this.y - this.width <= 0 || this.y + this.width >= canvas.height) {
+      this.dy = -this.dy;
+    }
+  };
+
   detectBulletCollision = () => {
     bullets.forEach((bullet) => {
       if (
@@ -74,15 +75,21 @@ class Monster {
     });
   };
 
+  // Clear Monster from 'monster' array on death
   clearMonster(monsterToClear, hero) {
     monsters = monsters.filter(
       (monster) =>
         !(monster.x === monsterToClear.x && monster.y === monsterToClear.y)
     );
     coins.push(new Coin(this.ctx, monsterToClear, hero));
-    console.log(coins);
+
+    // Spawn HealingItem at probability of 33.33%
+    if (getRandomIntInclusive(1, 3) === 1) {
+      healingItems.push(new HealingItem(this.ctx, monsterToClear, hero));
+    }
   }
 
+  // Clear bullet after collision with monster
   clearBullet(bulletToClear) {
     bullets = bullets.filter(
       (bullet) =>

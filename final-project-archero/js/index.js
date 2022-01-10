@@ -32,6 +32,7 @@ class ArcheroGame {
     bullets.forEach((bullet) => bullet.draw());
     monsterBullets.forEach((bullet) => bullet.draw());
     coins.forEach((coin) => coin.draw());
+    healingItems.forEach((healingItem) => healingItem.draw());
     this.gameOver.draw();
     this.score.draw();
   };
@@ -43,6 +44,7 @@ class ArcheroGame {
     bullets.forEach((bullet) => bullet.move());
     monsterBullets.forEach((bullet) => bullet.move());
     coins.forEach((coin) => coin.move(this.score));
+    healingItems.forEach((healingItem) => healingItem.move(this.hero));
   };
 
   animate = () => {

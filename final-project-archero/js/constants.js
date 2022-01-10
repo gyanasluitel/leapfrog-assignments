@@ -20,6 +20,7 @@ let timer = 0;
 let bullets = [];
 let monsterBullets = [];
 let coins = [];
+let healingItems = [];
 let monsters = [];
 
 // HERO
@@ -46,6 +47,11 @@ monsterWeaponImage.src = MONSTER_WEAPON_PATH;
 const COIN_PATH = 'assets/coins.png';
 const coinImage = new Image();
 coinImage.src = COIN_PATH;
+
+// HEALING ITEM
+const HEALING_ITEM_PATH = 'assets/healing-item.png';
+const healingItemImage = new Image();
+healingItemImage.src = HEALING_ITEM_PATH;
 
 // GAME START BACKGROUND IMAGE
 const GAME_START_BG_PATH = 'assets/game-start-bg.jpg';
