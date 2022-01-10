@@ -49,7 +49,7 @@ class GameOver {
 
       // Draw Play Button
       this.ctx.drawImage(
-        playButtonImage,
+        homeButtonImage,
         this.playButtonX,
         this.playButtonY,
         this.playButtonWidth,

@@ -61,3 +61,8 @@ gameStartHeroImage.src = GAME_START_HERO_PATH;
 const PLAY_BUTTON_PATH = 'assets/btn-play.png';
 const playButtonImage = new Image();
 playButtonImage.src = PLAY_BUTTON_PATH;
+
+// HOME BUTTON
+const HOME_BUTTON_PATH = 'assets/home.png';
+const homeButtonImage = new Image();
+homeButtonImage.src = HOME_BUTTON_PATH;
