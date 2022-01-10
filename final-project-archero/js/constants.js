@@ -4,6 +4,11 @@ const CANVAS_HEIGHT = 600;
 const canvas = document.getElementById('canvas');
 ctx = canvas.getContext('2d');
 
+// RING
+const RING_LEFT_BOUNDARY = 25;
+const RING_RIGHT_BOUNDARY = 375;
+const RING_TOP_BOUNDARY = 128;
+
 // GAME STATES
 const gameStates = {
   current: 0,
@@ -72,3 +77,8 @@ playButtonImage.src = PLAY_BUTTON_PATH;
 const HOME_BUTTON_PATH = 'assets/home.png';
 const homeButtonImage = new Image();
 homeButtonImage.src = HOME_BUTTON_PATH;
+
+// BACKGROUND
+const BACKGROUND_IMAGE_PATH = 'assets/background.jpg';
+const backgroundImage = new Image();
+backgroundImage.src = BACKGROUND_IMAGE_PATH;

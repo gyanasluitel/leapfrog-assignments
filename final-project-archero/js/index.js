@@ -9,6 +9,7 @@ class ArcheroGame {
 
     this.handleCanvasEventListener();
     // this.monster = new Monster(this.ctx);
+    this.background = new Background(this.ctx);
     this.hero = new Hero(this.ctx);
     this.getReady = new GetReady(this.ctx);
     this.gameOver = new GameOver(this.ctx);
@@ -26,6 +27,7 @@ class ArcheroGame {
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.getReady.draw();
+    this.background.draw();
     this.hero.draw();
     // this.monster.draw();
     monsters.forEach((monster) => monster.draw());
