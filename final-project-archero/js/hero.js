@@ -30,7 +30,7 @@ class Hero {
     return (this.health * this.width) / 100;
   };
 
-  move = (monster) => {
+  move = () => {
     if (gameStates.current === gameStates.gameRunning) {
       this.detectBoxCollision();
       this.detectMonsterBulletCollision();
@@ -68,15 +68,40 @@ class Hero {
       } else if (keyPressed.ArrowRight || keyPressed.Right) {
         this.x += this.dx;
       } else {
-        if (timer % 50 === 0) {
-          if (monster.health > 0) {
-            bullets.push(
-              new Bullet(this.ctx, this.x, this.y, monster.x, monster.y)
-            );
-          }
+        if (monsters.length > 0 && timer % 50 === 0) {
+          this.shoot();
         }
       }
     }
+  };
+
+  shoot = () => {
+    // monsters.forEach((monster) => {
+    //   if (monster.health > 0) {
+    //     bullets.push(
+    //       new Bullet(this.ctx, this.x, this.y, monster.x, monster.y)
+    //     );
+    //   }
+    // });
+    let nearestMonster = this.getNearestMonster();
+    bullets.push(
+      new Bullet(this.ctx, this.x, this.y, nearestMonster.x, nearestMonster.y)
+    );
+  };
+
+  getNearestMonster = () => {
+    let monstersDistance = [];
+    monsters.forEach((monster) => {
+      let distance = getDistance(this.x, this.y, monster.x, monster.y);
+      monstersDistance.push({
+        distance: distance,
+        x: monster.x,
+        y: monster.y,
+      });
+    });
+
+    monstersDistance.sort((a, b) => a.distance - b.distance);
+    return monstersDistance[0];
   };
 
   // Wall-Box Collision
@@ -113,11 +138,12 @@ class Hero {
         this.height + this.y > bullet.y
       ) {
         this.health -= bullet.damagePower;
-        console.log('Hero health: ', this.health);
+        // console.log('Hero health: ', this.health);
         // Remove Bullet on Collision
         this.clearBullet(bullet);
         if (this.health === 0) {
-          console.log('hero killed');
+          gameStates.current = gameStates.gameOver;
+          // console.log('hero killed');
         }
       }
     });
@@ -130,4 +156,8 @@ class Hero {
         !(bulletToClear.x === bullet.x && bulletToClear.y === bullet.y)
     );
   }
+
+  reset = () => {
+    this.health = 100;
+  };
 }
