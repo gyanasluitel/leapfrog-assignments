@@ -12,6 +12,7 @@ class ArcheroGame {
     this.hero = new Hero(this.ctx);
     this.getReady = new GetReady(this.ctx);
     this.gameOver = new GameOver(this.ctx);
+    this.score = new Score(this.ctx);
   }
 
   generateMonsters = () => {
@@ -32,6 +33,7 @@ class ArcheroGame {
     monsterBullets.forEach((bullet) => bullet.draw());
     coins.forEach((coin) => coin.draw());
     this.gameOver.draw();
+    this.score.draw();
   };
 
   update = () => {
@@ -40,7 +42,7 @@ class ArcheroGame {
     monsters.forEach((monster) => monster.move(this.hero));
     bullets.forEach((bullet) => bullet.move());
     monsterBullets.forEach((bullet) => bullet.move());
-    coins.forEach((coin) => coin.move());
+    coins.forEach((coin) => coin.move(this.score));
   };
 
   animate = () => {
