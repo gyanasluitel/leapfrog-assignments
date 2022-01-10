@@ -3,8 +3,11 @@ class Monster {
     this.ctx = ctx;
     this.width = 50;
     this.height = 50;
-    this.x = getRandomPosition(0, CANVAS_WIDTH);
-    this.y = getRandomPosition(0, CANVAS_HEIGHT / 2);
+    this.x = getRandomPosition(
+      RING_LEFT_BOUNDARY + 10,
+      RING_RIGHT_BOUNDARY - 5
+    );
+    this.y = getRandomPosition(RING_TOP_BOUNDARY + 10, CANVAS_HEIGHT / 2);
     this.dx = 0.5;
     this.dy = 0.5;
     this.health = 100;
@@ -51,10 +54,16 @@ class Monster {
   };
 
   detectBoxCollision = () => {
-    if (this.x < 0 || this.x + this.width >= canvas.width) {
+    if (
+      this.x < RING_LEFT_BOUNDARY ||
+      this.x + this.width >= RING_RIGHT_BOUNDARY
+    ) {
       this.dx = -this.dx;
     }
-    if (this.y - this.width <= 0 || this.y + this.width >= canvas.height) {
+    if (
+      this.y - this.width <= RING_TOP_BOUNDARY ||
+      this.y + this.width >= canvas.height
+    ) {
       this.dy = -this.dy;
     }
   };
