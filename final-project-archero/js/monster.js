@@ -39,12 +39,14 @@ class Monster {
 
   move = (hero) => {
     if (gameStates.current === gameStates.gameRunning) {
+      if (this.health <= 0) {
+        this.clearMonster(this, hero);
+      }
       this.x += this.dx;
       this.y += this.dy;
       this.detectBoxCollision();
 
       if (timer % 100 === 0) {
-        // console.log('monster weapon');
         if (hero.health > 0 && this.health > 0) {
           monsterBullets.push(
             new MonsterBullet(this.ctx, this.x, this.y, hero.x, hero.y)
@@ -52,11 +54,11 @@ class Monster {
         }
       }
 
-      this.detectBulletCollision(hero);
+      this.detectBulletCollision();
     }
   };
 
-  detectBulletCollision = (hero) => {
+  detectBulletCollision = () => {
     bullets.forEach((bullet) => {
       if (
         //Rectangle Collision Detection
@@ -66,19 +68,20 @@ class Monster {
         this.height + this.y > bullet.y
       ) {
         this.health -= bullet.damagePower;
+        // console.log(this.health);
         this.clearBullet(bullet);
-        if (this.health === 0) {
-          // Remove monster from monster array upon death
-          monsters = monsters.filter(
-            (killedMonster) =>
-              !(killedMonster.x === this.x && killedMonster.y === this.y)
-          );
-          coins.push(new Coin(this.ctx, this, hero));
-          // console.log(coins);
-        }
       }
     });
   };
+
+  clearMonster(monsterToClear, hero) {
+    monsters = monsters.filter(
+      (monster) =>
+        !(monster.x === monsterToClear.x && monster.y === monsterToClear.y)
+    );
+    coins.push(new Coin(this.ctx, monsterToClear, hero));
+    console.log(coins);
+  }
 
   clearBullet(bulletToClear) {
     bullets = bullets.filter(
