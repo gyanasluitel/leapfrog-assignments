@@ -109,3 +109,13 @@ let obstacles = [];
 const GATE_LEVEL_PATH = 'assets/gate-level.png';
 const gateLevelImage = new Image();
 gateLevelImage.src = GATE_LEVEL_PATH;
+
+// GATE CLOSE
+const GATE_CLOSE_PATH = 'assets/gate-close.png';
+const gateCloseImage = new Image();
+gateCloseImage.src = GATE_CLOSE_PATH;
+
+// GATE OPEN
+const GATE_OPEN_PATH = 'assets/gate-open.png';
+const gateOpenImage = new Image();
+gateOpenImage.src = GATE_OPEN_PATH;
