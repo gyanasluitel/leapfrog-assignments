@@ -40,8 +40,8 @@ class Hero {
       gameStates.current !== gameStates.getReady &&
       gameStates.current !== gameStates.gameOver
     ) {
-      this.previousX = this.x;
-      this.previousY = this.y;
+      // this.previousX = this.x;
+      // this.previousY = this.y;
       this.detectLevelChange();
       this.detectRingCollision();
       this.detectMonsterBulletCollision();
@@ -148,42 +148,51 @@ class Hero {
   detectObstacleCollision = () => {
     obstacles.forEach((obstacle) => {
       if (
-        this.x < obstacle.x + obstacle.width &&
-        this.x + this.width > obstacle.x &&
-        this.y < obstacle.y + obstacle.height &&
-        this.y + this.height > obstacle.y &&
-        this.previousY < obstacle.y
+        // Collision with Bottom of Obstacle
+        this.y <= obstacle.y + obstacle.height &&
+        this.y >= obstacle.y &&
+        this.x + this.width >= obstacle.x &&
+        this.x <= obstacle.x + obstacle.width &&
+        this.y + this.height > obstacle.y + obstacle.height
+        // this.previousY > obstacle.y + obstacle.height
       ) {
-        this.y = obstacle.y - this.height;
-      }
-      if (
-        this.x < obstacle.x + obstacle.width &&
-        this.x + this.width > obstacle.x &&
-        this.y < obstacle.y + obstacle.height &&
-        this.y + this.height > obstacle.y &&
-        this.previousY + this.height > obstacle.y
-      ) {
+        // console.log('collision down');
         this.y = obstacle.y + obstacle.height;
-      }
-      if (
-        this.x < obstacle.x + obstacle.width &&
-        this.x + this.width > obstacle.x &&
-        this.y < obstacle.y + obstacle.height &&
-        this.y + this.height > obstacle.y &&
-        this.previousX < obstacle.x
+        return;
+      } else if (
+        // Collision with Top of Obstacle
+        this.y + this.height >= obstacle.y &&
+        this.y + this.height <= obstacle.y + obstacle.height &&
+        this.x + this.width >= obstacle.x &&
+        this.x <= obstacle.x + obstacle.width &&
+        this.y < obstacle.y
+        // this.previousY + this.height <= obstacle.y
       ) {
+        // console.log('collision up');
+        this.y = obstacle.y - this.height;
+        return;
+      } else if (
+        // Collision with Left of Obstacle
+        this.y + this.height >= obstacle.y &&
+        this.y <= obstacle.y + obstacle.height &&
+        this.x + this.width >= obstacle.x &&
+        this.x < obstacle.x
+        // this.previousX + this.width < obstacle.x
+      ) {
+        // console.log('collision left');
         this.x = obstacle.x - this.width;
-        this.y = this.y + 50;
-      }
-      if (
-        this.x < obstacle.x + obstacle.width &&
-        this.x + this.width > obstacle.x &&
-        this.y < obstacle.y + obstacle.height &&
-        this.y + this.height > obstacle.y &&
-        this.previousX + this.width > obstacle.x
+        return;
+      } else if (
+        // Collision with Right of Obstacle
+        this.y + this.height >= obstacle.y &&
+        this.y <= obstacle.y + obstacle.height &&
+        this.x <= obstacle.x + obstacle.width &&
+        this.x + this.width > obstacle.x + obstacle.width
+        // this.previousX > obstacle.x + obstacle.width
       ) {
+        // console.log('collision right');
         this.x = obstacle.x + obstacle.width;
-        this.y = this.y + 50;
+        return;
       }
     });
   };
