@@ -31,11 +31,16 @@ class MonsterBullet {
   };
 
   move = () => {
-    this.x += this.vx;
-    this.y += this.vy;
+    if (
+      gameStates.current !== gameStates.getReady &&
+      gameStates.current !== gameStates.gameOver
+    ) {
+      this.x += this.vx;
+      this.y += this.vy;
 
-    // Clear Bullet when collides with wall
-    this.clearBulletWallCollision();
+      // Clear Bullet when collides with wall
+      this.clearBulletWallCollision();
+    }
   };
 
   clearBulletWallCollision = () => {
