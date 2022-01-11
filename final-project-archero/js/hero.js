@@ -43,7 +43,7 @@ class Hero {
       this.previousX = this.x;
       this.previousY = this.y;
       this.detectLevelChange();
-      this.detectBoxCollision();
+      this.detectRingCollision();
       this.detectMonsterBulletCollision();
       this.detectObstacleCollision();
 
@@ -112,15 +112,17 @@ class Hero {
   detectLevelChange = () => {
     if (
       gameStates.current === gameStates.changingLevel &&
-      this.y === RING_TOP_BOUNDARY
+      this.y === RING_TOP_BOUNDARY &&
+      this.x > CANVAS_WIDTH / 2 - 50 &&
+      this.x < CANVAS_WIDTH / 2
     ) {
-      this.x = CANVAS_WIDTH / 2 - 25;
-      this.y = CANVAS_HEIGHT - 50;
+      this.x = CANVAS_WIDTH / 2 - 30;
+      this.y = CANVAS_HEIGHT;
       gameStates.current = gameStates.nextLevel;
     }
   };
   // Wall-Box Collision
-  detectBoxCollision = () => {
+  detectRingCollision = () => {
     // Left Wall
     if (this.x < RING_LEFT_BOUNDARY) {
       this.x = RING_LEFT_BOUNDARY;

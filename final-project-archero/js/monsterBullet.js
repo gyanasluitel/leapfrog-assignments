@@ -3,8 +3,8 @@ class MonsterBullet {
     this.ctx = ctx;
     this.x = monsterX;
     this.y = monsterY;
-    this.width = 20;
-    this.height = 20;
+    this.width = 15;
+    this.height = 15;
 
     this.heroX = heroX;
     this.heroY = heroY;

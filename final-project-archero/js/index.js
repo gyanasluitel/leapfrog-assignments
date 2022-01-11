@@ -63,14 +63,8 @@ class ArcheroGame {
       monsters.length === 0 &&
       gameStates.current === gameStates.gameRunning
     ) {
-      // console.log('level changing');
       gameStates.current = gameStates.changingLevel;
     }
-
-    // if (gameStates.current === gameStates.changingLevel) {
-    //   console.log('changing level');
-    //   gameStates.current = gameStates.nextLevel;
-    // }
 
     if (gameStates.current === gameStates.nextLevel) {
       // if (timer %)
@@ -79,6 +73,15 @@ class ArcheroGame {
     }
   };
 
+  reset = () => {
+    this.hero.reset();
+    monsters = [];
+    obstacles = [];
+    monsterBullets = [];
+    healingItems = [];
+    coins = [];
+    gameStates.currentLevel = 1;
+  };
   animate = () => {
     this.update();
     this.draw();
@@ -116,12 +119,7 @@ class ArcheroGame {
             clickY <= this.gameOver.playButtonY + this.gameOver.playButtonHeight
           ) {
             gameStates.current = gameStates.getReady;
-            this.hero.reset();
-            monsters = [];
-            obstacles = [];
-            monsterBullets = [];
-            healingItems = [];
-            coins = [];
+            this.reset();
           }
       }
     });
