@@ -82,3 +82,22 @@ homeButtonImage.src = HOME_BUTTON_PATH;
 const BACKGROUND_IMAGE_PATH = 'assets/background.jpg';
 const backgroundImage = new Image();
 backgroundImage.src = BACKGROUND_IMAGE_PATH;
+
+// OBSTACLE - ROCK
+const OBSTACLE_1_IMAGE_PATH = 'assets/obstacles/rock.png';
+const obstacle1Image = new Image();
+obstacle1Image.src = OBSTACLE_1_IMAGE_PATH;
+
+// OBSTACLE - ROCK
+const OBSTACLE_2_IMAGE_PATH = 'assets/obstacles/trunk.png';
+const obstacle2Image = new Image();
+obstacle2Image.src = OBSTACLE_2_IMAGE_PATH;
+
+const obstacleArray = [
+  { image: obstacle2Image, x: 100, y: 200 },
+  { image: obstacle2Image, x: 150, y: 250 },
+  { image: obstacle1Image, x: 200, y: 300 },
+  { image: obstacle2Image, x: 250, y: 400 },
+];
+
+let obstacles = [];
