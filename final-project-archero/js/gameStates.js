@@ -58,3 +58,28 @@ class GameOver {
     }
   };
 }
+
+class ChangingLevel {
+  constructor(ctx) {
+    this.ctx = ctx;
+  }
+
+  draw = () => {
+    if (gameStates.current === gameStates.changingLevel) {
+      this.ctx.fillStyle = 'white';
+      this.ctx.font = 'bold 20px Arial';
+      this.ctx.fillText('Please Wait', 200, 200);
+    }
+  };
+}
+
+class NextLevel {
+  constructor(ctx) {
+    this.ctx = ctx;
+  }
+
+  update = () => {
+    gameStates.currentLevel++;
+    gameStates.current = gameStates.gameRunning;
+  };
+}

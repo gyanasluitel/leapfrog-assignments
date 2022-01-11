@@ -8,17 +8,26 @@ class ArcheroGame {
     this.ctx = canvas.getContext('2d');
 
     this.handleCanvasEventListener();
+
     // this.monster = new Monster(this.ctx);
     this.background = new Background(this.ctx);
     this.hero = new Hero(this.ctx);
     this.getReady = new GetReady(this.ctx);
     this.gameOver = new GameOver(this.ctx);
     this.score = new Score(this.ctx);
+    this.changingLevel = new ChangingLevel(this.ctx);
+    this.nextLevel = new NextLevel(this.ctx);
   }
 
   generateMonsters = () => {
     for (let i = 0; i < 3; i++) {
       monsters.push(new Monster(this.ctx));
+    }
+  };
+
+  generateObstacles = () => {
+    for (let i = 0; i < obstacleArray.length; i++) {
+      obstacles.push(new Obstacle(this.ctx, obstacleArray[i]));
     }
   };
 
@@ -32,11 +41,14 @@ class ArcheroGame {
     // this.monster.draw();
     monsters.forEach((monster) => monster.draw());
     bullets.forEach((bullet) => bullet.draw());
+    obstacles.forEach((obstacle) => obstacle.draw());
+
     monsterBullets.forEach((bullet) => bullet.draw());
     coins.forEach((coin) => coin.draw());
     healingItems.forEach((healingItem) => healingItem.draw());
     this.gameOver.draw();
     this.score.draw();
+    // this.changingLevel.draw();
   };
 
   update = () => {
@@ -47,6 +59,24 @@ class ArcheroGame {
     monsterBullets.forEach((bullet) => bullet.move());
     coins.forEach((coin) => coin.move(this.score));
     healingItems.forEach((healingItem) => healingItem.move(this.hero));
+    if (
+      monsters.length === 0 &&
+      gameStates.current === gameStates.gameRunning
+    ) {
+      // console.log('level changing');
+      gameStates.current = gameStates.changingLevel;
+    }
+
+    // if (gameStates.current === gameStates.changingLevel) {
+    //   console.log('changing level');
+    //   gameStates.current = gameStates.nextLevel;
+    // }
+
+    if (gameStates.current === gameStates.nextLevel) {
+      // if (timer %)
+      this.generateMonsters();
+      this.nextLevel.update();
+    }
   };
 
   animate = () => {
@@ -74,6 +104,7 @@ class ArcheroGame {
           ) {
             gameStates.current = gameStates.gameRunning;
             this.generateMonsters();
+            this.generateObstacles();
             break;
           }
         case gameStates.gameOver:
@@ -87,6 +118,10 @@ class ArcheroGame {
             gameStates.current = gameStates.getReady;
             this.hero.reset();
             monsters = [];
+            obstacles = [];
+            monsterBullets = [];
+            healingItems = [];
+            coins = [];
           }
       }
     });

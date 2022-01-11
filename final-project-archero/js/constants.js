@@ -14,7 +14,10 @@ const gameStates = {
   current: 0,
   getReady: 0,
   gameRunning: 1,
-  gameOver: 2,
+  changingLevel: 2,
+  gameOver: 3,
+  nextLevel: 4,
+  currentLevel: 1,
 };
 
 // KEY PRESS DETECTION
@@ -101,3 +104,8 @@ const obstacleArray = [
 ];
 
 let obstacles = [];
+
+// GATE LEVEL INDICATOR
+const GATE_LEVEL_PATH = 'assets/gate-level.png';
+const gateLevelImage = new Image();
+gateLevelImage.src = GATE_LEVEL_PATH;
