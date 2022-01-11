@@ -17,6 +17,7 @@ const gameStates = {
   changingLevel: 2,
   gameOver: 3,
   nextLevel: 4,
+  gameComplete: 5,
   currentLevel: 1,
 };
 
@@ -36,20 +37,40 @@ const HERO_PATH = 'assets/hero.png';
 const heroImage = new Image();
 heroImage.src = HERO_PATH;
 
-// MONSTER
-const MONSTER_PATH = 'assets/monster.png';
-const monsterImage = new Image();
-monsterImage.src = MONSTER_PATH;
-
 // HERO WEAPON
 const WEAPON_PATH = 'assets/weapon.png';
 const weaponImage = new Image();
 weaponImage.src = WEAPON_PATH;
 
-// MONSTER WEAPON
+// MONSTER
+const MONSTER_PATH = 'assets/monster.png';
+const monsterImage = new Image();
+monsterImage.src = MONSTER_PATH;
+
+// MONSTER 2
+const MONSTER_2_PATH = 'assets/monster2.png';
+const monster2Image = new Image();
+monster2Image.src = MONSTER_2_PATH;
+
+// MONSTER 3
+const MONSTER_3_PATH = 'assets/monster3.png';
+const monster3Image = new Image();
+monster3Image.src = MONSTER_3_PATH;
+
+// MONSTER WEAPON 1
 const MONSTER_WEAPON_PATH = 'assets/monsterWeapon.png';
 const monsterWeaponImage = new Image();
 monsterWeaponImage.src = MONSTER_WEAPON_PATH;
+
+// MONSTER WEAPON 2
+const MONSTER_WEAPON_2_PATH = 'assets/monsterWeapon2.png';
+const monsterWeapon2Image = new Image();
+monsterWeapon2Image.src = MONSTER_WEAPON_2_PATH;
+
+// MONSTER WEAPON 3
+const MONSTER_WEAPON_3_PATH = 'assets/monsterWeapon3.png';
+const monsterWeapon3Image = new Image();
+monsterWeapon3Image.src = MONSTER_WEAPON_3_PATH;
 
 // COINS
 const COIN_PATH = 'assets/coins.png';
@@ -95,13 +116,6 @@ obstacle1Image.src = OBSTACLE_1_IMAGE_PATH;
 const OBSTACLE_2_IMAGE_PATH = 'assets/obstacles/trunk.png';
 const obstacle2Image = new Image();
 obstacle2Image.src = OBSTACLE_2_IMAGE_PATH;
-
-const obstacleArray = [
-  { image: obstacle2Image, x: 100, y: 200 },
-  { image: obstacle2Image, x: 150, y: 250 },
-  { image: obstacle1Image, x: 200, y: 300 },
-  { image: obstacle2Image, x: 250, y: 400 },
-];
 
 let obstacles = [];
 
