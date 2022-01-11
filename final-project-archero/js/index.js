@@ -17,17 +17,32 @@ class ArcheroGame {
     this.score = new Score(this.ctx);
     this.changingLevel = new ChangingLevel(this.ctx);
     this.nextLevel = new NextLevel(this.ctx);
+    this.levels = new Levels();
+    this.gameComplete = new GameComplete(ctx);
   }
 
   generateMonsters = () => {
-    for (let i = 0; i < 3; i++) {
-      monsters.push(new Monster(this.ctx));
+    let monsterArray = this.levels.level[gameStates.currentLevel].monsters;
+    for (let i = 0; i < monsterArray.length; i++) {
+      monsters.push(new Monster(this.ctx, monsterArray[i]));
     }
   };
 
   generateObstacles = () => {
+    let obstacleArray = this.levels.level[gameStates.currentLevel].obstacles;
     for (let i = 0; i < obstacleArray.length; i++) {
       obstacles.push(new Obstacle(this.ctx, obstacleArray[i]));
+    }
+  };
+
+  generateLevel = () => {
+    // console.log(this.levels.level[gameStates.currentLevel]);
+    if (this.levels.level[gameStates.currentLevel] === undefined) {
+      gameStates.current = gameStates.gameComplete;
+      // console.log('game complete');
+    } else {
+      this.generateMonsters();
+      this.generateObstacles();
     }
   };
 
@@ -49,6 +64,7 @@ class ArcheroGame {
     this.gameOver.draw();
     this.score.draw();
     // this.changingLevel.draw();
+    this.gameComplete.draw();
   };
 
   update = () => {
@@ -68,9 +84,14 @@ class ArcheroGame {
 
     if (gameStates.current === gameStates.nextLevel) {
       // if (timer %)
-      this.generateMonsters();
+      obstacles = [];
       this.nextLevel.update();
+      this.generateLevel();
     }
+
+    // if (gameStates.current === gameStates.gameComplete) {
+    //   this.reset();
+    // }
   };
 
   reset = () => {
@@ -106,8 +127,7 @@ class ArcheroGame {
             clickY <= this.getReady.playButtonY + this.getReady.playButtonHeight
           ) {
             gameStates.current = gameStates.gameRunning;
-            this.generateMonsters();
-            this.generateObstacles();
+            this.generateLevel();
             break;
           }
         case gameStates.gameOver:
@@ -117,6 +137,19 @@ class ArcheroGame {
               this.gameOver.playButtonX + this.gameOver.playButtonWidth &&
             clickY >= this.gameOver.playButtonY &&
             clickY <= this.gameOver.playButtonY + this.gameOver.playButtonHeight
+          ) {
+            gameStates.current = gameStates.getReady;
+            this.reset();
+          }
+        case gameStates.gameComplete:
+          if (
+            clickX >= this.gameComplete.playButtonX &&
+            clickX <=
+              this.gameComplete.playButtonX +
+                this.gameComplete.playButtonWidth &&
+            clickY >= this.gameComplete.playButtonY &&
+            clickY <=
+              this.gameComplete.playButtonY + this.gameComplete.playButtonHeight
           ) {
             gameStates.current = gameStates.getReady;
             this.reset();
