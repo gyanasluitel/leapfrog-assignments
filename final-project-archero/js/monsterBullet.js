@@ -1,5 +1,5 @@
 class MonsterBullet {
-  constructor(ctx, monsterX, monsterY, heroX, heroY) {
+  constructor(ctx, monsterX, monsterY, heroX, heroY, damage, weaponImage) {
     this.ctx = ctx;
     this.x = monsterX;
     this.y = monsterY;
@@ -10,7 +10,8 @@ class MonsterBullet {
     this.heroY = heroY;
 
     this.shotSpeed = 2;
-    this.damagePower = 10;
+    this.damagePower = damage;
+    this.weaponImage = weaponImage;
 
     this.dx = this.heroX - this.x;
     this.dy = this.heroY - this.y;
@@ -22,7 +23,7 @@ class MonsterBullet {
 
   draw = () => {
     this.ctx.drawImage(
-      monsterWeaponImage,
+      this.weaponImage,
       this.x,
       this.y,
       this.width,
@@ -40,6 +41,7 @@ class MonsterBullet {
 
       // Clear Bullet when collides with wall
       this.clearBulletWallCollision();
+      this.collidesWith();
     }
   };
 
@@ -53,4 +55,24 @@ class MonsterBullet {
       );
     });
   };
+
+  collidesWith = () => {
+    obstacles.forEach((obstacle) => {
+      if (
+        this.x < obstacle.x + obstacle.width &&
+        this.x + this.width > obstacle.x &&
+        this.y < obstacle.y + obstacle.height &&
+        this.height + this.y > obstacle.y
+      ) {
+        this.clearBullet(this);
+      }
+    });
+  };
+
+  clearBullet(bulletToClear) {
+    monsterBullets = monsterBullets.filter(
+      (bullet) =>
+        !(bulletToClear.x === bullet.x && bulletToClear.y === bullet.y)
+    );
+  }
 }

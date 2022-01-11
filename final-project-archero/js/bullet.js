@@ -34,6 +34,9 @@ class Bullet {
 
       // Clear Bullet when collides with wall
       this.clearBulletWallCollision();
+
+      // Clear Bullet when collides with obstacle
+      this.collidesWith();
     }
   };
 
@@ -47,4 +50,24 @@ class Bullet {
       );
     });
   };
+
+  collidesWith = () => {
+    obstacles.forEach((obstacle) => {
+      if (
+        this.x < obstacle.x + obstacle.width &&
+        this.x + this.width > obstacle.x &&
+        this.y < obstacle.y + obstacle.height &&
+        this.height + this.y > obstacle.y
+      ) {
+        this.clearBullet(this);
+      }
+    });
+  };
+
+  clearBullet(bulletToClear) {
+    bullets = bullets.filter(
+      (bullet) =>
+        !(bulletToClear.x === bullet.x && bulletToClear.y === bullet.y)
+    );
+  }
 }
