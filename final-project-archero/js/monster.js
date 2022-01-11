@@ -1,6 +1,10 @@
 class Monster {
-  constructor(ctx) {
+  constructor(ctx, monster) {
     this.ctx = ctx;
+    this.image = monster.image;
+    this.weaponImage = monster.weaponImage;
+    this.damage = monster.damage;
+    this.type = monster.type;
     this.width = 50;
     this.height = 50;
     this.x = getRandomPosition(
@@ -8,14 +12,14 @@ class Monster {
       RING_RIGHT_BOUNDARY - 50
     );
     this.y = getRandomPosition(RING_TOP_BOUNDARY + 10, CANVAS_HEIGHT / 2);
-    this.dx = 0.5;
-    this.dy = 0.5;
+    this.dx = 0;
+    this.dy = 0;
     this.health = 100;
   }
 
   draw = () => {
     if (gameStates.current === gameStates.gameRunning) {
-      this.ctx.drawImage(monsterImage, this.x, this.y, this.width, this.height);
+      this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
       this.drawMonsterHealthBar();
     }
   };
@@ -37,14 +41,35 @@ class Monster {
       if (this.health <= 0) {
         this.clearMonster(this, hero);
       }
+
+      if (timer % 200 === 0) {
+        this.dx = getRandomIntInclusive(-1.5, 1.5);
+        this.dy = getRandomIntInclusive(-1.5, 1.5);
+      } else if (timer % 100 === 0) {
+        if (getRandomIntInclusive(2, 4) % 2 === 0) {
+          this.dx = 0;
+          this.dy = 0;
+        }
+      }
+
+      // Move Monster
+
       this.x += this.dx;
       this.y += this.dy;
       this.detectBoxCollision();
 
-      if (timer % 100 === 0) {
+      if (timer % 300 === 0) {
         if (hero.health > 0 && this.health > 0) {
           monsterBullets.push(
-            new MonsterBullet(this.ctx, this.x, this.y, hero.x, hero.y)
+            new MonsterBullet(
+              this.ctx,
+              this.x,
+              this.y,
+              hero.x,
+              hero.y,
+              this.damage,
+              this.weaponImage
+            )
           );
         }
       }
