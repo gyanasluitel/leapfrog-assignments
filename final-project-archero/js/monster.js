@@ -4,8 +4,8 @@ class Monster {
     this.width = 50;
     this.height = 50;
     this.x = getRandomPosition(
-      RING_LEFT_BOUNDARY + 10,
-      RING_RIGHT_BOUNDARY - 5
+      RING_LEFT_BOUNDARY + 50,
+      RING_RIGHT_BOUNDARY - 50
     );
     this.y = getRandomPosition(RING_TOP_BOUNDARY + 10, CANVAS_HEIGHT / 2);
     this.dx = 0.5;
