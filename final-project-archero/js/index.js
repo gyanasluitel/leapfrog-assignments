@@ -90,10 +90,6 @@ class ArcheroGame {
       this.nextLevel.update();
       this.generateLevel();
     }
-
-    // if (gameStates.current === gameStates.gameComplete) {
-    //   this.reset();
-    // }
   };
 
   reset = () => {
@@ -101,6 +97,7 @@ class ArcheroGame {
     monsters = [];
     obstacles = [];
     monsterBullets = [];
+    bullets = [];
     healingItems = [];
     coins = [];
     gameStates.currentLevel = 1;
@@ -132,6 +129,19 @@ class ArcheroGame {
             this.generateLevel();
             break;
           }
+
+        // if (
+        //   clickX >= this.getReady.upgradeButtonX &&
+        //   clickX <=
+        //     this.getReady.upgradeButtonX + this.getReady.upgradeButtonWidth &&
+        //   clickY >= this.getReady.upgradeButtonY &&
+        //   clickY <=
+        //     this.getReady.upgradeButtonY + this.getReady.upgradeButtonHeight
+        // ) {
+        //   gameStates.current = gameStates.upgrade;
+        //   break;
+        // }
+
         case gameStates.gameOver:
           if (
             clickX >= this.gameOver.playButtonX &&
