@@ -50,6 +50,6 @@ class Score {
   drawCurrentLevel = () => {
     this.ctx.fill = 'white';
     this.ctx.font = 'bold 25px Arial';
-    this.ctx.fillText(gameStates.currentLevel, CANVAS_WIDTH / 2 - 5, 45);
+    this.ctx.fillText(gameStates.currentLevel, CANVAS_WIDTH / 2 - 5, 95);
   };
 }

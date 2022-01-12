@@ -5,12 +5,12 @@ class Background {
     this.gateLevelImageWidth = 50;
     this.gateLevelImageHeight = 50;
     this.gateLevelImageX = CANVAS_WIDTH / 2 - 22;
-    this.gateLevelImageY = 10;
+    this.gateLevelImageY = 60;
 
     this.gateImageWidth = 60;
     this.gateImageHeight = 50;
     this.gateImageX = CANVAS_WIDTH / 2 - 28;
-    this.gateImageY = 45;
+    this.gateImageY = 45 + 50;
   }
 
   draw = () => {
@@ -18,7 +18,8 @@ class Background {
       gameStates.current !== gameStates.getReady &&
       gameStates.current !== gameStates.gameOver
     ) {
-      this.ctx.drawImage(backgroundImage, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+      this.ctx.drawImage(blackBackgroundImage, 0, 0, CANVAS_WIDTH, 50);
+      this.ctx.drawImage(backgroundImage, 0, 50, CANVAS_WIDTH, CANVAS_HEIGHT);
 
       const gateImage =
         gameStates.current === gameStates.changingLevel
