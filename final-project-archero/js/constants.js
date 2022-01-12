@@ -19,6 +19,7 @@ const gameStates = {
   nextLevel: 4,
   selectPowerUp: 5,
   gameComplete: 6,
+  upgrade: 7,
   currentLevel: 1,
 };
 
@@ -156,3 +157,8 @@ powerArrowSideImage.src = POWER_ARROWSIDE_PATH;
 const POWER_ARROWDIAGONAL_PATH = 'assets/power-arrowDiagonal.png';
 const powerArrowDiagonalImage = new Image();
 powerArrowDiagonalImage.src = POWER_ARROWDIAGONAL_PATH;
+
+// UPGRADE BUTTON
+const UPGRADE_BUTTON_PATH = 'assets/upgrade.png';
+const upgradeButtonImage = new Image();
+upgradeButtonImage.src = UPGRADE_BUTTON_PATH;

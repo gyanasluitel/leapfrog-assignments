@@ -16,7 +16,8 @@ class Background {
   draw = () => {
     if (
       gameStates.current !== gameStates.getReady &&
-      gameStates.current !== gameStates.gameOver
+      gameStates.current !== gameStates.gameOver &&
+      gameStates.current !== gameStates.upgrade
     ) {
       this.ctx.drawImage(blackBackgroundImage, 0, 0, CANVAS_WIDTH, 50);
       this.ctx.drawImage(backgroundImage, 0, 50, CANVAS_WIDTH, CANVAS_HEIGHT);
