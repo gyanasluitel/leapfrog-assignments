@@ -6,6 +6,11 @@ class GetReady {
     this.playButtonY = CANVAS_HEIGHT / 4;
     this.playButtonWidth = 150;
     this.playButtonHeight = 50;
+
+    this.upgradeButtonX = CANVAS_WIDTH / 2 - 20;
+    this.upgradeButtonY = CANVAS_HEIGHT / 3 + 30;
+    this.upgradeButtonWidth = 50;
+    this.upgradeButtonHeight = 50;
   }
 
   draw = () => {
@@ -29,6 +34,15 @@ class GetReady {
         this.playButtonY,
         this.playButtonWidth,
         this.playButtonHeight
+      );
+
+      // Upgrade Button
+      this.ctx.drawImage(
+        upgradeButtonImage,
+        this.upgradeButtonX,
+        this.upgradeButtonY,
+        this.upgradeButtonWidth,
+        this.upgradeButtonHeight
       );
     }
   };
@@ -145,7 +159,7 @@ class SelectPowerUp {
     }
 
     this.powerUpOptions = availablePowerUpOptions;
-    console.log(this.powerUpOptions);
+    // console.log(this.powerUpOptions);
   };
 
   draw = () => {
