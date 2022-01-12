@@ -39,10 +39,111 @@ class Levels {
             weaponImage: monsterWeapon2Image,
           },
         ],
+        obstacles: [],
+      },
+
+      3: {
+        monsters: [
+          {
+            image: monsterImage,
+            type: 1,
+            damage: 10,
+            weaponImage: monsterWeaponImage,
+          },
+          {
+            image: monsterImage,
+            type: 1,
+            damage: 10,
+            weaponImage: monsterWeaponImage,
+          },
+          {
+            image: monster2Image,
+            type: 2,
+            damage: 20,
+            weaponImage: monsterWeapon2Image,
+          },
+        ],
         obstacles: [
           { image: obstacle2Image, x: 100, y: 400 },
           { image: obstacle2Image, x: 150, y: 400 },
           { image: obstacle2Image, x: 200, y: 400 },
+          { image: obstacle2Image, x: 250, y: 400 },
+        ],
+      },
+
+      4: {
+        monsters: [
+          {
+            image: monsterImage,
+            type: 1,
+            damage: 10,
+            weaponImage: monsterWeaponImage,
+          },
+          {
+            image: monsterImage,
+            type: 1,
+            damage: 10,
+            weaponImage: monsterWeaponImage,
+          },
+          {
+            image: monsterImage,
+            type: 1,
+            damage: 10,
+            weaponImage: monsterWeaponImage,
+          },
+          {
+            image: monster2Image,
+            type: 2,
+            damage: 20,
+            weaponImage: monsterWeapon2Image,
+          },
+        ],
+        obstacles: [
+          { image: obstacle2Image, x: 100, y: 400 },
+          { image: obstacle2Image, x: 150, y: 400 },
+          { image: obstacle2Image, x: 200, y: 400 },
+          { image: obstacle2Image, x: 220, y: 400 },
+        ],
+      },
+
+      5: {
+        monsters: [
+          {
+            image: monsterImage,
+            type: 1,
+            damage: 10,
+            weaponImage: monsterWeaponImage,
+          },
+          {
+            image: monsterImage,
+            type: 1,
+            damage: 10,
+            weaponImage: monsterWeaponImage,
+          },
+          {
+            image: monsterImage,
+            type: 1,
+            damage: 10,
+            weaponImage: monsterWeaponImage,
+          },
+          {
+            image: monster2Image,
+            type: 2,
+            damage: 20,
+            weaponImage: monsterWeapon2Image,
+          },
+          {
+            image: monster2Image,
+            type: 2,
+            damage: 20,
+            weaponImage: monsterWeapon2Image,
+          },
+        ],
+        obstacles: [
+          { image: obstacle2Image, x: 100, y: 400 },
+          { image: obstacle2Image, x: 150, y: 400 },
+          { image: obstacle2Image, x: 200, y: 400 },
+          { image: obstacle2Image, x: 250, y: 400 },
         ],
       },
     };

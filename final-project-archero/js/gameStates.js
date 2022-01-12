@@ -141,9 +141,7 @@ class SelectPowerUp {
     let availablePowerUpOptions = [];
 
     for (let key of Object.keys(hero.powerUps)) {
-      if (hero.powerUps[key] === false) {
-        availablePowerUpOptions.push(key);
-      }
+      availablePowerUpOptions.push(key);
     }
 
     this.powerUpOptions = availablePowerUpOptions;

@@ -56,7 +56,6 @@ class Hero {
     if (percentage === this.heroLevelWidth) {
       this.level++;
       this.experience = 0;
-      percentage = 0;
       selectPowerUp.getPowerUpOptions(this);
       gameStates.current = gameStates.selectPowerUp;
       return percentage;
