@@ -14,6 +14,8 @@ class Hero {
     this.level = 1;
     this.experience = 0;
     this.heroLevelWidth = 220;
+    this.bulletDamagePower = 10;
+    this.bulletSpeed = 10;
 
     //Power Ups
     this.powerUps = {
@@ -56,6 +58,7 @@ class Hero {
     if (percentage === this.heroLevelWidth) {
       this.level++;
       this.experience = 0;
+      this.percentage = 0;
       selectPowerUp.getPowerUpOptions(this);
       gameStates.current = gameStates.selectPowerUp;
       return percentage;
@@ -121,7 +124,7 @@ class Hero {
       } else if (keyPressed.ArrowRight || keyPressed.Right) {
         this.x += this.dx;
       } else {
-        if (monsters.length > 0 && timer % 50 === 0) {
+        if (monsters.length > 0 && timer % 35 === 0) {
           this.shoot();
         }
       }
@@ -130,9 +133,122 @@ class Hero {
 
   shoot = () => {
     let nearestMonster = this.getNearestMonster();
-    bullets.push(
-      new Bullet(this.ctx, this.x, this.y, nearestMonster.x, nearestMonster.y)
-    );
+
+    /*---------------------------
+      STRAIGHT ONLY ARROW SHOT
+    -----------------------------*/
+    if (!this.powerUps.powerArrowSide && !this.powerUps.powerArrowDiagonal) {
+      bullets.push(
+        new Bullet(
+          this.ctx,
+          this.x + 10,
+          this.y,
+          nearestMonster.x,
+          nearestMonster.y,
+          this.bulletDamagePower,
+          this.bulletSpeed
+        )
+      );
+      if (this.powerUps.powerMultiShot === true) {
+        bullets.push(
+          new Bullet(
+            this.ctx,
+            this.x - 10,
+            this.y,
+            nearestMonster.x,
+            nearestMonster.y,
+            0.9 * this.bulletDamagePower,
+            0.85 * this.bulletSpeed
+          )
+        );
+      }
+    }
+
+    /*---------------------------
+      SIDE ARROW SHOT
+    -----------------------------*/
+    if (this.powerUps.powerArrowSide) {
+      // Shoot Straight
+      bullets.push(
+        new Bullet(
+          this.ctx,
+          this.x + 10,
+          this.y,
+          nearestMonster.x,
+          nearestMonster.y,
+          this.bulletDamagePower,
+          this.bulletSpeed
+        )
+      );
+
+      // Shoot Left
+      bullets.push(
+        new Bullet(
+          this.ctx,
+          this.x + 10,
+          this.y,
+          RING_LEFT_BOUNDARY,
+          this.y,
+          this.bulletDamagePower,
+          this.bulletSpeed
+        )
+      );
+
+      // Shoot Right
+      bullets.push(
+        new Bullet(
+          this.ctx,
+          this.x + 10,
+          this.y,
+          RING_RIGHT_BOUNDARY,
+          this.y,
+          this.bulletDamagePower,
+          this.bulletSpeed
+        )
+      );
+
+      // Multiple Shot
+      if (this.powerUps.powerMultiShot === true) {
+        // Shoot Straight
+        bullets.push(
+          new Bullet(
+            this.ctx,
+            this.x - 10,
+            this.y,
+            nearestMonster.x,
+            nearestMonster.y,
+            0.9 * this.bulletDamagePower,
+            0.85 * this.bulletSpeed
+          )
+        );
+
+        // Shoot Left
+        bullets.push(
+          new Bullet(
+            this.ctx,
+            this.x - 10,
+            this.y,
+            RING_LEFT_BOUNDARY,
+            this.y,
+            0.9 * this.bulletDamagePower,
+            0.85 * this.bulletSpeed
+          )
+        );
+
+        // Shoot Right
+        bullets.push(
+          new Bullet(
+            this.ctx,
+            this.x - 10,
+            this.y,
+            RING_RIGHT_BOUNDARY,
+            this.y,
+            0.9 * this.bulletDamagePower,
+            0.85 * this.bulletSpeed
+          )
+        );
+      }
+    }
   };
 
   getNearestMonster = () => {
@@ -145,11 +261,14 @@ class Hero {
         y: monster.y,
       });
     });
-
     monstersDistance.sort((a, b) => a.distance - b.distance);
+    // console.log(monstersDistance);
     return monstersDistance[0];
   };
 
+  /*---------------------------------------------------------------
+  DETECT CHANGE OF LEVEL WHEN HERO MOVES TOP AND CHANGE GAMESTATE
+  -----------------------------------------------------------------*/
   detectLevelChange = () => {
     if (
       gameStates.current === gameStates.changingLevel &&
@@ -186,7 +305,9 @@ class Hero {
     }
   };
 
-  // Obstacle Collision
+  /*--------------------------
+  OBSTACLE COLLISION DETECTION
+  ----------------------------*/
   detectObstacleCollision = () => {
     obstacles.forEach((obstacle) => {
       if (
