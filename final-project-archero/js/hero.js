@@ -11,16 +11,57 @@ class Hero {
     this.health = 100;
     this.previousX = this.x;
     this.previousY = this.y;
+    this.level = 1;
+    this.experience = 0;
+    this.heroLevelWidth = 220;
+
+    //Power Ups
+    this.powerUps = {
+      powerMultiShot: false,
+      powerArrowSide: false,
+      powerArrowDiagonal: false,
+    };
   }
 
   // Draw Hero Sprite
-  draw = () => {
+  draw = (selectPowerUp) => {
     if (
       gameStates.current !== gameStates.getReady &&
       gameStates.current !== gameStates.gameOver
     ) {
       this.ctx.drawImage(heroImage, this.x, this.y, this.width, this.height);
       this.drawHeroHealthBar();
+      this.drawHeroLevel(selectPowerUp);
+    }
+  };
+
+  drawHeroLevel = (selectPowerUp) => {
+    this.ctx.fillStyle = 'white';
+    this.ctx.font = 'bold 20px Arial';
+    this.ctx.fillText(`Level ${this.level}`, 160, 20);
+
+    this.ctx.strokeStyle = 'white';
+    this.ctx.strokeRect(80, 28, this.heroLevelWidth, 20);
+    this.ctx.fillStyle = 'rgb(240, 206, 17)';
+    this.ctx.fillRect(
+      80,
+      28,
+      this.generateHeroLevelPercentage(selectPowerUp),
+      20
+    );
+  };
+
+  generateHeroLevelPercentage = (selectPowerUp) => {
+    let percentage = (this.experience * this.heroLevelWidth) / 100;
+    if (percentage === this.heroLevelWidth) {
+      this.level++;
+      this.experience = 0;
+      percentage = 0;
+      selectPowerUp.getPowerUpOptions(this);
+      gameStates.current = gameStates.selectPowerUp;
+      return percentage;
+    } else {
+      return percentage;
     }
   };
 
@@ -46,6 +87,7 @@ class Hero {
       this.detectRingCollision();
       this.detectMonsterBulletCollision();
       this.detectObstacleCollision();
+      // this.detectLevelUpgrade();
 
       if (
         (keyPressed.ArrowUp || keyPressed.Up) &&
@@ -121,7 +163,8 @@ class Hero {
       gameStates.current = gameStates.nextLevel;
     }
   };
-  // Wall-Box Collision
+
+  // Wall (Ring) Collision
   detectRingCollision = () => {
     // Left Wall
     if (this.x < RING_LEFT_BOUNDARY) {
@@ -208,12 +251,9 @@ class Hero {
         this.height + this.y > bullet.y
       ) {
         this.health -= bullet.damagePower;
-        // console.log('Hero health: ', this.health);
-        // Remove Bullet on Collision
         this.clearBullet(bullet);
-        if (this.health === 0) {
+        if (this.health <= 0) {
           gameStates.current = gameStates.gameOver;
-          // console.log('hero killed');
         }
       }
     });
@@ -231,5 +271,7 @@ class Hero {
     this.health = 100;
     this.x = CANVAS_WIDTH / 2 - 25;
     this.y = CANVAS_HEIGHT - 50;
+    this.experience = 0;
+    this.level = 1;
   };
 }

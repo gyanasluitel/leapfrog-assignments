@@ -116,3 +116,69 @@ class GameComplete {
     }
   };
 }
+
+class SelectPowerUp {
+  constructor(ctx) {
+    this.ctx = ctx;
+    this.powerUpOptions = [];
+
+    this.powerUps = {
+      powerMultiShot: powerMultiShotImage,
+      powerArrowSide: powerArrowSideImage,
+      powerArrowDiagonal: powerArrowDiagonalImage,
+    };
+
+    this.powerUpButtonWidth = 60;
+    this.powerUpButtonHeight = 60;
+    this.powerUpButtonY = 280;
+
+    this.powerUpButtonOneX = 50;
+    this.powerUpButtonTwoX = 180;
+    this.powerUpButtonThreeX = 300;
+  }
+
+  getPowerUpOptions = (hero) => {
+    let availablePowerUpOptions = [];
+
+    for (let key of Object.keys(hero.powerUps)) {
+      if (hero.powerUps[key] === false) {
+        availablePowerUpOptions.push(key);
+      }
+    }
+
+    this.powerUpOptions = availablePowerUpOptions;
+    console.log(this.powerUpOptions);
+  };
+
+  draw = () => {
+    if (gameStates.current === gameStates.selectPowerUp) {
+      this.ctx.fillStyle = 'white';
+      this.ctx.font = 'bold 20px Arial';
+      this.ctx.fillText('Select Power Up!', CANVAS_WIDTH / 4, 250);
+
+      this.ctx.drawImage(
+        this.powerUps[this.powerUpOptions[0]],
+        this.powerUpButtonOneX,
+        this.powerUpButtonY,
+        this.powerUpButtonWidth,
+        this.powerUpButtonHeight
+      );
+
+      this.ctx.drawImage(
+        this.powerUps[this.powerUpOptions[1]],
+        this.powerUpButtonTwoX,
+        this.powerUpButtonY,
+        this.powerUpButtonWidth,
+        this.powerUpButtonHeight
+      );
+
+      this.ctx.drawImage(
+        this.powerUps[this.powerUpOptions[2]],
+        this.powerUpButtonThreeX,
+        this.powerUpButtonY,
+        this.powerUpButtonWidth,
+        this.powerUpButtonHeight
+      );
+    }
+  };
+}

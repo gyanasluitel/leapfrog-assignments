@@ -19,6 +19,7 @@ class ArcheroGame {
     this.nextLevel = new NextLevel(this.ctx);
     this.levels = new Levels();
     this.gameComplete = new GameComplete(ctx);
+    this.selectPowerUp = new SelectPowerUp(ctx);
   }
 
   generateMonsters = () => {
@@ -52,7 +53,7 @@ class ArcheroGame {
 
     this.getReady.draw();
     this.background.draw();
-    this.hero.draw();
+    this.hero.draw(this.selectPowerUp);
     // this.monster.draw();
     monsters.forEach((monster) => monster.draw());
     bullets.forEach((bullet) => bullet.draw());
@@ -62,9 +63,10 @@ class ArcheroGame {
     coins.forEach((coin) => coin.draw());
     healingItems.forEach((healingItem) => healingItem.draw());
     this.gameOver.draw();
-    this.score.draw();
+    this.score.draw(this.hero);
     // this.changingLevel.draw();
     this.gameComplete.draw();
+    this.selectPowerUp.draw();
   };
 
   update = () => {
@@ -153,6 +155,51 @@ class ArcheroGame {
           ) {
             gameStates.current = gameStates.getReady;
             this.reset();
+          }
+        case gameStates.selectPowerUp:
+          // POWER UP OPTION 1
+          if (
+            clickX >= this.selectPowerUp.powerUpButtonOneX &&
+            clickX <=
+              this.selectPowerUp.powerUpButtonOneX +
+                this.selectPowerUp.powerUpButtonWidth &&
+            clickY >= this.selectPowerUp.powerUpButtonY &&
+            clickY <=
+              this.selectPowerUp.powerUpButtonY +
+                this.selectPowerUp.powerUpButtonHeight
+          ) {
+            this.hero.powerUps[this.selectPowerUp.powerUpOptions[0]] = true;
+            gameStates.current = gameStates.gameRunning;
+          }
+
+          // POWER UP OPTION 2
+          if (
+            clickX >= this.selectPowerUp.powerUpButtonTwoX &&
+            clickX <=
+              this.selectPowerUp.powerUpButtonTwoX +
+                this.selectPowerUp.powerUpButtonWidth &&
+            clickY >= this.selectPowerUp.powerUpButtonY &&
+            clickY <=
+              this.selectPowerUp.powerUpButtonY +
+                this.selectPowerUp.powerUpButtonHeight
+          ) {
+            this.hero.powerUps[this.selectPowerUp.powerUpOptions[1]] = true;
+            gameStates.current = gameStates.gameRunning;
+          }
+
+          // POWER UP OPTION 3
+          if (
+            clickX >= this.selectPowerUp.powerUpButtonThreeX &&
+            clickX <=
+              this.selectPowerUp.powerUpButtonThreeX +
+                this.selectPowerUp.powerUpButtonWidth &&
+            clickY >= this.selectPowerUp.powerUpButtonY &&
+            clickY <=
+              this.selectPowerUp.powerUpButtonY +
+                this.selectPowerUp.powerUpButtonHeight
+          ) {
+            this.hero.powerUps[this.selectPowerUp.powerUpOptions[3]] = true;
+            gameStates.current = gameStates.gameRunning;
           }
       }
     });

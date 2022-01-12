@@ -51,6 +51,9 @@ class Coin {
     score.coinsCollectedPerGame++;
     score.totalCoinsCollected++;
     localStorage.setItem('arcHeroScore', score.totalCoinsCollected);
+
+    this.hero.experience += 20;
+    // console.log(this.hero.experience);
     // console.log(score.coinsCollected);
   };
 }

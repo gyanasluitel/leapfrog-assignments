@@ -1,13 +1,13 @@
 // CANVAS
 const CANVAS_WIDTH = 400;
-const CANVAS_HEIGHT = 600;
+const CANVAS_HEIGHT = 650;
 const canvas = document.getElementById('canvas');
 ctx = canvas.getContext('2d');
 
 // RING
 const RING_LEFT_BOUNDARY = 25;
 const RING_RIGHT_BOUNDARY = 375;
-const RING_TOP_BOUNDARY = 128;
+const RING_TOP_BOUNDARY = 128 + 50;
 
 // GAME STATES
 const gameStates = {
@@ -17,7 +17,8 @@ const gameStates = {
   changingLevel: 2,
   gameOver: 3,
   nextLevel: 4,
-  gameComplete: 5,
+  selectPowerUp: 5,
+  gameComplete: 6,
   currentLevel: 1,
 };
 
@@ -92,6 +93,11 @@ const GAME_START_HERO_PATH = 'assets/game-start-hero.png';
 const gameStartHeroImage = new Image();
 gameStartHeroImage.src = GAME_START_HERO_PATH;
 
+//BLACK BACKGROUND IMAGE
+const BLACK_BAKGROUND_PATH = 'assets/black-rectangle.png';
+const blackBackgroundImage = new Image();
+blackBackgroundImage.src = BLACK_BAKGROUND_PATH;
+
 // PLAY BUTTON
 const PLAY_BUTTON_PATH = 'assets/btn-play.png';
 const playButtonImage = new Image();
@@ -133,3 +139,20 @@ gateCloseImage.src = GATE_CLOSE_PATH;
 const GATE_OPEN_PATH = 'assets/gate-open.png';
 const gateOpenImage = new Image();
 gateOpenImage.src = GATE_OPEN_PATH;
+
+// POWER UP
+
+// Power - Multi shot
+const POWER_MULTISHOT_PATH = 'assets/power-multiShot.png';
+const powerMultiShotImage = new Image();
+powerMultiShotImage.src = POWER_MULTISHOT_PATH;
+
+// Power - Arrowside
+const POWER_ARROWSIDE_PATH = 'assets/power-arrowSide.png';
+const powerArrowSideImage = new Image();
+powerArrowSideImage.src = POWER_ARROWSIDE_PATH;
+
+// Power - Arrow Diagonal
+const POWER_ARROWDIAGONAL_PATH = 'assets/power-arrowDiagonal.png';
+const powerArrowDiagonalImage = new Image();
+powerArrowDiagonalImage.src = POWER_ARROWDIAGONAL_PATH;
