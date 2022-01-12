@@ -39,7 +39,15 @@ class Levels {
             weaponImage: monsterWeapon2Image,
           },
         ],
-        obstacles: [],
+        obstacles: [
+          { image: obstacle2Image, x: 100, y: 400 },
+          { image: obstacle2Image, x: 130, y: 400 },
+          { image: obstacle2Image, x: 160, y: 400 },
+          { image: obstacle2Image, x: 190, y: 400 },
+          { image: obstacle2Image, x: 220, y: 400 },
+          { image: obstacle2Image, x: 250, y: 400 },
+          { image: obstacle2Image, x: 280, y: 400 },
+        ],
       },
 
       3: {
@@ -102,7 +110,7 @@ class Levels {
           { image: obstacle2Image, x: 100, y: 400 },
           { image: obstacle2Image, x: 150, y: 400 },
           { image: obstacle2Image, x: 200, y: 400 },
-          { image: obstacle2Image, x: 220, y: 400 },
+          { image: obstacle2Image, x: 250, y: 400 },
         ],
       },
 
