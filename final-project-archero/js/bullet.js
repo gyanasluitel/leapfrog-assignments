@@ -1,5 +1,13 @@
 class Bullet {
-  constructor(ctx, heroPositionX, heroPositionY, monsterX, monsterY) {
+  constructor(
+    ctx,
+    heroPositionX,
+    heroPositionY,
+    monsterX,
+    monsterY,
+    bulletDamagePower,
+    bulletSpeed
+  ) {
     this.ctx = ctx;
     this.x = heroPositionX;
     this.y = heroPositionY;
@@ -9,8 +17,8 @@ class Bullet {
     this.nearestEnemyX = monsterX;
     this.nearestEnemyY = monsterY;
 
-    this.shotSpeed = 10;
-    this.damagePower = 10;
+    this.shotSpeed = bulletSpeed;
+    this.damagePower = bulletDamagePower;
 
     this.dx = this.nearestEnemyX - this.x;
     this.dy = this.nearestEnemyY - this.y;
@@ -43,9 +51,9 @@ class Bullet {
   clearBulletWallCollision = () => {
     bullets = bullets.filter((bullet) => {
       return (
-        bullet.x > 0 &&
-        bullet.x + bullet.width <= CANVAS_WIDTH &&
-        bullet.y > 0 &&
+        bullet.x > RING_LEFT_BOUNDARY &&
+        bullet.x + bullet.width <= RING_RIGHT_BOUNDARY &&
+        bullet.y > RING_TOP_BOUNDARY &&
         bullet.y + bullet.height <= CANVAS_HEIGHT
       );
     });

@@ -48,9 +48,9 @@ class MonsterBullet {
   clearBulletWallCollision = () => {
     monsterBullets = monsterBullets.filter((bullet) => {
       return (
-        bullet.x > 0 &&
-        bullet.x + bullet.width <= CANVAS_WIDTH &&
-        bullet.y > 0 &&
+        bullet.x > RING_LEFT_BOUNDARY &&
+        bullet.x + bullet.width <= RING_RIGHT_BOUNDARY &&
+        bullet.y > RING_TOP_BOUNDARY &&
         bullet.y + bullet.height <= CANVAS_HEIGHT
       );
     });
