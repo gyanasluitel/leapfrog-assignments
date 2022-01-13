@@ -140,6 +140,8 @@ class SelectPowerUp {
       powerMultiShot: powerMultiShotImage,
       powerArrowSide: powerArrowSideImage,
       powerArrowDiagonal: powerArrowDiagonalImage,
+      powerArrowFront: powerArrowFrontImage,
+      powerArrowBack: powerArrowBackImage,
     };
 
     this.powerUpButtonWidth = 60;
@@ -158,8 +160,18 @@ class SelectPowerUp {
       availablePowerUpOptions.push(key);
     }
 
-    this.powerUpOptions = availablePowerUpOptions;
-    // console.log(this.powerUpOptions);
+    // The Fisher-Yates algorithm for shuffling array
+    const shuffledArray = (array) => {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+      }
+      return array;
+    };
+
+    this.powerUpOptions = shuffledArray(availablePowerUpOptions).slice(0, 3);
   };
 
   draw = () => {
@@ -190,6 +202,142 @@ class SelectPowerUp {
         this.powerUpButtonY,
         this.powerUpButtonWidth,
         this.powerUpButtonHeight
+      );
+    }
+  };
+
+  reset = () => {
+    this.powerUpOptions = [];
+  };
+}
+
+class Upgrade {
+  constructor(ctx) {
+    this.ctx = ctx;
+    this.backButtonX = 30;
+    this.backButtonY = 30;
+    this.backButtonWidth = 50;
+    this.backButtonHeight = 50;
+
+    this.heroWidth = 80;
+    this.heroHeight = 80;
+    this.heroX = 20;
+    this.heroY = CANVAS_HEIGHT / 3;
+
+    this.healthWidth = 30;
+    this.healthHeight = 30;
+    this.healthX = 120;
+    this.healthY = CANVAS_HEIGHT / 3;
+
+    this.upgradeHealthX = 30;
+    this.upgradeHealthY = CANVAS_HEIGHT / 3 + 100;
+    this.upgradeHealthWidth = 150;
+    this.upgradeHealthHeight = 50;
+
+    this.upgradeDamageX = CANVAS_WIDTH - 180;
+    this.upgradeDamageY = CANVAS_HEIGHT / 3 + 100;
+    this.upgradeDamageWidth = 150;
+    this.upgradeDamageHeight = 50;
+  }
+
+  draw = (hero) => {
+    if (gameStates.current === gameStates.upgrade) {
+      // Draw Background
+      this.ctx.drawImage(
+        upgradeBackgroundImage,
+        0,
+        0,
+        CANVAS_WIDTH,
+        CANVAS_HEIGHT
+      );
+
+      // Draw Back Button
+      this.ctx.drawImage(
+        backButtonImage,
+        this.backButtonX,
+        this.backButtonY,
+        this.backButtonWidth,
+        this.backButtonHeight
+      );
+
+      // Draw Hero Image
+      this.ctx.drawImage(
+        heroImage,
+        this.heroX,
+        this.heroY,
+        this.heroWidth,
+        this.heroHeight
+      );
+
+      // Health Indicator
+      this.ctx.drawImage(
+        healthIndicatorImage,
+        this.healthX,
+        this.healthY,
+        this.healthWidth,
+        this.healthHeight
+      );
+
+      this.ctx.fillStyle = 'white';
+      this.ctx.font = 'bold 18px Arial';
+      this.ctx.fillText(
+        hero.totalHealth,
+        this.healthX + this.healthWidth + 2,
+        this.healthY + this.healthHeight / 2 + 5
+      );
+
+      // Draw Upgrade Health Button
+      this.ctx.drawImage(
+        upgradeHealthButtonImage,
+        this.upgradeHealthX,
+        this.upgradeHealthY,
+        this.upgradeHealthWidth,
+        this.upgradeHealthHeight
+      );
+
+      // Coing Image
+      this.ctx.drawImage(
+        coinImage,
+        this.upgradeHealthX + this.upgradeHealthWidth / 2 - 25,
+        this.upgradeHealthY + this.upgradeHealthHeight + 5,
+        30,
+        30
+      );
+
+      // No of Coins Required
+      this.ctx.fillStyle = 'white';
+      this.ctx.font = 'bold 18px Arial';
+      this.ctx.fillText(
+        hero.totalHealth / 25,
+        this.upgradeHealthX + this.upgradeHealthWidth / 2 + 5,
+        this.upgradeHealthY + this.upgradeHealthHeight + 25
+      );
+
+      // Draw Upgrade Damage Button
+      this.ctx.drawImage(
+        upgradeDamageButtonImage,
+        this.upgradeDamageX,
+        this.upgradeDamageY,
+        this.upgradeDamageWidth,
+        this.upgradeDamageHeight
+      );
+
+      // Coin Image
+      this.ctx.drawImage(
+        coinImage,
+        this.upgradeDamageX + this.upgradeDamageWidth / 2 - 25,
+        this.upgradeDamageY + this.upgradeDamageHeight + 5,
+        30,
+        30
+      );
+
+      // No of Coins Required
+      this.ctx.fillStyle = 'white';
+      this.ctx.font = 'bold 18px Arial';
+      this.ctx.fillText(
+        20,
+        this.upgradeDamageX + this.upgradeDamageWidth / 2 + 5,
+        this.upgradeDamageY + this.upgradeDamageHeight + 25
       );
     }
   };

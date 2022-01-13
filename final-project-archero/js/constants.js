@@ -7,7 +7,9 @@ ctx = canvas.getContext('2d');
 // RING
 const RING_LEFT_BOUNDARY = 25;
 const RING_RIGHT_BOUNDARY = 375;
-const RING_TOP_BOUNDARY = 128 + 50;
+const RING_TOP_BOUNDARY = 178;
+const RING_WIDTH = RING_RIGHT_BOUNDARY - RING_LEFT_BOUNDARY;
+const RING_HEIGHT = CANVAS_HEIGHT - RING_TOP_BOUNDARY;
 
 // GAME STATES
 const gameStates = {
@@ -99,6 +101,11 @@ const BLACK_BAKGROUND_PATH = 'assets/black-rectangle.png';
 const blackBackgroundImage = new Image();
 blackBackgroundImage.src = BLACK_BAKGROUND_PATH;
 
+// UPGRADE BACKGROUND
+const UPGRADE_BG_PATH = 'assets/upgrade-background.png';
+const upgradeBackgroundImage = new Image();
+upgradeBackgroundImage.src = UPGRADE_BG_PATH;
+
 // PLAY BUTTON
 const PLAY_BUTTON_PATH = 'assets/btn-play.png';
 const playButtonImage = new Image();
@@ -143,22 +150,52 @@ gateOpenImage.src = GATE_OPEN_PATH;
 
 // POWER UP
 
-// Power - Multi shot
+// Power Up - Multi shot
 const POWER_MULTISHOT_PATH = 'assets/power-multiShot.png';
 const powerMultiShotImage = new Image();
 powerMultiShotImage.src = POWER_MULTISHOT_PATH;
 
-// Power - Arrowside
+// Power Up - Arrowside
 const POWER_ARROWSIDE_PATH = 'assets/power-arrowSide.png';
 const powerArrowSideImage = new Image();
 powerArrowSideImage.src = POWER_ARROWSIDE_PATH;
 
-// Power - Arrow Diagonal
+// Power Up - Arrow Diagonal
 const POWER_ARROWDIAGONAL_PATH = 'assets/power-arrowDiagonal.png';
 const powerArrowDiagonalImage = new Image();
 powerArrowDiagonalImage.src = POWER_ARROWDIAGONAL_PATH;
+
+// Power Up - Arrow Front
+const POWER_ARROWFRONT_PATH = 'assets/power-arrowFront.png';
+const powerArrowFrontImage = new Image();
+powerArrowFrontImage.src = POWER_ARROWFRONT_PATH;
+
+// Power Up - Arrow Back
+const POWER_ARROWBACK_PATH = 'assets/power-arrowBack.png';
+const powerArrowBackImage = new Image();
+powerArrowBackImage.src = POWER_ARROWBACK_PATH;
 
 // UPGRADE BUTTON
 const UPGRADE_BUTTON_PATH = 'assets/upgrade.png';
 const upgradeButtonImage = new Image();
 upgradeButtonImage.src = UPGRADE_BUTTON_PATH;
+
+// UPGRADE HEALTH
+const UPGRADE_HEALTH_BUTTON_PATH = 'assets/button_upgrade-health.png';
+const upgradeHealthButtonImage = new Image();
+upgradeHealthButtonImage.src = UPGRADE_HEALTH_BUTTON_PATH;
+
+// UPGRADE HEALTH
+const UPGRADE_DAMAGE_BUTTON_PATH = 'assets/button_upgrade-damage.png';
+const upgradeDamageButtonImage = new Image();
+upgradeDamageButtonImage.src = UPGRADE_DAMAGE_BUTTON_PATH;
+
+// BACK BUTTON
+const BACK_BUTTON_PATH = 'assets/btn-back.png';
+const backButtonImage = new Image();
+backButtonImage.src = BACK_BUTTON_PATH;
+
+// HEALTH INDICATOR IMAGE
+const HEALTH_INDICATOR_PATH = 'assets/health-indicator.png';
+const healthIndicatorImage = new Image();
+healthIndicatorImage.src = HEALTH_INDICATOR_PATH;

@@ -8,13 +8,15 @@ class Hero {
     this.dx = 5;
     this.dy = 5;
     // this.speed = 3;
-    this.health = 100;
+    this.totalHealth = localStorage.getItem('arcHeroHealth') || 100;
+    this.health = this.totalHealth;
     this.previousX = this.x;
     this.previousY = this.y;
     this.level = 1;
     this.experience = 0;
     this.heroLevelWidth = 220;
-    this.bulletDamagePower = 10;
+    this.bulletDamagePower =
+      localStorage.getItem('arcHeroBulletDamagePower') || 10;
     this.bulletSpeed = 10;
 
     //Power Ups
@@ -22,6 +24,8 @@ class Hero {
       powerMultiShot: false,
       powerArrowSide: false,
       powerArrowDiagonal: false,
+      powerArrowFront: false,
+      powerArrowBack: false,
     };
   }
 
@@ -29,7 +33,8 @@ class Hero {
   draw = (selectPowerUp) => {
     if (
       gameStates.current !== gameStates.getReady &&
-      gameStates.current !== gameStates.gameOver
+      gameStates.current !== gameStates.gameOver &&
+      gameStates.current !== gameStates.upgrade
     ) {
       this.ctx.drawImage(heroImage, this.x, this.y, this.width, this.height);
       this.drawHeroHealthBar();
@@ -55,19 +60,22 @@ class Hero {
 
   generateHeroLevelPercentage = (selectPowerUp) => {
     let percentage = (this.experience * this.heroLevelWidth) / 100;
-    if (percentage === this.heroLevelWidth) {
+    if (percentage >= this.heroLevelWidth) {
       this.level++;
       this.experience = 0;
-      this.percentage = 0;
       selectPowerUp.getPowerUpOptions(this);
       gameStates.current = gameStates.selectPowerUp;
-      return percentage;
-    } else {
-      return percentage;
     }
+    return percentage;
   };
 
   drawHeroHealthBar = () => {
+    // console.log('Total health: ', this.totalHealth);
+    // console.log('Health: ', this.health);
+    this.ctx.fillStyle = 'white';
+    this.ctx.font = 'bold 12px Arial';
+    this.ctx.fillText(this.health, this.x + 15, this.y - 25);
+
     this.ctx.strokeStyle = 'black';
     this.ctx.strokeRect(this.x, this.y - 20, this.width, 10);
     this.ctx.fillStyle = 'green';
@@ -75,13 +83,17 @@ class Hero {
   };
 
   generateHealthPercentage = () => {
-    return (this.health * this.width) / 100;
+    return (this.health * this.width) / this.totalHealth;
   };
 
+  /*--------------------------------
+    PLAYER MOVEMENT AND UPGRADES
+  -----------------------------------*/
   move = () => {
     if (
       gameStates.current !== gameStates.getReady &&
-      gameStates.current !== gameStates.gameOver
+      gameStates.current !== gameStates.gameOver &&
+      gameStates.current !== gameStates.upgrade
     ) {
       // this.previousX = this.x;
       // this.previousY = this.y;
@@ -89,6 +101,7 @@ class Hero {
       this.detectRingCollision();
       this.detectMonsterBulletCollision();
       this.detectObstacleCollision();
+      this.detectMonsterCollision();
       // this.detectLevelUpgrade();
 
       if (
@@ -137,50 +150,40 @@ class Hero {
     /*---------------------------
       STRAIGHT ONLY ARROW SHOT
     -----------------------------*/
-    if (!this.powerUps.powerArrowSide && !this.powerUps.powerArrowDiagonal) {
+    bullets.push(
+      new Bullet(
+        this.ctx,
+        this.x + 10,
+        this.y,
+        nearestMonster.x,
+        nearestMonster.y,
+        this.bulletDamagePower,
+        this.bulletSpeed
+      )
+    );
+
+    if (this.powerUps.powerMultiShot === true) {
       bullets.push(
         new Bullet(
           this.ctx,
-          this.x + 10,
+          this.x - 10,
           this.y,
           nearestMonster.x,
           nearestMonster.y,
-          this.bulletDamagePower,
-          this.bulletSpeed
+          0.9 * this.bulletDamagePower,
+          0.85 * this.bulletSpeed
         )
       );
-      if (this.powerUps.powerMultiShot === true) {
-        bullets.push(
-          new Bullet(
-            this.ctx,
-            this.x - 10,
-            this.y,
-            nearestMonster.x,
-            nearestMonster.y,
-            0.9 * this.bulletDamagePower,
-            0.85 * this.bulletSpeed
-          )
-        );
-      }
     }
+
+    /*------------------------------
+      STRAIGHT ONLY ARROW SHOT ENDS
+    --------------------------------*/
 
     /*---------------------------
       SIDE ARROW SHOT
     -----------------------------*/
     if (this.powerUps.powerArrowSide) {
-      // Shoot Straight
-      bullets.push(
-        new Bullet(
-          this.ctx,
-          this.x + 10,
-          this.y,
-          nearestMonster.x,
-          nearestMonster.y,
-          this.bulletDamagePower,
-          this.bulletSpeed
-        )
-      );
-
       // Shoot Left
       bullets.push(
         new Bullet(
@@ -190,7 +193,8 @@ class Hero {
           RING_LEFT_BOUNDARY,
           this.y,
           this.bulletDamagePower,
-          this.bulletSpeed
+          this.bulletSpeed,
+          'left'
         )
       );
 
@@ -203,25 +207,13 @@ class Hero {
           RING_RIGHT_BOUNDARY,
           this.y,
           this.bulletDamagePower,
-          this.bulletSpeed
+          this.bulletSpeed,
+          'right'
         )
       );
 
       // Multiple Shot
       if (this.powerUps.powerMultiShot === true) {
-        // Shoot Straight
-        bullets.push(
-          new Bullet(
-            this.ctx,
-            this.x - 10,
-            this.y,
-            nearestMonster.x,
-            nearestMonster.y,
-            0.9 * this.bulletDamagePower,
-            0.85 * this.bulletSpeed
-          )
-        );
-
         // Shoot Left
         bullets.push(
           new Bullet(
@@ -231,7 +223,8 @@ class Hero {
             RING_LEFT_BOUNDARY,
             this.y,
             0.9 * this.bulletDamagePower,
-            0.85 * this.bulletSpeed
+            0.85 * this.bulletSpeed,
+            'left'
           )
         );
 
@@ -244,11 +237,155 @@ class Hero {
             RING_RIGHT_BOUNDARY,
             this.y,
             0.9 * this.bulletDamagePower,
+            0.85 * this.bulletSpeed,
+            'right'
+          )
+        );
+      }
+    }
+
+    /*---------------------------
+      SIDE ARROW SHOT ENDS
+    -----------------------------*/
+
+    /*---------------------------
+      DIAGONAL ARROW SHOT
+    -----------------------------*/
+    if (this.powerUps.powerArrowDiagonal) {
+      console.log('arrow diagonal');
+      // Shoot Left
+      bullets.push(
+        new Bullet(
+          this.ctx,
+          this.x + 10,
+          this.y,
+          nearestMonster.x - RING_WIDTH / 2,
+          nearestMonster.y - RING_HEIGHT / 2,
+          this.bulletDamagePower,
+          this.bulletSpeed
+        )
+      );
+
+      // Shoot Right
+      bullets.push(
+        new Bullet(
+          this.ctx,
+          this.x + 10,
+          this.y,
+          nearestMonster.x + RING_WIDTH / 2,
+          nearestMonster.y + RING_HEIGHT / 2,
+          this.bulletDamagePower,
+          this.bulletSpeed
+        )
+      );
+
+      // Multiple Shot
+      if (this.powerUps.powerMultiShot === true) {
+        // Shoot Left
+        bullets.push(
+          new Bullet(
+            this.ctx,
+            this.x - 10,
+            this.y,
+            nearestMonster.x - RING_WIDTH / 2,
+            nearestMonster.y - RING_HEIGHT / 2,
+            0.9 * this.bulletDamagePower,
+            0.85 * this.bulletSpeed
+          )
+        );
+
+        // Shoot Right
+        bullets.push(
+          new Bullet(
+            this.ctx,
+            this.x - 10,
+            this.y,
+            nearestMonster.x + RING_WIDTH / 2,
+            nearestMonster.y + RING_HEIGHT / 2,
+            0.9 * this.bulletDamagePower,
             0.85 * this.bulletSpeed
           )
         );
       }
     }
+
+    /*---------------------------
+      DIAGONAL ARROW SHOT ENDS
+    -----------------------------*/
+
+    /*---------------------------
+      ARROW FRONT SHOT
+    -----------------------------*/
+    if (this.powerUps.powerArrowFront) {
+      // console.log('arrow front');
+      bullets.push(
+        new Bullet(
+          this.ctx,
+          this.x + 20,
+          this.y + 10,
+          nearestMonster.x,
+          nearestMonster.y,
+          0.75 * this.bulletDamagePower,
+          this.bulletSpeed
+        )
+      );
+
+      if (this.powerUps.powerMultiShot === true) {
+        bullets.push(
+          new Bullet(
+            this.ctx,
+            this.x - 20,
+            this.y - 10,
+            nearestMonster.x,
+            nearestMonster.y,
+            0.9 * 0.75 * this.bulletDamagePower,
+            0.85 * this.bulletSpeed
+          )
+        );
+      }
+    }
+
+    /*---------------------------
+      ARROW FRONT SHOT ENDS
+    -----------------------------*/
+
+    /*---------------------------
+      ARROW BACK SHOT
+    -----------------------------*/
+
+    if (this.powerUps.powerArrowBack) {
+      // console.log('arrow back');
+      bullets.push(
+        new Bullet(
+          this.ctx,
+          this.x + 20,
+          this.y + 10,
+          nearestMonster.x,
+          nearestMonster.y,
+          0.75 * this.bulletDamagePower,
+          this.bulletSpeed,
+          'back'
+        )
+      );
+
+      if (this.powerUps.powerMultiShot === true) {
+        bullets.push(
+          new Bullet(
+            this.ctx,
+            this.x - 20,
+            this.y - 10,
+            nearestMonster.x,
+            nearestMonster.y,
+            0.9 * 0.75 * this.bulletDamagePower,
+            0.85 * this.bulletSpeed,
+            'back'
+          )
+        );
+      }
+    }
+    /*---------------------------
+      ARROW BACK SHOT ENDS
+    -----------------------------*/
   };
 
   getNearestMonster = () => {
@@ -360,7 +497,30 @@ class Hero {
     });
   };
 
-  // Detect Collision with Monster Bullet
+  /*---------------------------------
+    DETECT COLLISION WITH MONSTER
+  ----------------------------------- */
+  detectMonsterCollision = () => {
+    monsters.forEach((monster) => {
+      if (
+        this.x < monster.x + monster.width &&
+        this.x + this.width > monster.x &&
+        this.y < monster.y + monster.height &&
+        this.y + this.height > monster.y
+      ) {
+        if (timer % 30 === 0) {
+          this.health -= 2;
+          if (this.health <= 0) {
+            gameStates.current = gameStates.gameOver;
+          }
+        }
+      }
+    });
+  };
+
+  /*---------------------------------
+    DETECT COLLISION WITH MONSTER BULLET
+  ----------------------------------- */
   detectMonsterBulletCollision = () => {
     monsterBullets.forEach((bullet) => {
       if (
@@ -388,10 +548,18 @@ class Hero {
   }
 
   reset = () => {
-    this.health = 100;
+    this.health = this.totalHealth;
     this.x = CANVAS_WIDTH / 2 - 25;
     this.y = CANVAS_HEIGHT - 50;
     this.experience = 0;
     this.level = 1;
+
+    this.powerUps = {
+      powerMultiShot: false,
+      powerArrowSide: false,
+      powerArrowDiagonal: false,
+      powerArrowFront: false,
+      powerArrowBack: false,
+    };
   };
 }

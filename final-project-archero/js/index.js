@@ -10,16 +10,22 @@ class ArcheroGame {
     this.handleCanvasEventListener();
 
     // this.monster = new Monster(this.ctx);
+
+    // Game Background during Gameplay
     this.background = new Background(this.ctx);
+
     this.hero = new Hero(this.ctx);
+    this.score = new Score(this.ctx);
+    this.levels = new Levels();
+
+    // Game States
     this.getReady = new GetReady(this.ctx);
     this.gameOver = new GameOver(this.ctx);
-    this.score = new Score(this.ctx);
     this.changingLevel = new ChangingLevel(this.ctx);
     this.nextLevel = new NextLevel(this.ctx);
-    this.levels = new Levels();
     this.gameComplete = new GameComplete(ctx);
     this.selectPowerUp = new SelectPowerUp(ctx);
+    this.upgrade = new Upgrade(ctx);
   }
 
   generateMonsters = () => {
@@ -53,6 +59,8 @@ class ArcheroGame {
 
     this.getReady.draw();
     this.background.draw();
+    this.upgrade.draw(this.hero);
+
     this.hero.draw(this.selectPowerUp);
     // this.monster.draw();
     monsters.forEach((monster) => monster.draw());
@@ -118,6 +126,7 @@ class ArcheroGame {
 
       switch (gameStates.current) {
         case gameStates.getReady:
+          // Click on Play Button
           if (
             clickX >= this.getReady.playButtonX &&
             clickX <=
@@ -127,20 +136,77 @@ class ArcheroGame {
           ) {
             gameStates.current = gameStates.gameRunning;
             this.generateLevel();
-            break;
           }
 
-        // if (
-        //   clickX >= this.getReady.upgradeButtonX &&
-        //   clickX <=
-        //     this.getReady.upgradeButtonX + this.getReady.upgradeButtonWidth &&
-        //   clickY >= this.getReady.upgradeButtonY &&
-        //   clickY <=
-        //     this.getReady.upgradeButtonY + this.getReady.upgradeButtonHeight
-        // ) {
-        //   gameStates.current = gameStates.upgrade;
-        //   break;
-        // }
+          // Click on Upgrade Button
+          if (
+            clickX >= this.getReady.upgradeButtonX &&
+            clickX <=
+              this.getReady.upgradeButtonX + this.getReady.upgradeButtonWidth &&
+            clickY >= this.getReady.upgradeButtonY &&
+            clickY <=
+              this.getReady.upgradeButtonY + this.getReady.upgradeButtonHeight
+          ) {
+            gameStates.current = gameStates.upgrade;
+          }
+          break;
+
+        case gameStates.upgrade:
+          // Click on Back Button
+          if (
+            clickX >= this.upgrade.backButtonX &&
+            clickX <= this.upgrade.backButtonX + this.upgrade.backButtonWidth &&
+            clickY >= this.upgrade.backButtonY &&
+            clickY <= this.upgrade.backButtonY + this.upgrade.backButtonHeight
+          ) {
+            this.reset();
+            gameStates.current = gameStates.getReady;
+          }
+
+          // Click on Upgrade Health Button
+          if (
+            clickX >= this.upgrade.upgradeHealthX &&
+            clickX <=
+              this.upgrade.upgradeHealthX + this.upgrade.upgradeHealthWidth &&
+            clickY >= this.upgrade.upgradeHealthY &&
+            clickY <=
+              this.upgrade.upgradeHealthY + this.upgrade.upgradeHealthHeight
+          ) {
+            if (this.score.totalCoinsCollected >= this.hero.totalHealth / 25) {
+              this.score.totalCoinsCollected -= this.hero.totalHealth / 25;
+              this.hero.totalHealth += 25;
+              localStorage.setItem(
+                'arcHeroScore',
+                this.score.totalCoinsCollected
+              );
+              localStorage.setItem('arcHeroHealth', this.hero.totalHealth);
+            }
+          }
+
+          // Click on Upgrade Damage Button
+          if (
+            clickX >= this.upgrade.upgradeDamageX &&
+            clickX <=
+              this.upgrade.upgradeDamageX + this.upgrade.upgradeDamageWidth &&
+            clickY >= this.upgrade.upgradeDamageY &&
+            clickY <=
+              this.upgrade.upgradeDamageY + this.upgrade.upgradeDamageHeight
+          ) {
+            if (this.score.totalCoinsCollected >= 20) {
+              this.score.totalCoinsCollected -= 20;
+              this.hero.bulletDamagePower += this.hero.bulletDamagePower * 0.1;
+              localStorage.setItem(
+                'arcHeroScore',
+                this.score.totalCoinsCollected
+              );
+              localStorage.setItem(
+                'arcHeroBulletDamagePower',
+                this.hero.bulletDamagePower
+              );
+            }
+          }
+
+          break;
 
         case gameStates.gameOver:
           if (
@@ -150,9 +216,11 @@ class ArcheroGame {
             clickY >= this.gameOver.playButtonY &&
             clickY <= this.gameOver.playButtonY + this.gameOver.playButtonHeight
           ) {
-            gameStates.current = gameStates.getReady;
             this.reset();
+            gameStates.current = gameStates.getReady;
           }
+          break;
+
         case gameStates.gameComplete:
           if (
             clickX >= this.gameComplete.playButtonX &&
@@ -166,6 +234,9 @@ class ArcheroGame {
             gameStates.current = gameStates.getReady;
             this.reset();
           }
+
+          break;
+
         case gameStates.selectPowerUp:
           // POWER UP OPTION 1
           if (
@@ -208,9 +279,10 @@ class ArcheroGame {
               this.selectPowerUp.powerUpButtonY +
                 this.selectPowerUp.powerUpButtonHeight
           ) {
-            this.hero.powerUps[this.selectPowerUp.powerUpOptions[3]] = true;
+            this.hero.powerUps[this.selectPowerUp.powerUpOptions[2]] = true;
             gameStates.current = gameStates.gameRunning;
           }
+          break;
       }
     });
   };
