@@ -45,9 +45,6 @@ class Background {
         this.gateLevelImageWidth,
         this.gateLevelImageHeight
       );
-      // this.ctx.fillstyle = 'white';
-      // this.ctx.fillRect(CANVAS_WIDTH / 2 - 30, 200, 10, 100);
-      // this.ctx.fillRect(CANVAS_WIDTH / 2 + 30, 200, 10, 100);
     }
   };
 }
