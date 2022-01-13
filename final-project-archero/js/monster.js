@@ -14,7 +14,8 @@ class Monster {
     this.y = getRandomPosition(RING_TOP_BOUNDARY + 10, CANVAS_HEIGHT / 2);
     this.dx = 0;
     this.dy = 0;
-    this.health = 100;
+    this.totalHealth = 100;
+    this.health = this.totalHealth;
   }
 
   draw = () => {
@@ -32,7 +33,7 @@ class Monster {
   };
 
   generateHealthPercentage = () => {
-    return (this.health * this.width) / 100;
+    return (this.health * this.width) / this.totalHealth;
   };
 
   // Monster Movement and Update
@@ -57,6 +58,7 @@ class Monster {
       this.x += this.dx;
       this.y += this.dy;
       this.detectBoxCollision();
+      this.detectObtsacleCollision();
 
       if (timer % 300 === 0) {
         if (hero.health > 0 && this.health > 0) {
@@ -91,6 +93,21 @@ class Monster {
     ) {
       this.dy = -this.dy;
     }
+  };
+
+  detectObtsacleCollision = () => {
+    obstacles.forEach((obstacle) => {
+      if (
+        this.x < obstacle.x + obstacle.width &&
+        this.x + this.width > obstacle.x &&
+        this.y < obstacle.y + obstacle.height &&
+        this.y + this.height > obstacle.y
+      ) {
+        // console.log('monster obstacle collision');
+        this.dx = 0;
+        this.dy = 0;
+      }
+    });
   };
 
   detectBulletCollision = () => {
