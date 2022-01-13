@@ -19,7 +19,7 @@ class Score {
       gameStates.current !== gameStates.gameOver
     ) {
       this.drawCoinScore();
-      this.drawCurrentLevel();
+      if (gameStates.current !== gameStates.upgrade) this.drawCurrentLevel();
     }
   };
 
