@@ -8,7 +8,7 @@ class Hero {
     this.dx = 5;
     this.dy = 5;
     // this.speed = 3;
-    this.totalHealth = localStorage.getItem('arcHeroHealth') || 100;
+    this.totalHealth = parseInt(localStorage.getItem('arcHeroHealth')) || 100;
     this.health = this.totalHealth;
     this.previousX = this.x;
     this.previousY = this.y;
@@ -16,7 +16,7 @@ class Hero {
     this.experience = 0;
     this.heroLevelWidth = 220;
     this.bulletDamagePower =
-      localStorage.getItem('arcHeroBulletDamagePower') || 10;
+      parseInt(localStorage.getItem('arcHeroBulletDamagePower')) || 10;
     this.bulletSpeed = 10;
 
     //Power Ups
@@ -26,6 +26,7 @@ class Hero {
       powerArrowDiagonal: false,
       powerArrowFront: false,
       powerArrowBack: false,
+      powerBouncyWall: false,
     };
   }
 
@@ -153,7 +154,7 @@ class Hero {
     bullets.push(
       new Bullet(
         this.ctx,
-        this.x + 10,
+        this.x,
         this.y,
         nearestMonster.x,
         nearestMonster.y,
@@ -548,6 +549,8 @@ class Hero {
   }
 
   reset = () => {
+    // console.log(this.totalHealth);
+    // this.totalHealth = localStorage.getItem('arcHeroHealth') || 100;
     this.health = this.totalHealth;
     this.x = CANVAS_WIDTH / 2 - 25;
     this.y = CANVAS_HEIGHT - 50;
