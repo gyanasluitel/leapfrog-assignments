@@ -21,7 +21,7 @@ class HealingItem {
   };
 
   move = () => {
-    if (monsters.length === 0) {
+    if (this.monster.health <= 0) {
       if (this.x < this.hero.x) {
         this.x += this.speed;
       } else if (this.x > this.hero.x) {
