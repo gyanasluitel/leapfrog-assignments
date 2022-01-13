@@ -35,6 +35,7 @@ let monsterBullets = [];
 let coins = [];
 let healingItems = [];
 let monsters = [];
+let obstacles = [];
 
 // HERO
 const HERO_PATH = 'assets/hero.png';
@@ -131,8 +132,6 @@ const OBSTACLE_2_IMAGE_PATH = 'assets/obstacles/trunk.png';
 const obstacle2Image = new Image();
 obstacle2Image.src = OBSTACLE_2_IMAGE_PATH;
 
-let obstacles = [];
-
 // GATE LEVEL INDICATOR
 const GATE_LEVEL_PATH = 'assets/gate-level.png';
 const gateLevelImage = new Image();
@@ -179,6 +178,16 @@ powerArrowBackImage.src = POWER_ARROWBACK_PATH;
 const POWER_BOUNCYWALL_PATH = 'assets/power-bouncyWall.png';
 const powerBouncyWallImage = new Image();
 powerBouncyWallImage.src = POWER_BOUNCYWALL_PATH;
+
+// Power Up - Power Health
+const POWER_HEAL_PATH = 'assets/power-heal.png';
+const powerHealImage = new Image();
+powerHealImage.src = POWER_HEAL_PATH;
+
+// Power Up - HP Boost
+const POWER_HP_BOOST_PATH = 'assets/power-hpBoost.png';
+const powerHpBoostImage = new Image();
+powerHpBoostImage.src = POWER_HP_BOOST_PATH;
 
 // UPGRADE BUTTON
 const UPGRADE_BUTTON_PATH = 'assets/upgrade.png';

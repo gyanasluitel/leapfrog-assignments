@@ -2,14 +2,14 @@
 class GetReady {
   constructor(ctx) {
     this.ctx = ctx;
-    this.playButtonX = CANVAS_WIDTH / 3;
+    this.playButtonX = CANVAS_WIDTH / 3 + 10;
     this.playButtonY = CANVAS_HEIGHT / 4;
-    this.playButtonWidth = 150;
+    this.playButtonWidth = 120;
     this.playButtonHeight = 50;
 
-    this.upgradeButtonX = CANVAS_WIDTH / 2 - 20;
+    this.upgradeButtonX = CANVAS_WIDTH / 3 + 10;
     this.upgradeButtonY = CANVAS_HEIGHT / 3 + 30;
-    this.upgradeButtonWidth = 50;
+    this.upgradeButtonWidth = 120;
     this.upgradeButtonHeight = 50;
   }
 
@@ -143,6 +143,8 @@ class SelectPowerUp {
       powerArrowFront: powerArrowFrontImage,
       powerArrowBack: powerArrowBackImage,
       powerBouncyWall: powerBouncyWallImage,
+      powerHeal: powerHealImage,
+      powerHpBoost: powerHpBoostImage,
     };
 
     this.powerUpButtonWidth = 60;
@@ -332,7 +334,7 @@ class Upgrade {
       this.ctx.font = 'bold 18px Arial';
       this.ctx.fillText(
         hero.totalHealth / 25,
-        this.upgradeHealthX + this.upgradeHealthWidth / 2 + 5,
+        this.upgradeHealthX + this.upgradeHealthWidth / 2 + 7,
         this.upgradeHealthY + this.upgradeHealthHeight + 25
       );
 
@@ -375,7 +377,7 @@ class Upgrade {
       this.ctx.font = 'bold 18px Arial';
       this.ctx.fillText(
         20,
-        this.upgradeDamageX + this.upgradeDamageWidth / 2 + 5,
+        this.upgradeDamageX + this.upgradeDamageWidth / 2 + 7,
         this.upgradeDamageY + this.upgradeDamageHeight + 25
       );
     }

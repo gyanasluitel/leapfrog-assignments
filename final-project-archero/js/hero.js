@@ -17,7 +17,7 @@ class Hero {
     this.heroLevelWidth = 220;
     this.bulletDamagePower =
       parseInt(localStorage.getItem('arcHeroBulletDamagePower')) || 10;
-    this.bulletSpeed = 10;
+    this.bulletSpeed = 6;
 
     //Power Ups
     this.powerUps = {
@@ -27,6 +27,8 @@ class Hero {
       powerArrowFront: false,
       powerArrowBack: false,
       powerBouncyWall: false,
+      powerHeal: false,
+      powerHpBoost: false,
     };
   }
 
@@ -71,8 +73,6 @@ class Hero {
   };
 
   drawHeroHealthBar = () => {
-    // console.log('Total health: ', this.totalHealth);
-    // console.log('Health: ', this.health);
     this.ctx.fillStyle = 'white';
     this.ctx.font = 'bold 12px Arial';
     this.ctx.fillText(this.health, this.x + 15, this.y - 25);
@@ -96,13 +96,12 @@ class Hero {
       gameStates.current !== gameStates.gameOver &&
       gameStates.current !== gameStates.upgrade
     ) {
-      // this.previousX = this.x;
-      // this.previousY = this.y;
       this.detectLevelChange();
       this.detectRingCollision();
       this.detectMonsterBulletCollision();
       this.detectObstacleCollision();
       this.detectMonsterCollision();
+      this.detectHealthPowerUp();
       // this.detectLevelUpgrade();
 
       if (
@@ -142,6 +141,24 @@ class Hero {
           this.shoot();
         }
       }
+    }
+  };
+
+  detectHealthPowerUp = () => {
+    if (this.powerUps.powerHeal) {
+      if (this.health <= this.totalHealth) {
+        this.health += 0.4 * this.totalHealth;
+        if (this.health > this.totalHealth) {
+          this.health = this.totalHealth;
+        }
+        this.powerUps.powerHeal = false;
+      }
+    }
+
+    if (this.powerUps.powerHpBoost) {
+      this.totalHealth += 0.2 * this.totalHealth;
+      this.health += 0.2 * this.totalHealth;
+      this.powerUps.powerHpBoost = false;
     }
   };
 
@@ -253,7 +270,6 @@ class Hero {
       DIAGONAL ARROW SHOT
     -----------------------------*/
     if (this.powerUps.powerArrowDiagonal) {
-      // console.log('arrow diagonal');
       // Shoot Left
       bullets.push(
         new Bullet(
@@ -318,7 +334,6 @@ class Hero {
       ARROW FRONT SHOT
     -----------------------------*/
     if (this.powerUps.powerArrowFront) {
-      // console.log('arrow front');
       bullets.push(
         new Bullet(
           this.ctx,
@@ -455,9 +470,7 @@ class Hero {
         this.x + this.width >= obstacle.x &&
         this.x <= obstacle.x + obstacle.width &&
         this.y + this.height > obstacle.y + obstacle.height
-        // this.previousY > obstacle.y + obstacle.height
       ) {
-        // console.log('collision down');
         this.y = obstacle.y + obstacle.height;
         return;
       } else if (
@@ -467,9 +480,7 @@ class Hero {
         this.x + this.width >= obstacle.x &&
         this.x <= obstacle.x + obstacle.width &&
         this.y < obstacle.y
-        // this.previousY + this.height <= obstacle.y
       ) {
-        // console.log('collision up');
         this.y = obstacle.y - this.height;
         return;
       } else if (
@@ -478,9 +489,7 @@ class Hero {
         this.y <= obstacle.y + obstacle.height &&
         this.x + this.width >= obstacle.x &&
         this.x < obstacle.x
-        // this.previousX + this.width < obstacle.x
       ) {
-        // console.log('collision left');
         this.x = obstacle.x - this.width;
         return;
       } else if (
@@ -489,9 +498,7 @@ class Hero {
         this.y <= obstacle.y + obstacle.height &&
         this.x <= obstacle.x + obstacle.width &&
         this.x + this.width > obstacle.x + obstacle.width
-        // this.previousX > obstacle.x + obstacle.width
       ) {
-        // console.log('collision right');
         this.x = obstacle.x + obstacle.width;
         return;
       }
@@ -549,8 +556,6 @@ class Hero {
   }
 
   reset = () => {
-    // console.log(this.totalHealth);
-    // this.totalHealth = localStorage.getItem('arcHeroHealth') || 100;
     this.health = this.totalHealth;
     this.x = CANVAS_WIDTH / 2 - 25;
     this.y = CANVAS_HEIGHT - 50;
