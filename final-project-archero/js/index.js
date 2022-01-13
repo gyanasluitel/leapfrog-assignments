@@ -4,9 +4,10 @@ class ArcheroGame {
     this.canvas.width = CANVAS_WIDTH;
     this.canvas.height = CANVAS_HEIGHT;
     this.canvas.style.border = '2px solid black';
-    this.canvas.style.margin = '0 5% 0 25%';
+    // this.canvas.style.margin = '0 50% 0 25%';
     this.ctx = canvas.getContext('2d');
-
+    this.canvas.style =
+      'position:absolute; left: 50%; width: 400px; margin-left: -200px;';
     this.handleCanvasEventListener();
 
     // this.monster = new Monster(this.ctx);
@@ -208,19 +209,6 @@ class ArcheroGame {
 
           break;
 
-        case gameStates.gameOver:
-          if (
-            clickX >= this.gameOver.playButtonX &&
-            clickX <=
-              this.gameOver.playButtonX + this.gameOver.playButtonWidth &&
-            clickY >= this.gameOver.playButtonY &&
-            clickY <= this.gameOver.playButtonY + this.gameOver.playButtonHeight
-          ) {
-            this.reset();
-            gameStates.current = gameStates.getReady;
-          }
-          break;
-
         case gameStates.gameComplete:
           if (
             clickX >= this.gameComplete.playButtonX &&
@@ -281,6 +269,19 @@ class ArcheroGame {
           ) {
             this.hero.powerUps[this.selectPowerUp.powerUpOptions[2]] = true;
             gameStates.current = gameStates.gameRunning;
+          }
+          break;
+
+        case gameStates.gameOver:
+          if (
+            clickX >= this.gameOver.playButtonX &&
+            clickX <=
+              this.gameOver.playButtonX + this.gameOver.playButtonWidth &&
+            clickY >= this.gameOver.playButtonY &&
+            clickY <= this.gameOver.playButtonY + this.gameOver.playButtonHeight
+          ) {
+            this.reset();
+            gameStates.current = gameStates.getReady;
           }
           break;
       }
