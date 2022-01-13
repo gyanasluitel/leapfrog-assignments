@@ -142,6 +142,7 @@ class SelectPowerUp {
       powerArrowDiagonal: powerArrowDiagonalImage,
       powerArrowFront: powerArrowFrontImage,
       powerArrowBack: powerArrowBackImage,
+      powerBouncyWall: powerBouncyWallImage,
     };
 
     this.powerUpButtonWidth = 60;
@@ -229,6 +230,11 @@ class Upgrade {
     this.healthX = 120;
     this.healthY = CANVAS_HEIGHT / 3;
 
+    this.damageWidth = 30;
+    this.damageHeight = 30;
+    this.damageX = 120;
+    this.damageY = CANVAS_HEIGHT / 3 + 40;
+
     this.upgradeHealthX = 30;
     this.upgradeHealthY = CANVAS_HEIGHT / 3 + 100;
     this.upgradeHealthWidth = 150;
@@ -286,6 +292,15 @@ class Upgrade {
         this.healthY + this.healthHeight / 2 + 5
       );
 
+      // Damage Indicator
+      this.ctx.drawImage(
+        weaponImage,
+        this.damageX,
+        this.damageY,
+        this.damageWidth,
+        this.damageHeight
+      );
+
       // Draw Upgrade Health Button
       this.ctx.drawImage(
         upgradeHealthButtonImage,
@@ -295,7 +310,15 @@ class Upgrade {
         this.upgradeHealthHeight
       );
 
-      // Coing Image
+      this.ctx.drawImage(
+        healthIndicatorImage,
+        this.upgradeHealthX + this.upgradeHealthWidth - 25,
+        this.upgradeHealthY + this.upgradeHealthHeight / 2 - 10,
+        this.healthWidth - 10,
+        this.healthHeight - 10
+      );
+
+      // Coin Image
       this.ctx.drawImage(
         coinImage,
         this.upgradeHealthX + this.upgradeHealthWidth / 2 - 25,
@@ -320,6 +343,22 @@ class Upgrade {
         this.upgradeDamageY,
         this.upgradeDamageWidth,
         this.upgradeDamageHeight
+      );
+
+      this.ctx.drawImage(
+        weaponImage,
+        this.upgradeDamageX + this.upgradeDamageWidth - 25,
+        this.upgradeDamageY + this.upgradeDamageHeight / 2 - 10,
+        this.damageWidth - 10,
+        this.damageHeight - 10
+      );
+
+      this.ctx.fillStyle = 'white';
+      this.ctx.font = 'bold 18px Arial';
+      this.ctx.fillText(
+        hero.bulletDamagePower,
+        this.damageX + this.damageWidth + 2,
+        this.damageY + this.damageHeight / 2 + 5
       );
 
       // Coin Image
