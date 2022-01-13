@@ -6,7 +6,8 @@ class Bullet {
     monsterX,
     monsterY,
     bulletDamagePower,
-    bulletSpeed
+    bulletSpeed,
+    direction = 'default'
   ) {
     this.ctx = ctx;
     this.x = heroPositionX;
@@ -26,6 +27,7 @@ class Bullet {
     this.speed = this.shotSpeed;
     this.vx = Math.sin(this.angle) * this.speed;
     this.vy = Math.cos(this.angle) * this.speed;
+    this.direction = direction;
   }
 
   draw = () => {
@@ -35,11 +37,24 @@ class Bullet {
   move = () => {
     if (
       gameStates.current !== gameStates.getReady &&
-      gameStates.current !== gameStates.gameOver
+      gameStates.current !== gameStates.gameOver &&
+      gameStates.current !== gameStates.upgrade
     ) {
-      this.x += this.vx;
-      this.y += this.vy;
-
+      if (this.direction === 'back') {
+        this.x -= this.vx;
+        this.y -= this.vy;
+      }
+      // else if (this.direction === 'left') {
+      //   this.x -= this.vx;
+      //   this.y += this.vy;
+      // } else if (this.direction === 'right') {
+      //   this.x += this.vx;
+      //   this.y += this.vy;
+      // }
+      else {
+        this.x += this.vx;
+        this.y += this.vy;
+      }
       // Clear Bullet when collides with wall
       this.clearBulletWallCollision();
 

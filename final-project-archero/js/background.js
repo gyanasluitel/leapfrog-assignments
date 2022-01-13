@@ -1,3 +1,4 @@
+// Game Background during GamePlay
 class Background {
   constructor(ctx) {
     this.ctx = ctx;
@@ -26,6 +27,7 @@ class Background {
         gameStates.current === gameStates.changingLevel
           ? gateOpenImage
           : gateCloseImage;
+
       // Draw Gates
       this.ctx.drawImage(
         gateImage,
