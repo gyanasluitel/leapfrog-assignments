@@ -175,6 +175,11 @@ const POWER_ARROWBACK_PATH = 'assets/power-arrowBack.png';
 const powerArrowBackImage = new Image();
 powerArrowBackImage.src = POWER_ARROWBACK_PATH;
 
+// Power Up - Bouncy Wall
+const POWER_BOUNCYWALL_PATH = 'assets/power-bouncyWall.png';
+const powerBouncyWallImage = new Image();
+powerBouncyWallImage.src = POWER_BOUNCYWALL_PATH;
+
 // UPGRADE BUTTON
 const UPGRADE_BUTTON_PATH = 'assets/upgrade.png';
 const upgradeButtonImage = new Image();
