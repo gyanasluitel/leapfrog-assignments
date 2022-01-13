@@ -11,8 +11,6 @@ class ArcheroGame {
 
     this.handleCanvasEventListener();
 
-    // this.monster = new Monster(this.ctx);
-
     // Game Background during Gameplay
     this.background = new Background(this.ctx);
 
@@ -45,10 +43,8 @@ class ArcheroGame {
   };
 
   generateLevel = () => {
-    // console.log(this.levels.level[gameStates.currentLevel]);
     if (this.levels.level[gameStates.currentLevel] === undefined) {
       gameStates.current = gameStates.gameComplete;
-      // console.log('game complete');
     } else {
       this.generateMonsters();
       this.generateObstacles();
@@ -64,7 +60,6 @@ class ArcheroGame {
     this.upgrade.draw(this.hero);
 
     this.hero.draw(this.selectPowerUp);
-    // this.monster.draw();
     monsters.forEach((monster) => monster.draw());
     bullets.forEach((bullet) => bullet.draw());
     obstacles.forEach((obstacle) => obstacle.draw());
@@ -74,16 +69,14 @@ class ArcheroGame {
     healingItems.forEach((healingItem) => healingItem.draw());
     this.gameOver.draw();
     this.score.draw(this.hero);
-    // this.changingLevel.draw();
     this.gameComplete.draw();
     this.selectPowerUp.draw();
   };
 
   update = () => {
     this.hero.move();
-    // this.monster.move(this.hero);
     monsters.forEach((monster) => monster.move(this.hero));
-    bullets.forEach((bullet) => bullet.move());
+    bullets.forEach((bullet) => bullet.move(this.hero));
     monsterBullets.forEach((bullet) => bullet.move());
     coins.forEach((coin) => coin.move(this.score));
     healingItems.forEach((healingItem) => healingItem.move(this.hero));
@@ -95,7 +88,6 @@ class ArcheroGame {
     }
 
     if (gameStates.current === gameStates.nextLevel) {
-      // if (timer %)
       obstacles = [];
       this.nextLevel.update();
       this.generateLevel();
@@ -112,11 +104,11 @@ class ArcheroGame {
     coins = [];
     gameStates.currentLevel = 1;
   };
+
   animate = () => {
     this.update();
     this.draw();
     timer++;
-    // console.log(timer);
     window.requestAnimationFrame(this.animate);
   };
 
@@ -196,7 +188,7 @@ class ArcheroGame {
           ) {
             if (this.score.totalCoinsCollected >= 20) {
               this.score.totalCoinsCollected -= 20;
-              this.hero.bulletDamagePower += this.hero.bulletDamagePower * 0.1;
+              this.hero.bulletDamagePower += 5;
               localStorage.setItem(
                 'arcHeroScore',
                 this.score.totalCoinsCollected
@@ -294,14 +286,11 @@ const newGame = new ArcheroGame('canvas');
 newGame.animate();
 
 document.addEventListener('keydown', (event) => {
-  //   console.log(event.key);
   event.preventDefault();
   keyPressed[event.key] = true;
 });
 
 document.addEventListener('keyup', (event) => {
-  //   console.log(event.key);
   event.preventDefault();
   keyPressed[event.key] = false;
-  //   console.log(keyPressed);
 });
