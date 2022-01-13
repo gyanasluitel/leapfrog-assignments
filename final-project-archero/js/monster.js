@@ -5,6 +5,8 @@ class Monster {
     this.weaponImage = monster.weaponImage;
     this.damage = monster.damage;
     this.type = monster.type;
+    this.totalHealth = monster.health;
+    this.health = this.totalHealth;
     this.width = 50;
     this.height = 50;
     this.x = getRandomPosition(
@@ -14,8 +16,6 @@ class Monster {
     this.y = getRandomPosition(RING_TOP_BOUNDARY + 10, CANVAS_HEIGHT / 2);
     this.dx = 0;
     this.dy = 0;
-    this.totalHealth = 100;
-    this.health = this.totalHealth;
   }
 
   draw = () => {
@@ -44,10 +44,15 @@ class Monster {
       }
 
       if (timer % 200 === 0) {
-        this.dx = getRandomIntInclusive(-1.5, 1.5);
-        this.dy = getRandomIntInclusive(-1.5, 1.5);
+        if (this.type === 1) {
+          this.dx = getRandomIntInclusive(-1, 1);
+          this.dy = getRandomIntInclusive(-1, 1);
+        } else if (this.type === 2) {
+          this.dx = getRandomIntInclusive(-2, 2);
+          this.dy = getRandomIntInclusive(-2, 2);
+        }
       } else if (timer % 100 === 0) {
-        if (getRandomIntInclusive(2, 4) % 2 === 0) {
+        if (getRandomIntInclusive(0, 1) === 0) {
           this.dx = 0;
           this.dy = 0;
         }
@@ -85,13 +90,13 @@ class Monster {
       this.x < RING_LEFT_BOUNDARY ||
       this.x + this.width >= RING_RIGHT_BOUNDARY
     ) {
-      this.dx = -this.dx;
+      this.dx = 0;
     }
     if (
       this.y - this.width <= RING_TOP_BOUNDARY ||
       this.y + this.width >= canvas.height
     ) {
-      this.dy = -this.dy;
+      this.dy = 0;
     }
   };
 

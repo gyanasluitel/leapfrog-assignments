@@ -252,7 +252,7 @@ class Hero {
       DIAGONAL ARROW SHOT
     -----------------------------*/
     if (this.powerUps.powerArrowDiagonal) {
-      console.log('arrow diagonal');
+      // console.log('arrow diagonal');
       // Shoot Left
       bullets.push(
         new Bullet(

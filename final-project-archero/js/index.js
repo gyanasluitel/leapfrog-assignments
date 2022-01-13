@@ -3,11 +3,12 @@ class ArcheroGame {
     this.canvas = document.getElementById(canvasName);
     this.canvas.width = CANVAS_WIDTH;
     this.canvas.height = CANVAS_HEIGHT;
-    this.canvas.style.border = '2px solid black';
     // this.canvas.style.margin = '0 50% 0 25%';
     this.ctx = canvas.getContext('2d');
     this.canvas.style =
       'position:absolute; left: 50%; width: 400px; margin-left: -200px;';
+    this.canvas.style.border = '2px solid black';
+
     this.handleCanvasEventListener();
 
     // this.monster = new Monster(this.ctx);
