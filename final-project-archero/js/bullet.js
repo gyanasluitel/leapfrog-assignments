@@ -67,12 +67,15 @@ class Bullet {
         this.angle = Math.atan2(5, 3);
         this.vx = Math.sin(this.angle) * this.speed;
         this.vy = -Math.cos(this.angle) * this.speed;
+        this.damagePower = 0.5 * this.damagePower;
         this.updateMovement();
         this.bounceCount++;
       } else if (this.x + this.width >= RING_RIGHT_BOUNDARY) {
         this.angle = Math.atan2(5, 3);
         this.vx = -Math.sin(this.angle) * this.speed;
         this.vy = Math.cos(this.angle) * this.speed;
+        this.damagePower = 0.5 * this.damagePower;
+
         this.updateMovement();
         this.bounceCount++;
       }
@@ -80,12 +83,14 @@ class Bullet {
         this.angle = Math.atan2(5, 3);
         this.vx = Math.sin(this.angle) * this.speed;
         this.vy = Math.cos(this.angle) * this.speed;
+        this.damagePower = 0.5 * this.damagePower;
         this.updateMovement();
         this.bounceCount++;
       } else if (this.y + this.width >= canvas.height) {
         this.angle = Math.atan2(5, 3);
         this.vx = -Math.sin(this.angle) * this.speed;
         this.vy = Math.cos(this.angle) * this.speed;
+        this.damagePower = 0.5 * this.damagePower;
         this.updateMovement();
         this.bounceCount++;
       }
