@@ -44,16 +44,26 @@ class Monster {
       }
 
       // Monster Movement Calculation
-      if (timer % 200 === 0) {
-        if (this.type === 1) {
+      if (this.type === 1) {
+        if (timer % 200 === 0) {
           this.dx = getRandomIntInclusive(-1, 1);
           this.dy = getRandomIntInclusive(-1, 1);
+        } else if (timer % 100 === 0) {
+          if (getRandomIntInclusive(0, 1) === 0) {
+            this.dx = 0;
+            this.dy = 0;
+          }
         } else if (this.type === 2) {
-          this.dx = getRandomIntInclusive(-2, 2);
-          this.dy = getRandomIntInclusive(-2, 2);
-        }
-      } else if (timer % 100 === 0) {
-        if (getRandomIntInclusive(0, 1) === 0) {
+          if (timer % 200 === 0) {
+            this.dx = getRandomIntInclusive(-2, 2);
+            this.dy = getRandomIntInclusive(-2, 2);
+          } else if (timer % 100 === 0) {
+            if (getRandomIntInclusive(0, 1) === 0) {
+              this.dx = 0;
+              this.dy = 0;
+            }
+          }
+        } else if (this.type === 3) {
           this.dx = 0;
           this.dy = 0;
         }
@@ -70,10 +80,10 @@ class Monster {
       }
 
       // Monster shoot
-      if (timer % 300 === 0) {
-        // console.log('timer');
-        if (hero.health > 0 && this.health > 0) {
-          if (this.type === 1 || this.type === 2) {
+
+      if (hero.health > 0 && this.health > 0) {
+        if (this.type === 1 || this.type === 2) {
+          if (timer % 300 === 0) {
             monsterBullets.push(
               new MonsterBullet(
                 this.ctx,
@@ -82,10 +92,51 @@ class Monster {
                 hero.x,
                 hero.y,
                 this.damage,
-                this.weaponImage
+                this.weaponImage,
+                this.type
               )
             );
-          } else if (this.type === 3) {
+          }
+        } else if (this.type === 3) {
+          if (timer % 200 === 0) {
+            monsterBullets.push(
+              new MonsterBullet(
+                this.ctx,
+                this.x,
+                this.y,
+                hero.x,
+                hero.y,
+                this.damage,
+                this.weaponImage,
+                this.type
+              )
+            );
+
+            monsterBullets.push(
+              new MonsterBullet(
+                this.ctx,
+                this.x + 10,
+                this.y,
+                hero.x + 50,
+                hero.y,
+                this.damage,
+                this.weaponImage,
+                this.type
+              )
+            );
+
+            monsterBullets.push(
+              new MonsterBullet(
+                this.ctx,
+                this.x - 10,
+                this.y,
+                hero.x - 50,
+                hero.y,
+                this.damage,
+                this.weaponImage,
+                this.type
+              )
+            );
           }
         }
       }
@@ -117,7 +168,6 @@ class Monster {
         this.y < obstacle.y + obstacle.height &&
         this.y + this.height > obstacle.y
       ) {
-        // console.log('monster obstacle collision');
         this.dx = 0;
         this.dy = 0;
       }
@@ -134,7 +184,6 @@ class Monster {
         this.height + this.y > bullet.y
       ) {
         this.health -= bullet.damagePower;
-        // console.log(this.health);
         this.clearBullet(bullet);
       }
     });

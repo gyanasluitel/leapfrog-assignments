@@ -1,15 +1,25 @@
 class MonsterBullet {
-  constructor(ctx, monsterX, monsterY, heroX, heroY, damage, weaponImage) {
+  constructor(
+    ctx,
+    monsterX,
+    monsterY,
+    heroX,
+    heroY,
+    damage,
+    weaponImage,
+    type
+  ) {
     this.ctx = ctx;
     this.x = monsterX;
     this.y = monsterY;
-    this.width = 15;
-    this.height = 15;
+    this.type = type;
+    this.width = this.type === 1 ? 15 : 2 ? 20 : 35;
+    this.height = this.type === 1 ? 15 : 2 ? 20 : 35;
 
     this.heroX = heroX;
     this.heroY = heroY;
 
-    this.shotSpeed = 2;
+    this.shotSpeed = this.type === 1 ? 3 : 2 ? 4 : 5;
     this.damagePower = damage;
     this.weaponImage = weaponImage;
 
@@ -41,7 +51,9 @@ class MonsterBullet {
 
       // Clear Bullet when collides with wall
       this.clearBulletWallCollision();
-      this.collidesWith();
+      if (this.type === 1 || this.type === 2) {
+        this.collidesWithObstacle();
+      }
     }
   };
 
@@ -56,7 +68,7 @@ class MonsterBullet {
     });
   };
 
-  collidesWith = () => {
+  collidesWithObstacle = () => {
     obstacles.forEach((obstacle) => {
       if (
         this.x < obstacle.x + obstacle.width &&

@@ -213,3 +213,8 @@ backButtonImage.src = BACK_BUTTON_PATH;
 const HEALTH_INDICATOR_PATH = 'assets/health-indicator.png';
 const healthIndicatorImage = new Image();
 healthIndicatorImage.src = HEALTH_INDICATOR_PATH;
+
+// BOSS MONSTER IMAGE
+const BOSS_MONSTER_PATH = 'assets/boss-monster.png';
+const bossMonsterImage = new Image();
+bossMonsterImage.src = BOSS_MONSTER_PATH;
