@@ -43,6 +43,7 @@ class Monster {
         this.clearMonster(this, hero);
       }
 
+      // Monster Movement Calculation
       if (timer % 200 === 0) {
         if (this.type === 1) {
           this.dx = getRandomIntInclusive(-1, 1);
@@ -59,25 +60,33 @@ class Monster {
       }
 
       // Move Monster
-
       this.x += this.dx;
       this.y += this.dy;
-      this.detectBoxCollision();
-      this.detectObtsacleCollision();
 
+      // Collision Detection
+      this.detectBoxCollision();
+      if (this.type !== 2) {
+        this.detectObtsacleCollision();
+      }
+
+      // Monster shoot
       if (timer % 300 === 0) {
+        // console.log('timer');
         if (hero.health > 0 && this.health > 0) {
-          monsterBullets.push(
-            new MonsterBullet(
-              this.ctx,
-              this.x,
-              this.y,
-              hero.x,
-              hero.y,
-              this.damage,
-              this.weaponImage
-            )
-          );
+          if (this.type === 1 || this.type === 2) {
+            monsterBullets.push(
+              new MonsterBullet(
+                this.ctx,
+                this.x,
+                this.y,
+                hero.x,
+                hero.y,
+                this.damage,
+                this.weaponImage
+              )
+            );
+          } else if (this.type === 3) {
+          }
         }
       }
 
@@ -90,13 +99,13 @@ class Monster {
       this.x < RING_LEFT_BOUNDARY ||
       this.x + this.width >= RING_RIGHT_BOUNDARY
     ) {
-      this.dx = 0;
+      this.dx = -this.dx;
     }
     if (
       this.y - this.width <= RING_TOP_BOUNDARY ||
       this.y + this.width >= canvas.height
     ) {
-      this.dy = 0;
+      this.dy = -this.dy;
     }
   };
 
