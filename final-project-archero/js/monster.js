@@ -9,11 +9,8 @@ class Monster {
     this.health = this.totalHealth;
     this.width = 50;
     this.height = 50;
-    this.x = getRandomPosition(
-      RING_LEFT_BOUNDARY + 50,
-      RING_RIGHT_BOUNDARY - 50
-    );
-    this.y = getRandomPosition(RING_TOP_BOUNDARY + 10, CANVAS_HEIGHT / 2);
+    this.x = monster.x;
+    this.y = monster.y;
     this.dx = 0;
     this.dy = 0;
   }
@@ -49,24 +46,28 @@ class Monster {
           this.dx = getRandomIntInclusive(-1, 1);
           this.dy = getRandomIntInclusive(-1, 1);
         } else if (timer % 100 === 0) {
-          if (getRandomIntInclusive(0, 1) === 0) {
+          if (getRandomIntInclusive(0, 1)) {
             this.dx = 0;
             this.dy = 0;
           }
-        } else if (this.type === 2) {
-          if (timer % 200 === 0) {
-            this.dx = getRandomIntInclusive(-2, 2);
-            this.dy = getRandomIntInclusive(-2, 2);
-          } else if (timer % 100 === 0) {
-            if (getRandomIntInclusive(0, 1) === 0) {
-              this.dx = 0;
-              this.dy = 0;
-            }
-          }
-        } else if (this.type === 3) {
-          this.dx = 0;
-          this.dy = 0;
         }
+      }
+
+      if (this.type === 2) {
+        if (timer % 200 === 0) {
+          this.dx = getRandomIntInclusive(-2, 2);
+          this.dy = getRandomIntInclusive(-2, 2);
+        } else if (timer % 100 === 0) {
+          if (getRandomIntInclusive(0, 1)) {
+            this.dx = 0;
+            this.dy = 0;
+          }
+        }
+      }
+
+      if (this.type === 3) {
+        this.dx = 0;
+        this.dy = 0;
       }
 
       // Move Monster

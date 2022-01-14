@@ -13,13 +13,13 @@ class MonsterBullet {
     this.x = monsterX;
     this.y = monsterY;
     this.type = type;
-    this.width = this.type === 1 ? 15 : 2 ? 20 : 35;
-    this.height = this.type === 1 ? 15 : 2 ? 20 : 35;
+    this.width = this.type === 1 ? 15 : 2 ? 20 : 3 ? 35 : 50;
+    this.height = this.type === 1 ? 15 : 2 ? 20 : 3 ? 35 : 50;
 
     this.heroX = heroX;
     this.heroY = heroY;
 
-    this.shotSpeed = this.type === 1 ? 3 : 2 ? 4 : 5;
+    this.shotSpeed = this.type === 1 ? 2 : 2 ? 3 : 3 ? 4 : 5;
     this.damagePower = damage;
     this.weaponImage = weaponImage;
 
