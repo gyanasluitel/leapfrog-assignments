@@ -218,3 +218,13 @@ healthIndicatorImage.src = HEALTH_INDICATOR_PATH;
 const BOSS_MONSTER_PATH = 'assets/boss-monster.png';
 const bossMonsterImage = new Image();
 bossMonsterImage.src = BOSS_MONSTER_PATH;
+
+// BOSS MONSTER WEAPON IMAGE
+const BOSS_MONSTER_WEAPON_PATH = 'assets/bossMonsterWeapon.png';
+const bossMonsterWeaponImage = new Image();
+bossMonsterWeaponImage.src = BOSS_MONSTER_WEAPON_PATH;
+
+// BOSS ICON INDICATOR
+const BOSS_ICON_INDICATOR_PATH = 'assets/boss-icon.png';
+const bossIconIndicatorImage = new Image();
+bossIconIndicatorImage.src = BOSS_ICON_INDICATOR_PATH;
