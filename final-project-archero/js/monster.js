@@ -184,6 +184,7 @@ class Monster {
         this.y < bullet.y + bullet.height &&
         this.height + this.y > bullet.y
       ) {
+        COLLISION_AUDIO.play();
         this.health -= bullet.damagePower;
         this.clearBullet(bullet);
       }

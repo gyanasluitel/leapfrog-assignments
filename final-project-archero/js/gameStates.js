@@ -180,8 +180,8 @@ class SelectPowerUp {
   draw = () => {
     if (gameStates.current === gameStates.selectPowerUp) {
       this.ctx.fillStyle = 'white';
-      this.ctx.font = 'bold 22px Arial';
-      this.ctx.fillText('Select Power Up!', CANVAS_WIDTH / 3 - 15, 260);
+      this.ctx.font = 'bold 20px Arial';
+      this.ctx.fillText('Select a Power Up!', CANVAS_WIDTH / 3 - 15, 260);
 
       this.ctx.drawImage(
         this.powerUps[this.powerUpOptions[0]],

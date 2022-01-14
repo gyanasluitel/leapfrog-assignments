@@ -39,6 +39,7 @@ class Coin {
       this.y < this.hero.y + this.hero.height &&
       this.height + this.y > this.hero.y
     ) {
+      COIN_COLLECT_AUDIO.play();
       this.clearCoin(this, score);
     }
   };

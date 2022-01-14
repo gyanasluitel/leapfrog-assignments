@@ -66,6 +66,7 @@ class Hero {
       this.level++;
       this.experience = 0;
       selectPowerUp.getPowerUpOptions(this);
+      POWER_UP_SELECT_AUDIO.play();
       gameStates.current = gameStates.selectPowerUp;
     }
     return percentage;
@@ -166,6 +167,7 @@ class Hero {
 
   shoot = () => {
     let nearestMonster = this.getNearestMonster();
+    PLAYER_SHOT_AUDIO.play();
 
     /*---------------------------
       STRAIGHT ONLY ARROW SHOT
@@ -432,6 +434,7 @@ class Hero {
       this.x = CANVAS_WIDTH / 2 - 30;
       this.y = CANVAS_HEIGHT;
       gameStates.current = gameStates.nextLevel;
+      LEVEL_UP_AUDIO.play();
     }
   };
 
