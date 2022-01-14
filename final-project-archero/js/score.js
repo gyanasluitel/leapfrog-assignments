@@ -24,15 +24,6 @@ class Score {
   };
 
   drawCoinScore = () => {
-    // this.ctx.strokeStyle = 'gray';
-
-    // // Draw Score Board
-    // this.ctx.strokeRect(
-    //   this.x,
-    //   this.y,
-    //   this.scoreBoardWidth,
-    //   this.scoreBoardHeight
-    // );
     this.ctx.drawImage(
       coinImage,
       this.x,
@@ -44,12 +35,12 @@ class Score {
     // Draw Score
     this.ctx.fillStyle = 'white';
     this.ctx.font = 'bold 18px Arial';
-    this.ctx.fillText(this.totalCoinsCollected, this.x + 20, this.y + 15);
+    this.ctx.fillText(this.totalCoinsCollected, this.x + 25, this.y + 15);
   };
 
   drawCurrentLevel = () => {
     this.ctx.fill = 'white';
-    this.ctx.font = 'bold 25px Arial';
-    this.ctx.fillText(gameStates.currentLevel, CANVAS_WIDTH / 2 - 5, 95);
+    this.ctx.font = 'bold 20px Arial';
+    this.ctx.fillText(gameStates.currentLevel, CANVAS_WIDTH / 2 - 6, 92);
   };
 }

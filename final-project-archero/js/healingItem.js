@@ -57,9 +57,11 @@ class HealingItem {
           healingItemToClear.y === healingItem.y
         )
     );
-    if (this.hero.health > 0 && this.hero.health < 100) {
+    if (this.hero.health > 0 && this.hero.health < this.hero.totalHealth) {
       this.hero.health += 10;
+      if (this.hero.health > this.hero.totalHealth) {
+        this.hero.health = this.hero.totalHealth;
+      }
     }
-    //   console.log(coins);
   };
 }

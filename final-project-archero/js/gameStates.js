@@ -180,8 +180,8 @@ class SelectPowerUp {
   draw = () => {
     if (gameStates.current === gameStates.selectPowerUp) {
       this.ctx.fillStyle = 'white';
-      this.ctx.font = 'bold 20px Arial';
-      this.ctx.fillText('Select Power Up!', CANVAS_WIDTH / 4, 250);
+      this.ctx.font = 'bold 22px Arial';
+      this.ctx.fillText('Select Power Up!', CANVAS_WIDTH / 3 - 15, 260);
 
       this.ctx.drawImage(
         this.powerUps[this.powerUpOptions[0]],
@@ -333,7 +333,7 @@ class Upgrade {
       this.ctx.fillStyle = 'white';
       this.ctx.font = 'bold 18px Arial';
       this.ctx.fillText(
-        hero.totalHealth / 25,
+        hero.totalHealth / 10,
         this.upgradeHealthX + this.upgradeHealthWidth / 2 + 7,
         this.upgradeHealthY + this.upgradeHealthHeight + 25
       );

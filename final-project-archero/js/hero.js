@@ -7,7 +7,6 @@ class Hero {
     this.y = CANVAS_HEIGHT - 50;
     this.dx = 5;
     this.dy = 5;
-    // this.speed = 3;
     this.totalHealth = parseInt(localStorage.getItem('arcHeroHealth')) || 100;
     this.health = this.totalHealth;
     this.previousX = this.x;
@@ -102,7 +101,10 @@ class Hero {
       this.detectObstacleCollision();
       this.detectMonsterCollision();
       this.detectHealthPowerUp();
-      // this.detectLevelUpgrade();
+
+      if (this.health <= 0) {
+        gameStates.current = gameStates.gameOver;
+      }
 
       if (
         (keyPressed.ArrowUp || keyPressed.Up) &&
@@ -147,7 +149,7 @@ class Hero {
   detectHealthPowerUp = () => {
     if (this.powerUps.powerHeal) {
       if (this.health <= this.totalHealth) {
-        this.health += 0.4 * this.totalHealth;
+        this.health += Math.floor(0.4 * this.totalHealth);
         if (this.health > this.totalHealth) {
           this.health = this.totalHealth;
         }
@@ -156,8 +158,8 @@ class Hero {
     }
 
     if (this.powerUps.powerHpBoost) {
-      this.totalHealth += 0.2 * this.totalHealth;
-      this.health += 0.2 * this.totalHealth;
+      this.totalHealth += Math.floor(0.2 * this.totalHealth);
+      this.health += Math.floor(0.2 * this.totalHealth);
       this.powerUps.powerHpBoost = false;
     }
   };
@@ -370,7 +372,6 @@ class Hero {
     -----------------------------*/
 
     if (this.powerUps.powerArrowBack) {
-      // console.log('arrow back');
       bullets.push(
         new Bullet(
           this.ctx,
@@ -415,7 +416,6 @@ class Hero {
       });
     });
     monstersDistance.sort((a, b) => a.distance - b.distance);
-    // console.log(monstersDistance);
     return monstersDistance[0];
   };
 
@@ -518,9 +518,6 @@ class Hero {
       ) {
         if (timer % 30 === 0) {
           this.health -= 2;
-          if (this.health <= 0) {
-            gameStates.current = gameStates.gameOver;
-          }
         }
       }
     });
@@ -540,9 +537,6 @@ class Hero {
       ) {
         this.health -= bullet.damagePower;
         this.clearBullet(bullet);
-        if (this.health <= 0) {
-          gameStates.current = gameStates.gameOver;
-        }
       }
     });
   };

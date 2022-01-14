@@ -47,13 +47,10 @@ class Coin {
     coins = coins.filter(
       (coin) => !(coinToClear.x === coin.x && coinToClear.y === coin.y)
     );
-    // console.log(coins);
     score.coinsCollectedPerGame++;
     score.totalCoinsCollected++;
     localStorage.setItem('arcHeroScore', score.totalCoinsCollected);
 
     this.hero.experience += 20;
-    // console.log(this.hero.experience);
-    // console.log(score.coinsCollected);
   };
 }
