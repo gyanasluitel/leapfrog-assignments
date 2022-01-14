@@ -239,3 +239,8 @@ instructionsButtonImage.src = INSTUCTION_BUTTON_PATH;
 const CONTROL_BUTTONS_PATH = 'assets/controls.png';
 const controlButtonsImage = new Image();
 controlButtonsImage.src = CONTROL_BUTTONS_PATH;
+
+// HERO WEAPON SPRITE
+const HERO_WEAPON_SPRITE_PATH = 'assets/heroWeaponSprite.png';
+const heroWeaponSpriteImage = new Image();
+heroWeaponSpriteImage.src = HERO_WEAPON_SPRITE_PATH;

@@ -75,13 +75,7 @@ class Instructions {
   draw = () => {
     if (gameStates.current === gameStates.instructions) {
       // Draw Background
-      this.ctx.drawImage(
-        upgradeBackgroundImage,
-        0,
-        0,
-        CANVAS_WIDTH,
-        CANVAS_HEIGHT
-      );
+      this.ctx.drawImage(gameStartBgImage, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
       // Draw Back Button
       this.ctx.drawImage(
@@ -120,7 +114,7 @@ class GameOver {
   constructor(ctx) {
     this.ctx = ctx;
     this.playButtonX = CANVAS_WIDTH / 3;
-    this.playButtonY = CANVAS_HEIGHT / 4;
+    this.playButtonY = CANVAS_HEIGHT / 3 + 30;
     this.playButtonWidth = 150;
     this.playButtonHeight = 50;
   }
@@ -129,6 +123,10 @@ class GameOver {
     if (gameStates.current === gameStates.gameOver) {
       // Draw Game Start Background Image
       this.ctx.drawImage(gameStartBgImage, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+
+      this.ctx.fillStyle = 'white';
+      this.ctx.font = 'bold 24px Arial';
+      this.ctx.fillText('You Lost!', CANVAS_WIDTH / 2 - 52, 200);
 
       // Draw Play Button
       this.ctx.drawImage(
@@ -318,13 +316,7 @@ class Upgrade {
   draw = (hero) => {
     if (gameStates.current === gameStates.upgrade) {
       // Draw Background
-      this.ctx.drawImage(
-        upgradeBackgroundImage,
-        0,
-        0,
-        CANVAS_WIDTH,
-        CANVAS_HEIGHT
-      );
+      this.ctx.drawImage(gameStartBgImage, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
       // Draw Back Button
       this.ctx.drawImage(
