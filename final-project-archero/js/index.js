@@ -3,7 +3,6 @@ class ArcheroGame {
     this.canvas = document.getElementById(canvasName);
     this.canvas.width = CANVAS_WIDTH;
     this.canvas.height = CANVAS_HEIGHT;
-    // this.canvas.style.margin = '0 50% 0 25%';
     this.ctx = canvas.getContext('2d');
     this.canvas.style =
       'position:absolute; left: 50%; width: 400px; margin-left: -200px;';
@@ -31,7 +30,11 @@ class ArcheroGame {
   generateMonsters = () => {
     let monsterArray = this.levels.level[gameStates.currentLevel].monsters;
     for (let i = 0; i < monsterArray.length; i++) {
-      monsters.push(new Monster(this.ctx, monsterArray[i]));
+      if (monsterArray[i].type === 5 || monsterArray[i].type === 10) {
+        monsters.push(new BossMonster(this.ctx, monsterArray[i]));
+      } else {
+        monsters.push(new Monster(this.ctx, monsterArray[i]));
+      }
     }
   };
 
@@ -166,9 +169,9 @@ class ArcheroGame {
             clickY <=
               this.upgrade.upgradeHealthY + this.upgrade.upgradeHealthHeight
           ) {
-            if (this.score.totalCoinsCollected >= this.hero.totalHealth / 25) {
-              this.score.totalCoinsCollected -= this.hero.totalHealth / 25;
-              this.hero.totalHealth += 25;
+            if (this.score.totalCoinsCollected >= this.hero.totalHealth / 10) {
+              this.score.totalCoinsCollected -= this.hero.totalHealth / 10;
+              this.hero.totalHealth += 100;
               localStorage.setItem(
                 'arcHeroScore',
                 this.score.totalCoinsCollected
@@ -231,6 +234,7 @@ class ArcheroGame {
                 this.selectPowerUp.powerUpButtonHeight
           ) {
             this.hero.powerUps[this.selectPowerUp.powerUpOptions[0]] = true;
+            this.selectPowerUp.powerUpOptions = [];
             gameStates.current = gameStates.gameRunning;
           }
 
@@ -246,6 +250,7 @@ class ArcheroGame {
                 this.selectPowerUp.powerUpButtonHeight
           ) {
             this.hero.powerUps[this.selectPowerUp.powerUpOptions[1]] = true;
+            this.selectPowerUp.powerUpOptions = [];
             gameStates.current = gameStates.gameRunning;
           }
 
@@ -261,6 +266,7 @@ class ArcheroGame {
                 this.selectPowerUp.powerUpButtonHeight
           ) {
             this.hero.powerUps[this.selectPowerUp.powerUpOptions[2]] = true;
+            this.selectPowerUp.powerUpOptions = [];
             gameStates.current = gameStates.gameRunning;
           }
           break;
