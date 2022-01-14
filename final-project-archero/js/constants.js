@@ -22,6 +22,7 @@ const gameStates = {
   selectPowerUp: 5,
   gameComplete: 6,
   upgrade: 7,
+  instructions: 8,
   currentLevel: 1,
 };
 
@@ -228,3 +229,13 @@ bossMonsterWeaponImage.src = BOSS_MONSTER_WEAPON_PATH;
 const BOSS_ICON_INDICATOR_PATH = 'assets/boss-icon.png';
 const bossIconIndicatorImage = new Image();
 bossIconIndicatorImage.src = BOSS_ICON_INDICATOR_PATH;
+
+// INSTRUCTION BUTTON
+const INSTUCTION_BUTTON_PATH = 'assets/btn-instructions.png';
+const instructionsButtonImage = new Image();
+instructionsButtonImage.src = INSTUCTION_BUTTON_PATH;
+
+// CONTROL BUTTONS IMAGE
+const CONTROL_BUTTONS_PATH = 'assets/controls.png';
+const controlButtonsImage = new Image();
+controlButtonsImage.src = CONTROL_BUTTONS_PATH;

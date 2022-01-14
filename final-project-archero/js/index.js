@@ -25,6 +25,7 @@ class ArcheroGame {
     this.gameComplete = new GameComplete(ctx);
     this.selectPowerUp = new SelectPowerUp(ctx);
     this.upgrade = new Upgrade(ctx);
+    this.instructions = new Instructions(ctx);
   }
 
   generateMonsters = () => {
@@ -74,6 +75,7 @@ class ArcheroGame {
     this.score.draw(this.hero);
     this.gameComplete.draw();
     this.selectPowerUp.draw();
+    this.instructions.draw();
   };
 
   update = () => {
@@ -146,6 +148,21 @@ class ArcheroGame {
           ) {
             gameStates.current = gameStates.upgrade;
           }
+
+          // Click on Instruction Button
+          if (
+            clickX >= this.getReady.instructionButtonX &&
+            clickX <=
+              this.getReady.instructionButtonX +
+                this.getReady.instructionButtonWidth &&
+            clickY >= this.getReady.instructionButtonY &&
+            clickY <=
+              this.getReady.instructionButtonY +
+                this.getReady.instructionButtonHeight
+          ) {
+            gameStates.current = gameStates.instructions;
+          }
+
           break;
 
         case gameStates.upgrade:
@@ -202,7 +219,20 @@ class ArcheroGame {
               );
             }
           }
+          break;
 
+        case gameStates.instructions:
+          if (
+            clickX >= this.instructions.backButtonX &&
+            clickX <=
+              this.instructions.backButtonX +
+                this.instructions.backButtonWidth &&
+            clickY >= this.instructions.backButtonY &&
+            clickY <=
+              this.instructions.backButtonY + this.instructions.backButtonHeight
+          ) {
+            gameStates.current = gameStates.getReady;
+          }
           break;
 
         case gameStates.gameComplete:

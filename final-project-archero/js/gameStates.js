@@ -11,6 +11,11 @@ class GetReady {
     this.upgradeButtonY = CANVAS_HEIGHT / 3 + 30;
     this.upgradeButtonWidth = 120;
     this.upgradeButtonHeight = 50;
+
+    this.instructionButtonX = CANVAS_WIDTH - 140;
+    this.instructionButtonY = 20;
+    this.instructionButtonWidth = 120;
+    this.instructionButtonHeight = 50;
   }
 
   draw = () => {
@@ -44,6 +49,68 @@ class GetReady {
         this.upgradeButtonWidth,
         this.upgradeButtonHeight
       );
+
+      // Instruction Button
+      this.ctx.drawImage(
+        instructionsButtonImage,
+        this.instructionButtonX,
+        this.instructionButtonY,
+        this.instructionButtonWidth,
+        this.instructionButtonHeight
+      );
+    }
+  };
+}
+
+class Instructions {
+  constructor(ctx) {
+    this.ctx = ctx;
+
+    this.backButtonX = 30;
+    this.backButtonY = 30;
+    this.backButtonWidth = 50;
+    this.backButtonHeight = 50;
+  }
+
+  draw = () => {
+    if (gameStates.current === gameStates.instructions) {
+      // Draw Background
+      this.ctx.drawImage(
+        upgradeBackgroundImage,
+        0,
+        0,
+        CANVAS_WIDTH,
+        CANVAS_HEIGHT
+      );
+
+      // Draw Back Button
+      this.ctx.drawImage(
+        backButtonImage,
+        this.backButtonX,
+        this.backButtonY,
+        this.backButtonWidth,
+        this.backButtonHeight
+      );
+
+      this.ctx.fillStyle = 'white';
+      this.ctx.font = 'bold 24px Arial';
+      this.ctx.fillText('CONTROLS', CANVAS_WIDTH / 2 - 60, 200);
+
+      this.ctx.drawImage(
+        controlButtonsImage,
+        CANVAS_WIDTH / 2 - 55,
+        220,
+        120,
+        80
+      );
+
+      this.ctx.fillStyle = 'white';
+      this.ctx.font = 'italic 16px Arial';
+      this.ctx.fillText('Use the controls to move the hero.', 80, 350);
+      this.ctx.fillText('The hero shoots when in stationary.', 80, 380);
+
+      this.ctx.font = 'bold 20px Arial';
+      this.ctx.fillText('Enjoy the game!', CANVAS_WIDTH / 2 - 70, 450);
     }
   };
 }
